@@ -1,0 +1,28 @@
+API
+
+- create sensor
+POST 	/create
+PAYLOAD deviceID: string
+		sensorID: string
+		[RDF 	: JSON-LD]
+
+- find sensor
+GET		/query
+PAYLOAD	device:	[none, URI, var]
+		sensor: [none, URI, var]
+		filter:	[{subject, predicate, object}]
+		start:	timestamp
+		end:	timestamp
+		[latest:bool]
+
+
+- insert value
+PUT		/devices/[deviceID]/sensors/[sensorID]/values
+PAYLOAD	[{value:
+		  [timestamp:]}]
+
+- get values
+GET		/devices/[deviceID]/sensors/[sensorID]/values[/?start=[start]&end=[end]]
+RETURN	JSON ([SENSOR URI]_[PROPERTY URI], value, timestamp)
+
+

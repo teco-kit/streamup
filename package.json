@@ -1,0 +1,23 @@
+{
+  "name": "smartteco",
+  "version": "0.0.1",
+  "description": "Smartteco server running on lemdb and levelgraph",
+  "main": "src/Server.js",
+  "scripts": {
+    "start": "supervisor src/Server.js"
+  },
+  "author": "Michael Jacoby",
+  "license": "MIT",
+  "dependencies": {
+    "restify": "*",
+    "level": "*",
+    "through": "*",
+    "levelgraph": "*",
+    "levelgraph-n3": "*",
+    "levelgraph-jsonld": "*",
+    "q": "*",
+    "lem": "*",
+    "n3": "*",
+    "jsonld": "*"
+  }
+}

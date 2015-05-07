@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+
+<rdf:RDF xmlns="http://www.teco.edu/smartteco/"
+     xml:base="http://www.teco.edu/smartteco/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	 xmlns:ssn="http://purl.oclc.org/NET/ssnx/ssn#"
+	 xmlns:spt="http://spitfire-project.eu/ontology/ns/"
+	 xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	 xmlns:cffeature="http://purl.oclc.org/NET/ssnx/cf/cf-feature#" 
+	 xmlns:cf="http://purl.oclc.org/NET/ssnx/cf/cf-property#"
+	 xmlns:dim="http://purl.oclc.org/NET/ssnx/qu/dim#">
+
+    
+    <owl:Class rdf:about="Device">
+		<rdfs:subClassOf rdf:resource="ssn:Device" />
+	</owl:Class>
+	
+    <owl:Class rdf:about="Artifact">
+		<rdfs:subClassOf rdf:resource="owl:Thing"/>
+	</owl:Class>
+	
+    <owl:Class rdf:about="Building">
+		<rdfs:subClassOf rdf:resource="spt:Place"/>
+	</owl:Class>
+	
+    <owl:Class rdf:about="Room">
+		<rdfs:subClassOf rdf:resource="spt:Place"/>
+	</owl:Class>	
+
+    <owl:Class rdf:about="Window">
+		<rdfs:subClassOf rdf:resource="#Artifact"/>
+	</owl:Class>	
+	
+    <owl:Class rdf:about="Door">
+		<rdfs:subClassOf rdf:resource="#Artifact"/>
+	</owl:Class>
+	
+    <owl:Class rdf:about="smarttecoChair">
+		<rdfs:subClassOf rdf:resource="#Artifact"/>
+	</owl:Class>	
+	
+    <owl:Class rdf:about="uPart">
+		<rdfs:subClassOf rdf:resource="#Device"/>
+		<hasSensor rdf:resource="#TemperatureSensor"/>
+		<hasSensor rdf:resource="#MovementSensor"/>
+		<hasSensor rdf:resource="#LightSensor"/>
+	</owl:Class>		
+	
+    <owl:Class rdf:about="Plugwise">
+		<rdfs:subClassOf rdf:resource="#Device"/>
+		<hasSensor rdf:resource="#EnergySensor"/>
+		<hasActuator rdf:resource="#PowerActuator"/>
+	</owl:Class>		
+	
+    <owl:Class rdf:about="Heater">
+		<rdfs:subClassOf rdf:resource="#Device"/>
+		<hasSensor rdf:resource="#TemperatureSensor"/>
+		<hasSensor rdf:resource="#WindowSensor"/>
+		<hasActuator rdf:resource="#HeatActuator"/>
+	</owl:Class>		
+	
+    <owl:Class rdf:about="jNode">
+		<rdfs:subClassOf rdf:resource="#Device"/>
+	</owl:Class>		
+	
+    <owl:Class rdf:about="Tag">
+		<rdfs:subClassOf rdf:resource="owl:Thing"/>
+	</owl:Class>		
+	
+    <owl:Class rdf:about="TemperatureSensor">
+		<rdfs:subClassOf rdf:resource="ssn:SensingDevice"/>
+		<ssn:observes rdf:resource="cffeature:air_temperature"/>
+	</owl:Class>		
+	
+    <owl:Class rdf:about="LightSensor">
+		<rdfs:subClassOf rdf:resource="ssn:SensingDevice"/>
+		<ssn:observes rdf:resource="#light_intensity"/>
+	</owl:Class>			
+	
+    <owl:Class rdf:about="MovementSensor">
+		<rdfs:subClassOf rdf:resource="ssn:SensingDevice"/>
+		<ssn:observes rdf:resource="#movement"/>
+	</owl:Class>			
+	
+    <owl:Class rdf:about="EnergySensor">
+		<rdfs:subClassOf rdf:resource="ssn:SensingDevice"/>
+		<ssn:observes rdf:resource="#energy"/>
+	</owl:Class>			
+	
+    <owl:Class rdf:about="WindowSensor">
+		<rdfs:subClassOf rdf:resource="ssn:SensingDevice"/>
+		<ssn:observes rdf:resource="#window_state"/>
+	</owl:Class>		
+	
+    <owl:Class rdf:about="PowerActuator">
+		<rdfs:subClassOf rdf:resource="spt:Actuator"/>
+	</owl:Class>		
+	
+    <owl:Class rdf:about="HeatActuator">
+		<rdfs:subClassOf rdf:resource="spt:Actuator"/>
+	</owl:Class>			
+	
+	<owl:Class rdf:about="Stream">
+		<rdfs:subClassOf rdf:resource="owl:Thing"/>
+	</owl:Class>			
+	
+	<ssn:Property rdf:about="light_intensity"/>
+	
+	<ssn:Property rdf:about="movement"/>
+	
+	<ssn:Property rdf:about="energy"/>
+	
+	<ssn:Property rdf:about="window_state"/>
+	
+
+	<rdf:Property rdf:about="attachtedTo">
+		<rdfs:label xml:lang="en">attached to</rdfs:label>
+		<rdfs:comment>No comment yet.</rdfs:comment>
+		<rdfs:domain rdf:resource="#Device"/>
+		<rdfs:range rdf:resource="#Artifact"/>
+	</rdf:Property>	
+	
+	<rdf:Property rdf:about="hasActuator">
+		<rdfs:subPropertyOf rdf:resource="ssn:hasSubsystem"/>
+		<rdfs:label xml:lang="en">has actuator</rdfs:label>
+		<rdfs:comment>Defines the actuators available for this device type.</rdfs:comment>
+		<rdfs:domain rdf:resource="#Device"/>
+		<rdfs:range rdf:resource="spt:Actuator"/>
+	</rdf:Property>		
+	
+	<rdf:Property rdf:about="hasSensor">
+		<rdfs:subPropertyOf rdf:resource="ssn:hasSubsystem"/>
+		<rdfs:label xml:lang="en">has sensor</rdfs:label>
+		<rdfs:comment>Defines the sensors available for this device type.</rdfs:comment>
+		<rdfs:domain rdf:resource="#Device"/>
+		<rdfs:range rdf:resource="ssn:SensingDevice"/>
+	</rdf:Property>			
+	
+	<rdf:Property rdf:about="hasDescription">
+		<rdfs:label xml:lang="en">has description</rdfs:label>
+		<rdfs:comment>Describes the device.</rdfs:comment>
+		<rdfs:domain rdf:resource="#Device"/>
+		<rdfs:range rdf:resource="xsd:string"/>
+	</rdf:Property>
+	
+	<rdf:Property rdf:about="hasID">
+		<rdfs:label xml:lang="en">has ID</rdfs:label>
+		<rdfs:comment>The identifier.</rdfs:comment>
+		<rdfs:domain> 
+			<owl:Class> 
+				<owl:unionOf rdf:parseType="Collection"> 
+					<rdf:Description rdf:about="#Sensor"/> 
+					<rdf:Description rdf:about="#Actuator"/> 
+					<rdf:Description rdf:about="#Device"/> 
+				</owl:unionOf> 
+			</owl:Class> 
+		</rdfs:domain> 
+		<rdfs:range rdf:resource="xsd:string"/>
+	</rdf:Property>
+	
+	<rdf:Property rdf:about="hasValue">
+		<rdfs:label xml:lang="en">has description</rdfs:label>
+		<rdfs:comment>The value of the tag.</rdfs:comment>
+		<rdfs:domain rdf:resource="#Tag"/>
+		<rdfs:range rdf:resource="xsd:string"/>
+	</rdf:Property>
+	
+	<rdf:Property rdf:about="hasTag">
+		<rdfs:label xml:lang="en">has tag</rdfs:label>
+		<rdfs:comment>Tag belonging to the device.</rdfs:comment>
+		<rdfs:domain rdf:resource="#Device"/>
+		<rdfs:range rdf:resource="#Tag"/>
+	</rdf:Property>
+	
+	<rdf:Property rdf:about="hasStream">
+		<rdfs:label xml:lang="en">has stream</rdfs:label>
+		<rdfs:comment>Stream coming from this sensor.</rdfs:comment>
+		<rdfs:domain rdf:resource="ssn:SensorDevice"/>
+		<rdfs:range rdf:resource="#Stream"/>
+	</rdf:Property>
+	
+	<rdf:Property rdf:about="hasUri">
+		<rdfs:label xml:lang="en">has URI</rdfs:label>
+		<rdfs:comment>URI of the stream.</rdfs:comment>
+		<rdfs:domain rdf:resource="#Stream"/>
+		<rdfs:range rdf:resource="xsd:string"/>
+	</rdf:Property>
+	
+	<rdf:Property rdf:about="hasMeasurement">
+		<rdfs:label xml:lang="en">has measurement</rdfs:label>
+		<rdfs:comment>Measurement produce by that sensor</rdfs:comment>
+		<rdfs:domain rdf:resource="ssn:SensingDevice"/>
+		<rdfs:range rdf:resource="rdfs:Literal"/>
+	</rdf:Property>	
+	
+	
+</rdf:RDF>
+

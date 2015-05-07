@@ -1,0 +1,66 @@
+class MultiResult {
+	public int success;
+	public int fail;
+}
+
+interface TripleStore {
+	(triple, err) insertTriple(Triple triple);	
+	(triple, err) deleteTriple(Triple triple);
+
+	(triples, err) insertTriples(Triple[] triples);
+	(triples, err) deleteTriples(Triple[] triples);
+
+	{ triples: Triple[], result: MultiResult} insert({data: string, format: string});
+	{ triples: Triple[], result: MultiResult} insertFromFile({file: string, format: string});
+
+	Triple[] getAllTriples();
+	MultiResult clear();
+	
+	Var[[]] query(Triple[] triples);
+}
+
+interface TimeSeriesStore {
+	createIndex(String index);
+	clear();
+
+	[{value: ?, timestamp: long}] getValues({index: string, start: long, end: long});
+	{value: ?, timestamp: long} getLatestValue({index: string);
+
+	{value: ?, timestamp: long} insertValue({index: string, data: {value: ?, timestamp: long}});
+	[{value: ?, timestamp: long}] insertValues({index: string, data: [{value: ?, timestamp: long}]});
+
+	MultiResult deleteValue({index: string, data: {value: ?, timestamp: long}});
+	MultiResult deleteValues({index: string, data: [{value: ?, timestamp: long}]});
+
+	{ values: [{value: ?, timestamp: long}, result: MultiResult] MultiResult deleteValuesByTime({index: string, start: long, stop: long});
+}
+
+interface SensorRepresentation {
+	{uri: string, triples: Triple[]} parseSensor({?} sensor);	
+	Triple[] getSensorSearchPattern(OPT sensor)		??????????
+}
+
+class StreamUp {
+	public StreamUp(TripleStore tripleStore, TimeSeriesStore timeSeriesStore, SensorRepresentation sensorRepresentation) {
+
+	}
+
+	createSensor();
+	insertValues();
+	getValues();
+	findSensors();
+}
+
+class StreamUpServer() {
+	
+}
+
+
+
+{ 	type: 			string, 
+  	url:  			string,
+  	options:	  	[parseQuery, ...],
+  	parseParameter:	function({body: ?, query: ?}) -> {?} sensor,
+  	target:			function
+  	handleResult:	function(err, result) -> {code: int, message: string, body: ?, asJson: bool},
+ }

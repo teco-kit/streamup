@@ -1,0 +1,51 @@
+###################################
+############# WINDOWS #############
+
+http://192.168.59.103:8080/sensors/123
+
+######################
+####### CREATE #######
+curl -H "Content-Type: application/json" -X POST http://192.168.59.103:8080/create --data @create-body.json
+######################
+
+######################
+####### QUERY ########
+curl -H "Content-Type: application/json" -X POST http://192.168.59.103:8080/query --data @query-body.json
+######################
+
+
+
+
+
+
+###################################
+############## LINUX ##############
+
+######################
+####### CREATE #######
+curl -H "Content-Type: application/json" -X POST http://172.17.42.1:8080/create --data @create-body.json
+######################
+
+
+######################
+#### INSERT VALUE ####
+
+# AS JSON #
+curl -H "Content-Type: application/json" -X PUT http://172.17.42.1:8080/devices/123/sensors/456/values -d '{"value": "aaa", "timestamp": 12345678 }'
+
+# AS QUERY #
+curl -H "Content-Type: application/json" -X PUT http://172.17.42.1:8080/devices/123/sensors/456/values?value=aaa\&timestamp=12345678
+######################
+
+
+######################
+##### GET VALUES #####
+curl -H "Content-Type: application/json" -X GET http://172.17.42.1:8080/devices/123/sensors/456/values
+curl -H "Content-Type: application/json" -X GET http://172.17.42.1:8080/devices/123/sensors/456/values?start=123
+curl -H "Content-Type: application/json" -X GET http://172.17.42.1:8080/devices/123/sensors/456/values?start=123\&end=99999999
+######################
+
+######################
+####### QUERY ########
+curl -H "Content-Type: application/json" -X POST http://172.17.42.1:8080/query --data @query-body.json
+######################

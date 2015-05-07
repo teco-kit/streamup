@@ -1,0 +1,156 @@
+@prefix : <http://www.teco.edu/smartteco/> .
+@prefix cf: <http://purl.oclc.org/NET/ssnx/cf/cf-property#> .
+@prefix cffeature: <http://purl.oclc.org/NET/ssnx/cf/cf-feature#> .
+@prefix dim: <http://purl.oclc.org/NET/ssnx/qu/dim#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix spt: <http://spitfire-project.eu/ontology/ns/> .
+@prefix ssn: <http://purl.oclc.org/NET/ssnx/ssn#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:Artifact a owl:Class ;
+    rdfs:subClassOf <owl:Thing> .
+
+:Building a owl:Class ;
+    rdfs:subClassOf <spt:Place> .
+
+:Device a owl:Class ;
+    rdfs:subClassOf <ssn:Device> .
+
+:Door a owl:Class ;
+    rdfs:subClassOf <http://www.teco.edu/smartteco/Artifact> .
+
+:EnergySensor a owl:Class ;
+    ssn:observes <http://www.teco.edu/smartteco/energy> ;
+    rdfs:subClassOf <ssn:SensingDevice> .
+
+:HeatActuator a owl:Class ;
+    rdfs:subClassOf <spt:Actuator> .
+
+:Heater a owl:Class ;
+    :hasActuator <http://www.teco.edu/smartteco/HeatActuator> ;
+    :hasSensor <http://www.teco.edu/smartteco/TemperatureSensor>,
+        <http://www.teco.edu/smartteco/WindowSensor> ;
+    rdfs:subClassOf <http://www.teco.edu/smartteco/Device> .
+
+:LightSensor a owl:Class ;
+    ssn:observes <http://www.teco.edu/smartteco/light_intensity> ;
+    rdfs:subClassOf <ssn:SensingDevice> .
+
+:MovementSensor a owl:Class ;
+    ssn:observes <http://www.teco.edu/smartteco/movement> ;
+    rdfs:subClassOf <ssn:SensingDevice> .
+
+:Plugwise a owl:Class ;
+    :hasActuator <http://www.teco.edu/smartteco/PowerActuator> ;
+    :hasSensor <http://www.teco.edu/smartteco/EnergySensor> ;
+    rdfs:subClassOf <http://www.teco.edu/smartteco/Device> .
+
+:PowerActuator a owl:Class ;
+    rdfs:subClassOf <spt:Actuator> .
+
+:Room a owl:Class ;
+    rdfs:subClassOf <spt:Place> .
+
+:Stream a owl:Class ;
+    rdfs:subClassOf <owl:Thing> .
+
+:Tag a owl:Class ;
+    rdfs:subClassOf <owl:Thing> .
+
+:TemperatureSensor a owl:Class ;
+    ssn:observes <cffeature:air_temperature> ;
+    rdfs:subClassOf <ssn:SensingDevice> .
+
+:Window a owl:Class ;
+    rdfs:subClassOf <http://www.teco.edu/smartteco/Artifact> .
+
+:WindowSensor a owl:Class ;
+    ssn:observes <http://www.teco.edu/smartteco/window_state> ;
+    rdfs:subClassOf <ssn:SensingDevice> .
+
+:attachtedTo a rdf:Property ;
+    rdfs:label "attached to"@en ;
+    rdfs:comment "No comment yet." ;
+    rdfs:domain <http://www.teco.edu/smartteco/Device> ;
+    rdfs:range <http://www.teco.edu/smartteco/Artifact> .
+
+:energy a ssn:Property .
+
+:hasActuator a rdf:Property ;
+    rdfs:label "has actuator"@en ;
+    rdfs:comment "Defines the actuators available for this device type." ;
+    rdfs:domain <http://www.teco.edu/smartteco/Device> ;
+    rdfs:range <spt:Actuator> ;
+    rdfs:subPropertyOf <ssn:hasSubsystem> .
+
+:hasDescription a rdf:Property ;
+    rdfs:label "has description"@en ;
+    rdfs:comment "Describes the device." ;
+    rdfs:domain <http://www.teco.edu/smartteco/Device> ;
+    rdfs:range <xsd:string> .
+
+:hasID a rdf:Property ;
+    rdfs:label "has ID"@en ;
+    rdfs:comment "The identifier." ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( <http://www.teco.edu/smartteco/Sensor> <http://www.teco.edu/smartteco/Actuator> <http://www.teco.edu/smartteco/Device> ) ] ;
+    rdfs:range <xsd:string> .
+
+:hasMeasurement a rdf:Property ;
+    rdfs:label "has measurement"@en ;
+    rdfs:comment "Measurement produce by that sensor" ;
+    rdfs:domain <ssn:SensingDevice> ;
+    rdfs:range <rdfs:Literal> .
+
+:hasSensor a rdf:Property ;
+    rdfs:label "has sensor"@en ;
+    rdfs:comment "Defines the sensors available for this device type." ;
+    rdfs:domain <http://www.teco.edu/smartteco/Device> ;
+    rdfs:range <ssn:SensingDevice> ;
+    rdfs:subPropertyOf <ssn:hasSubsystem> .
+
+:hasStream a rdf:Property ;
+    rdfs:label "has stream"@en ;
+    rdfs:comment "Stream coming from this sensor." ;
+    rdfs:domain <ssn:SensorDevice> ;
+    rdfs:range <http://www.teco.edu/smartteco/Stream> .
+
+:hasTag a rdf:Property ;
+    rdfs:label "has tag"@en ;
+    rdfs:comment "Tag belonging to the device." ;
+    rdfs:domain <http://www.teco.edu/smartteco/Device> ;
+    rdfs:range <http://www.teco.edu/smartteco/Tag> .
+
+:hasUri a rdf:Property ;
+    rdfs:label "has URI"@en ;
+    rdfs:comment "URI of the stream." ;
+    rdfs:domain <http://www.teco.edu/smartteco/Stream> ;
+    rdfs:range <xsd:string> .
+
+:hasValue a rdf:Property ;
+    rdfs:label "has description"@en ;
+    rdfs:comment "The value of the tag." ;
+    rdfs:domain <http://www.teco.edu/smartteco/Tag> ;
+    rdfs:range <xsd:string> .
+
+:jNode a owl:Class ;
+    rdfs:subClassOf <http://www.teco.edu/smartteco/Device> .
+
+:light_intensity a ssn:Property .
+
+:movement a ssn:Property .
+
+:window_state a ssn:Property .
+
+:smarttecoChair a owl:Class ;
+    rdfs:subClassOf <http://www.teco.edu/smartteco/Artifact> .
+
+:uPart a owl:Class ;
+    :hasSensor <http://www.teco.edu/smartteco/LightSensor>,
+        <http://www.teco.edu/smartteco/MovementSensor>,
+        <http://www.teco.edu/smartteco/TemperatureSensor> ;
+    rdfs:subClassOf <http://www.teco.edu/smartteco/Device> .

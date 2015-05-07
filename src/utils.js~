@@ -1,0 +1,16 @@
+
+module.exports.isString = function(string) {
+	return Object.prototype.toString.call(string) === '[object String]';
+}
+
+module.exports.isObject = function(object) {
+	return typeof object === 'object';
+}
+
+module.exports.isArray = function(array) {
+	return Object.prototype.toString.call( array ) === '[object Array]';
+}
+
+module.exports.isFunction = function(func) {
+	return typeof func === 'function';
+}
