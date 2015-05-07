@@ -1,7 +1,7 @@
 {
-	"deviceID": 	"123",
-	"sensorID": 	"456",
-	"RDF":		{
+	"deviceId": 	"123",
+	"sensorId": 	"456",
+	"rdf":		{
 				  "@context": "http://json-ld.org/contexts/person.jsonld",
 				  "@id": "http://dbpedia.org/resource/John_Lennon",
 				  "name": "John Lennon",

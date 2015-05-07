@@ -19,15 +19,11 @@ var HttpResponse = {
 
 var tripleStore 	= TripleStoreLevelGraph('metadata');
 var timeSeriesStore = TimeSeriesStoreLemDB('timeseries');
-var streamUp 		= StreamUp(tripleStore, timeSeriesStore, function(sensor) {	
-	var device = Ontology.getDevice(sensor.deviceID);
-		sensor = Ontology.getSensor(sensor.deviceID, sensor.sensorID);
-	return {	
-		// check if all needed parameters are there			
-		uri		: sensor.uri,
-		triples : Ontology.getTriples(device, sensor)
-	}
-});
+var streamUp 		= StreamUp(	tripleStore, 
+								timeSeriesStore, 
+								Ontology.getSensorUri,
+								Ontology.getTriples
+);
 
 var streamUpServer 	= StreamUpServer(streamUp, {port: PORT});
 
@@ -38,7 +34,7 @@ var handlers = [
 		options			: StreamUpServer.UrlOptions.parseBody,
 		target			: streamUp.createSensor.bind(streamUp),
 		parseParameter	: function(req) {
-							return {deviceID: req.body.deviceID, sensorID: req.body.sensorID};
+							return {deviceId: req.body.deviceId, sensorId: req.body.sensorId};
 						   },
 		handleResult	: function(err, result) {							
 							if (err) {
@@ -50,15 +46,15 @@ var handlers = [
 	},
 	{
 		type			: 'put',
-		url				: '/devices/:deviceID/sensors/:sensorID/values',
+		url				: '/devices/:deviceId/sensors/:sensorId/values',
 		options			: StreamUpServer.UrlOptions.parseQuery,
 		target			: streamUp.insertValues.bind(streamUp),
 		parseParameter	: function(req) {
 							return {
 										sensor: 
 											{
-												deviceID: req.params.deviceID, 
-												sensorID: req.params.sensorID
+												deviceId: req.params.deviceId, 
+												sensorId: req.params.sensorId
 											},
 										data: 	[{value: req.params.value, timestamp: req.params.timestamp}]
 									}
@@ -89,15 +85,15 @@ var handlers = [
 	},
 	{
 		type			: 'get',
-		url				: '/devices/:deviceID/sensors/:sensorID/values',
+		url				: '/devices/:deviceId/sensors/:sensorId/values',
 		options			: StreamUpServer.UrlOptions.parseQuery,
 		target			: streamUp.getValues.bind(streamUp),
 		parseParameter	: function(req) {
 							return {
 										sensor: 
 											{
-												deviceID: req.params.deviceID, 
-												sensorID: req.params.sensorID
+												deviceId: req.params.deviceId, 
+												sensorId: req.params.sensorId
 											},
 										start: 	req.params.start,
 										end: 	req.params.end

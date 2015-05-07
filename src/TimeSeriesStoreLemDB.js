@@ -28,7 +28,7 @@ function Store(db, options){
 Store.prototype.getIndexSearchKey = function(index) {
 	//throw new Error('not implemented yet! Needs to be fixed but how?!');
 	// split by last / or even # ???
-	//console.log("'getIndexSearchKey' not implemented yet! Needs to be fixed but how?!");
+	//console.log("'getIndexSearchKey' not implemented yet! Needs to be fixed but how?!");	
 	return {prefix: index.substring(0,index.lastIndexOf('/')), key: index.substring(index.lastIndexOf('/')+1)};
 }
 

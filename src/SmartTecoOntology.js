@@ -39,11 +39,15 @@ var prefixes = {'rdfs': 'http://www.w3.org/2000/01/rdf-schema#',
 
 // ------------- functions -------------
 				
-var deviceUri = function(deviceId) {
+var getDeviceUri = function(deviceId) {
 	return DEVICE_URI_PATTERN.replace(DEVICE_ID_TAG, deviceId);
 };
 
-var sensorUri = function(deviceId, sensorId) {
+var getSensorUri = function(deviceId, sensorId) {	
+	if (utils.isObject(deviceId)) {
+		sensorId = deviceId.sensorId;
+		deviceId = deviceId.deviceId;
+	}	
 	return SENSOR_URI_PATTERN.replace(DEVICE_ID_TAG, deviceId).replace(SENSOR_ID_TAG, sensorId);
 };				
 
@@ -68,20 +72,23 @@ var stringify = function(triples, callback) {
 };
 
 function getDevice(deviceId) {
-	return { uri: deviceUri(deviceId), id: deviceId}
+	if (utils.isObject(deviceId)) {
+		deviceId = deviceId.deviceId;
+	}
+	return { uri: getDeviceUri(deviceId), id: deviceId}
 }
 
 function getSensor(deviceId, sensorId) {
-	return { uri: sensorUri(deviceId, sensorId), id: sensorId}
+	if (utils.isObject(deviceId)) {
+		sensorId = deviceId.sensorId;
+		deviceId = deviceId.deviceId;
+	}
+	return { uri: getSensorUri(deviceId, sensorId), id: sensorId}
 }
 
-function getTriples(device, sensor) {
-	if (!utils.isObject(device)) {
-		device = getDevice(device);
-	}
-	if (!utils.isObject(sensor)) {
-		sensor = getSensor(device.id, sensor);
-	}
+function getTriples(sensor) {
+	var device = getDevice(sensor.deviceId);
+	sensor = getSensor(sensor.deviceId, sensor.deviceId);
 	return [
 	{
 		subject: device.uri,
@@ -117,8 +124,8 @@ exports.prefixes 				= prefixes;
 exports.IS_A 					= IS_A;
 
 // functions
-exports.deviceUri 				= deviceUri;
-exports.sensorUri 				= sensorUri;
+exports.getDeviceUri 				= getDeviceUri;
+exports.getSensorUri			= getSensorUri;
 exports.createLiteral			= createLiteral;
 exports.createStringLiteral		= createStringLiteral;
 exports.createIntegerLiteral	= createIntegerLiteral;

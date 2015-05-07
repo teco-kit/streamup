@@ -1,7 +1,0 @@
-#cd /c/Users/Michael/Documents/Docker/LevelGraphTest
-cd "$(dirname "$0")"
-sudo docker stop levelgraph-current
-sudo docker rm levelgraph-current
-sudo docker build -t mjacoby/levelgraph .
-sudo docker run --name=levelgraph-current -d -p 8080:8080 mjacoby/levelgraph
-sudo docker logs -f levelgraph-current

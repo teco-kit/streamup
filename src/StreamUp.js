@@ -27,28 +27,32 @@ var ITimeSeriesStore = new utils.Interface('ITimeSeriesStore',
 		'deleteValuesByTime'
 	]);	
 
-module.exports = function(tripleStore, timeSeriesStore, parseSensor){
+module.exports = function(tripleStore, timeSeriesStore, getSensorUri, getSensorTriples){
 	if(!tripleStore){
 		throw new Error('tripleStore is required!');
 	}
 	if(!timeSeriesStore){
 		throw new Error('timeSeriesStore is required!');
 	}
-	if(!parseSensor || !utils.isFunction(parseSensor)){
-		throw new Error("parseSensor is required and must be of type 'fcuntion'!");
+	if(!getSensorUri || !utils.isFunction(getSensorUri)){
+		throw new Error("getSensorUri is required and must be of type 'fcuntion'!");
+	}
+	if(!getSensorTriples || !utils.isFunction(getSensorTriples)){
+		throw new Error("getSensorTriples is required and must be of type 'fcuntion'!");
 	}
 	utils.Interface.ensureImplements(tripleStore, ITripleStore);
 	utils.Interface.ensureImplements(timeSeriesStore, ITimeSeriesStore);
 	
-	return new StreamUp(tripleStore, timeSeriesStore, parseSensor);
+	return new StreamUp(tripleStore, timeSeriesStore, getSensorUri, getSensorTriples);
 }
 
-function StreamUp(tripleStore, timeSeriesStore, parseSensor){
+function StreamUp(tripleStore, timeSeriesStore, getSensorUri, getSensorTriples){
 	var self = this
 
 	this._tripleStore = tripleStore;
 	this._timeSeriesStore = timeSeriesStore;
-	this._parseSensor = parseSensor;	
+	this._getSensorUri = getSensorUri;
+	this._getSensorTriples = getSensorTriples;
 }
 
 
@@ -58,12 +62,12 @@ StreamUp.prototype.createSensor = function(sensor, callback) {
 		throw new Error(errorMessage + "'sensor' is required");
 	}		
 
-	return Q(this._parseSensor(sensor))
+	return Q(this._getSensorUri(sensor))
 		.tap(function(sensor) {
-			return this._timeSeriesStore.createIndex({index: sensor.uri});
+			return this._timeSeriesStore.createIndex({index: sensor});
 		}.bind(this))
 		.tap(function(sensor) {
-			return this._tripleStore.insertTriples(sensor.triples);
+			return this._tripleStore.insertTriples(this._getSensorTriples(sensor));
 		}.bind(this))	
 		.catch(function(err) {
 			return Q.reject(errorMessage + err);
@@ -79,7 +83,7 @@ StreamUp.prototype.insertValues = function(options, callback) {
 	if (!options.data || !utils.isArray(options.data)) {
 		throw new Error(errorMessage + "invalid argument '" + JSON.stringify(options) + "' must contain property 'data' of type 'array'");
 	}	
-	return Q(this._parseSensor(options.sensor))
+	return Q(this._getSensorUri(options.sensor))
 			.then(function(sensor) {
 				return this._timeSeriesStore.insertValues( { index: sensor.uri, data: options.data });
 			}.bind(this))
@@ -94,7 +98,7 @@ StreamUp.prototype.getValues = function(options, callback) {
 	if (!options.sensor) {
 		throw new Error(errorMessage + "invalid argument '" + JSON.stringify(options) + "' must contain property 'sensor'");
 	}		
-	return Q(this._parseSensor(options.sensor))
+	return Q(this._getSensorUri(options.sensor))
 			.then(function(sensor) {
 				return this._timeSeriesStore.getValues( { index: sensor.uri, start: options.start, end: options.end });
 			}.bind(this))
@@ -110,7 +114,7 @@ StreamUp.prototype.getLatestValue = function(options, callback) {
 	if (!options.sensor) {
 		throw new Error(errorMessage + "invalid argument '" + JSON.stringify(options) + "' must contain property 'sensor'");
 	}		
-	return Q(this._parseSensor(options.sensor))
+	return Q(this._getSensorUri(options.sensor))
 			.then(function(sensor) {
 				return this._timeSeriesStore.getLatestValue(sensor.uri);
 			}.bind(this))
