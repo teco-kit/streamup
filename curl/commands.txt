@@ -47,5 +47,6 @@ curl -H "Content-Type: application/json" -X GET http://172.17.42.1:8080/devices/
 
 ######################
 ####### QUERY ########
-curl -H "Content-Type: application/json" -X POST http://172.17.42.1:8080/query --data @query-body.json
+curl -H "Content-Type: application/json" -X POST http://172.17.42.1:8080/query --data @query-select-body.json
+curl -H "Content-Type: application/json" -X POST http://172.17.42.1:8080/query --data @query-construct-body.json
 ######################

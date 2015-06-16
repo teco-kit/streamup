@@ -57,32 +57,54 @@ TripleStore.prototype.deleteTriple = function(triple, callback) {
 			.nodeify(callback);
 }
 
+
+/**
+ *	delete triples from triplestore
+ *
+ *	@param {Triple} triples triples to delete
+ * 	@param {function} callback
+ *	@returns {Object} with 	.triples: triples tried to delete
+ *							.noTotal: total number of triples
+ *							.noSuccessfully: number successfully deleted triples
+ *							.noFailed: number of triples failed to delete 
+ */
 TripleStore.prototype.deleteTriples = function(triples, callback) {
 	var jobs = 	triples.map(function(triple) {
 					return this._del(triple, null);
 				}.bind(this));
 	return Q.allSettled(jobs)
-			.thenResolve(triples)
+			.then(function(results) {
+				var newResult = { noTotal: results.length, triples: triples, noSuccessfully: 0, noFailed: 0 };
+			    results.forEach(function (result) {
+			        if (result.state === "fulfilled") {	        	
+			            newResult.noSuccessfully++;
+			        } else {
+			        	newResult.noFailed++;
+			        }
+		    	});
+		    	return newResult;
+			})
 			.nodeify(callback);
 }
 
 TripleStore.prototype.getAllTriples = function(options, callback) {
-	return this._get({}).nodeify(callback);
+	return this._get({}).nodeify(callback);	
 }
 
-
+/**
+ *	deletes all triples from triplestore
+ *
+ *	@param {} options unused dummy parameter
+ * 	@param {function} callback
+ *	@returns {Object} with 	.triples: triples tried to delete
+ *							.noTotal: total number of triples
+ *							.noSuccessfully: number successfully deleted triples
+ *							.noFailed: number of triples failed to delete 
+ */
 TripleStore.prototype.clear = function (options, callback) {	
 	return this.getAllTriples()	
 			.then(this.deleteTriples.bind(this))
-			.then(function (results) {
-				var success = 0;
-			    results.forEach(function (result) {
-			        if (result.state === "fulfilled") {	        	
-			            success++;
-			        } 
-		    	});
-		    	return success;
-			}).nodeify(callback);	
+			.nodeify(callback);	
 }
 
 TripleStore.prototype.insertFromFile = function(options, callback) {	
@@ -96,7 +118,7 @@ TripleStore.prototype.insertFromFile = function(options, callback) {
 	var stream = fs.createReadStream(options.file).pipe(this._tripleStoreN3.n3.putStream());
 	stream.on("end", function(err) {
 		if (err) {
-			deferred.reject(err);
+			deferred.reject(err, options);
 		}
 		else {			
 			deferred.resolve(options);
@@ -119,7 +141,7 @@ TripleStore.prototype.insert = function(options, callback) {
 
 
 TripleStore.prototype.query = function(query, callback) {
-	var query = parseQuery.bind(this)(query);	
+	var query = parseQuery.bind(this)(query);		
 	return this._search(query).nodeify(callback);
 }
 	

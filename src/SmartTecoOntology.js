@@ -63,14 +63,6 @@ var createIntegerLiteral = function(value) {
 	return N3Util.createLiteral(value, XSD_INT);
 }
 
-var stringify = function(triples, callback) {
-	var writer = N3.Writer();
-	writer.addTriples(triples);
-	writer.end(function (error, result) { 
-		callback(result); 
-	});
-};
-
 function getDevice(deviceId) {
 	if (utils.isObject(deviceId)) {
 		deviceId = deviceId.deviceId;
@@ -88,7 +80,7 @@ function getSensor(deviceId, sensorId) {
 
 function getTriples(sensor) {
 	var device = getDevice(sensor.deviceId);
-	sensor = getSensor(sensor.deviceId, sensor.deviceId);
+	sensor = getSensor(sensor.deviceId, sensor.sensorId);
 	return [
 	{
 		subject: device.uri,
@@ -129,7 +121,6 @@ exports.getSensorUri			= getSensorUri;
 exports.createLiteral			= createLiteral;
 exports.createStringLiteral		= createStringLiteral;
 exports.createIntegerLiteral	= createIntegerLiteral;
-exports.stringify				= stringify;
 exports.getTriples				= getTriples;
 exports.getDevice				= getDevice;
 exports.getSensor				= getSensor;

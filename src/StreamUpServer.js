@@ -39,6 +39,15 @@ function StreamUpServer(streamUp, options){
 	this._server = restify.createServer();
 	this._server.use(restify.queryParser());
 	this._server.use(restify.bodyParser({mapParams: false}));
+	//this._server.use(restify.CORS());
+	//this._server.use(restify.fullResponse());
+	this._server.use(
+	  function crossOrigin(req,res,next){
+	    res.header("Access-Control-Allow-Origin", "*");
+	    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	    return next();
+	  }
+	);
 }
 
 util.inherits(StreamUpServer, EventEmitter);

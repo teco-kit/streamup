@@ -1,7 +1,7 @@
 {
-  "name": "smartteco",
-  "version": "0.0.1",
-  "description": "Smartteco server running on lemdb and levelgraph",
+  "name": "StreamUp",
+  "version": "0.0.2",
+  "description": "StreamUp server running on lemdb and levelgraph",
   "main": "src/Server.js",
   "scripts": {
     "start": "supervisor src/Server.js"
