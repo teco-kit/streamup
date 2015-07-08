@@ -1,0 +1,88 @@
+extends index
+
+block append header
+	script.
+		$(function(){
+			$(".dropdown-menu li a").click(function(){
+				var value =  $(this).data('value');		
+				$(this).parents(".input-group-btn").find('.btn').html($(this).text() + '<span class="caret"></span>');
+				return false;
+			});
+		});
+
+		$(document).ready(function() {			
+				getDropdownDataDevice(
+					document.getElementById("serverHost").value,
+					document.getElementById("serverPort").value,
+					function(err, data) {
+						$("#deviceId").select2({
+					        data: data					        	
+					    });
+					})			    
+			});
+
+		function executeCreateSensor() {
+			var host = document.getElementById("serverHost").value;			
+			var port = document.getElementById("serverPort").value;
+			var device = document.getElementById("deviceId").value;			
+			var sensor = document.getElementById("sensorId").value;	
+			var body = { 	deviceId: device,
+										sensorId: sensor,
+										format: $("#metadata-type > .dropdown-menu > li > a:contains('" + $("#metadata-type > .dropdown-toggle").text() + "')").data('value'),
+										metadata:  document.getElementById("metadata").value};
+			var url = 'http://' + host + ':' + port + '/sensors/create';										
+			var response = executeHTTP('post', url, JSON.stringify(body), {"Content-Type": "application/json"});		
+			displayHttpResponse(response, null, {tabs: {disable: ['chart']}});
+			return false;
+		}
+
+block content	
+	h1.page-header Create Sensor
+	br
+	form
+		table(class="inputTable")			
+			tr
+				td
+					b
+						|device
+				td					
+					input#deviceId.select2(style="width:100%")
+			tr
+				td
+					b 
+						|sensor id
+				td
+					input#sensorId(type='text' style="width:100%")
+			tr
+				td
+					b
+						| RDF metadata (use with caution)
+				td
+					br
+					div
+						div(style="float:left;margin-right:10px;position: relative;top: 50%;transform: translateY(30%);")
+							b
+								|format
+						#metadata-type.input-group-btn(align="left", stlye="display:inline-block;")		
+							button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
+								| JSON-LD
+								span.caret
+							ul.dropdown-menu.pull-left
+								li
+									a(href='#!', data-value='application/ld+json') JSON-LD
+								li
+									a(href='#!', data-value='application/rdf+xml') RDF/XML
+								li
+									a(href='#!', data-value='text/turtle') TURTLE
+								li
+									a(href='#!', data-value='application/n-triples') N-Triples
+								li
+									a(href='#!', data-value='application/spo+json') SPO Triples								
+					textarea#metadata(rows='15', cols='120')
+			tr
+				td
+				td
+					br
+					button#btnCreateSensor(type='button' onclick='executeCreateSensor()' style='width:100%;height:50px') execute
+		br		
+		#triples-placeholder(style="text-align:left")

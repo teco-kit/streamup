@@ -43,7 +43,7 @@ var getDeviceUri = function(deviceId) {
 	return DEVICE_URI_PATTERN.replace(DEVICE_ID_TAG, deviceId);
 };
 
-var getSensorUri = function(deviceId, sensorId) {	
+var getSensorUri = function(deviceId, sensorId) {		
 	if (utils.isObject(deviceId)) {
 		sensorId = deviceId.sensorId;
 		deviceId = deviceId.deviceId;
@@ -78,9 +78,8 @@ function getSensor(deviceId, sensorId) {
 	return { uri: getSensorUri(deviceId, sensorId), id: sensorId}
 }
 
-function getTriples(sensor) {
-	var device = getDevice(sensor.deviceId);
-	sensor = getSensor(sensor.deviceId, sensor.sensorId);
+function getDeviceTriples(deviceId) {
+	var device = getDevice(deviceId);
 	return [
 	{
 		subject: device.uri,
@@ -90,7 +89,14 @@ function getTriples(sensor) {
 		subject: device.uri,
 		predicate: HAS_ID,
 		object: createStringLiteral(device.id)
-	},{
+	}];
+} 
+
+function getSensorTriples(sensor) {
+	var device = getDevice(sensor.deviceId);
+	sensor = getSensor(sensor.deviceId, sensor.sensorId);
+	return [
+	{
 		subject: device.uri,
 		predicate: HAS_SENSOR,
 		object: sensor.uri
@@ -116,12 +122,13 @@ exports.prefixes 				= prefixes;
 exports.IS_A 					= IS_A;
 
 // functions
-exports.getDeviceUri 				= getDeviceUri;
+exports.getDeviceUri 			= getDeviceUri;
 exports.getSensorUri			= getSensorUri;
 exports.createLiteral			= createLiteral;
 exports.createStringLiteral		= createStringLiteral;
 exports.createIntegerLiteral	= createIntegerLiteral;
-exports.getTriples				= getTriples;
+exports.getDeviceTriples		= getDeviceTriples;
+exports.getSensorTriples		= getSensorTriples;
 exports.getDevice				= getDevice;
 exports.getSensor				= getSensor;
 // enum

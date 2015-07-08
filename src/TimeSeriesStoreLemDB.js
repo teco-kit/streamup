@@ -33,11 +33,11 @@ Store.prototype.getIndexSearchKey = function(index) {
 }
 
 
-function indexExists (index, callback) {
+function indexExists(index, callback) {	
 	var deferred = Q.defer();
 	var exists = false;
 	key = this.getIndexSearchKey(index);
-	this._lemdb.keys(key.prefix).pipe(through(function(data){
+	this._lemdb.keys(key.prefix).pipe(through(function(data){		
         if (data.key == key.key) {        	
         	exists = true;
         }
@@ -45,6 +45,48 @@ function indexExists (index, callback) {
         deferred.resolve(exists);
     }));
     return deferred.promise.nodeify(callback);
+}
+
+function formatTimestamp(timestamp) {
+	return parseInt(timestamp, 10);
+}
+
+function parseTimestamp(timestamp) {
+	if (!timestamp) {
+		return timestamp;
+	}
+	width = 32 - timestamp.toString().length;
+	if ( width > 0 )
+	{
+	return new Array( width + (/\./.test( timestamp ) ? 2 : 1) ).join( '0' ) + timestamp;
+	}
+	return timestamp + ""; // always return a string
+}
+
+Store.prototype.removeIndex = function(options, callback) {
+	var errorMessage = "could not remove index '" + options.index + "', reason: ";
+	var deferred = Q.defer();
+	if (!options.index || !utils.isString(options.index)) {
+		deferred.reject(errorMessage + "invalid argument '" + JSON.stringify(options) + "' must contain property 'index' of type 'string'");
+	}		
+	indexExists.call(this, options.index, function(err, result) {
+		if (err) {
+			deferred.reject(errorMessage + err);
+		} else {
+			if (result) {
+				deferred.resolve(true);
+			} else {
+				this._lemdb.remove(options.index, function(err) {										
+					if (err) {
+						deferred.reject(err);
+					} else {
+						deferred.resolve(true);
+					}
+				}.bind(this));
+			}
+		}
+	}.bind(this));
+	return deferred.promise.nodeify(callback);
 }
 
 Store.prototype.createIndex = function(options, callback) {
@@ -56,6 +98,7 @@ Store.prototype.createIndex = function(options, callback) {
 	if (!options.metadata) {
 		options.metadata = 'none';
 	}	
+	//indexExists.call(this, options.index, function(err, result) {
 	indexExists.call(this, options.index, function(err, result) {
 		if (err) {
 			deferred.reject(errorMessage + err);
@@ -67,7 +110,7 @@ Store.prototype.createIndex = function(options, callback) {
 					if (err) {
 						deferred.reject(err);
 					} else {
-						deferred.resolve();
+						deferred.resolve(options.index);
 					}
 				}.bind(this));
 			}
@@ -86,12 +129,13 @@ Store.prototype.getValues = function(options, callback) {
 		deferred.reject(new Error("Invalid argument '" + JSON.stringify(options) + "' must contain property 'index' of type 'string'"));
 	}	
 	var result = [];
+	console.log('searching between start ' + parseTimestamp(options.start) + ' and end ' + parseTimestamp(options.end));
 	this._lemdb.valuestream(options.index, {
-	    start : options.start,
-	    end : options.end
+	    start : parseTimestamp(options.start),
+	    end : parseTimestamp(options.end)
 	}).pipe(through(function(data){
 	    result.push({ value: data.value,
-	    			  timestamp: data.key});
+	    			  timestamp: formatTimestamp(data.key)});
 	}, function(){
 	    deferred.resolve(result);
 	}));
@@ -116,9 +160,10 @@ Store.prototype.insertValue = function(options, callback) {
 					deferred.reject(errorMessage + 'index does not exist');
 				} else {
 					if (!options.data.timestamp) {
-						options.data.timestamp = new Date().getTime();
+						options.data.timestamp = Math.floor(new Date().getTime() / 1000);
 					}
-					this._lemdb.recorder(options.index)(options.data.value, options.data.timestamp, function(err) {
+					console.log("inserting value '" + parseTimestamp(options.data.timestamp) + "'");
+					this._lemdb.recorder(options.index)(options.data.value, parseTimestamp(options.data.timestamp), function(err) {
 							if (err) {
 								deferred.reject(errorMessage + err);
 							} else {
@@ -155,7 +200,15 @@ Store.prototype.insertValues = function(options, callback) {
 	}.bind(this));
 
 	return Q.allSettled(jobs)
-			//.thenResolve(triples)   // maybe some handling to forward all results
+			.then(function(results) {
+				var insertedValues = [];
+				results.forEach(function(result) {
+					if (result.state == 'fulfilled') {
+						insertedValues = insertedValues.concat(result.value.data);
+					}
+				})
+				return insertedValues;
+			})
 			.catch(function(err) {
 				return Q.reject(errorMessage + err);
 			})

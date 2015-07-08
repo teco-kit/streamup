@@ -1,0 +1,7 @@
+{
+	"type"		: 	"SELECT",
+	"variables"	: 	["?s", "?p", "?o"],
+	"triples"	: 	[	
+						{ "subject": "?s", "predicate": "?p", "object": "?o" }
+				  	]
+}

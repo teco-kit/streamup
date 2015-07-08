@@ -18,6 +18,7 @@ var ITripleStore = new utils.Interface('ITripleStore',
 var ITimeSeriesStore = new utils.Interface('ITimeSeriesStore', 
 	[
 		'createIndex', 
+		'removeIndex', 
 		'clear',
 		'getValues',
 		'getLatestValue',
@@ -61,24 +62,49 @@ StreamUp.prototype.createSensor = function(sensor, callback) {
 	var errorMessage = "could not create sensor, reason: ";	
 	if (!sensor) {
 		throw new Error(errorMessage + "'sensor' is required");
-	}			
-	return Q(function() {								
-				return this._timeSeriesStore.createIndex.bind(null, {index: this._getSensorUri(sensor)});
-			}.bind(this))
-			.then(function() {			
-				return Q(this._getSensorTriples(sensor))
-						.then(function(triples) {						
-							return this._tripleStore.insertTriples(triples);
-						}.bind(this))
-			}.bind(this))	
-			.catch(function(err) {
-				return Q.reject(errorMessage + err);
-			})
-			.nodeify(callback);
+	}		
+	var deferred = Q.defer();	
+	// create time series index
+	this._timeSeriesStore.createIndex({index: this._getSensorUri(sensor)}, function(err, index) {
+		if (err) {
+			deferred.reject(errorMessage + err);
+		} else {
+			// generate triples for sensor	
+			var triples = this._getSensorTriples(sensor)
+			// insert triples
+			this._tripleStore.insertTriples(triples, function(err) {
+				if (err) {
+					// rollback index creation
+					this._timeSeriesStore.removeIndex({index: this._getSensorUri(sensor)}, function(e, index) {	
+						deferred.reject(errorMessage + err);
+					});
+				} else {					
+					if (sensor.metadata) {
+						// insert metadata into triplestore
+						this._tripleStore.insertTriples(sensor.metadata, function(err) {
+							if (err) {
+								// rollback insert triples and create index
+								this._tripleStore.deleteTriples(triples, function(e) {
+									this._timeSeriesStore.removeIndex({index: this._getSensorUri(sensor)}, function(e, index) {	
+										deferred.reject(errorMessage + err);
+									});
+								});
+							} else {
+								deferred.resolve(triples.concat(sensor.metadata));
+							}
+						});
+					} else {
+						deferred.resolve(triples);
+					}
+				}	
+			}.bind(this))		
+		}
+	}.bind(this))
+	return deferred.promise.nodeify(callback);
 }
 
 StreamUp.prototype.insertValues = function(options, callback) {
-	var errorMessage = "could not create sensor, reason: ";	
+	var errorMessage = "could not insert values, reason: ";	
 	if (!options.sensor) {
 		throw new Error(errorMessage + "invalid argument '" + JSON.stringify(options) + "' must contain property 'sensor'");
 	}	
@@ -86,24 +112,26 @@ StreamUp.prototype.insertValues = function(options, callback) {
 		throw new Error(errorMessage + "invalid argument '" + JSON.stringify(options) + "' must contain property 'data' of type 'array'");
 	}	
 	return Q(this._getSensorUri(options.sensor))
-			.then(function(sensor) {
-				return this._timeSeriesStore.insertValues( { index: sensor.uri, data: options.data });
+			.then(function(sensorUri) {
+				return this._timeSeriesStore.insertValues( { index: sensorUri, data: options.data });
 			}.bind(this))
+			.tap(console.log)
 			.catch(function(err) {
 				return Q.reject(errorMessage + err);
 			})
 			.nodeify(callback);
 }
 
-StreamUp.prototype.getValues = function(options, callback) {
+StreamUp.prototype.getValues = function(options, callback) {	
 	var errorMessage = "could not get values for sensor, reason: ";	
 	if (!options.sensor) {
 		throw new Error(errorMessage + "invalid argument '" + JSON.stringify(options) + "' must contain property 'sensor'");
 	}		
 	return Q(this._getSensorUri(options.sensor))
-			.then(function(sensor) {
-				return this._timeSeriesStore.getValues( { index: sensor.uri, start: options.start, end: options.end });
+			.then(function(sensorUri) {
+				return this._timeSeriesStore.getValues( { index: sensorUri, start: options.start, end: options.end });
 			}.bind(this))
+			.tap(console.log)
 			.catch(function(err) {
 				return Q.reject(errorMessage + err);
 			})
@@ -117,8 +145,8 @@ StreamUp.prototype.getLatestValue = function(options, callback) {
 		throw new Error(errorMessage + "invalid argument '" + JSON.stringify(options) + "' must contain property 'sensor'");
 	}		
 	return Q(this._getSensorUri(options.sensor))
-			.then(function(sensor) {
-				return this._timeSeriesStore.getLatestValue(sensor.uri);
+			.then(function(sensorUri) {
+				return this._timeSeriesStore.getLatestValue(sensorUri);
 			}.bind(this))
 			.catch(function(err) {
 				return Q.reject(errorMessage + err);
@@ -126,9 +154,114 @@ StreamUp.prototype.getLatestValue = function(options, callback) {
 			.nodeify(callback);
 }
 
-StreamUp.prototype.query = function(query, callback) {	
-	
+var projectVariables = function(data, projectedVariables, callback) {
 	var deferred = Q.defer();
+	var resultVars = [];
+	if (projectedVariables && utils.isArray(projectedVariables)) {
+		resultVars = projectedVariables;
+	} else if (utils.isString(projectedVariables) && projectedVariables.substring(0,1) == '?'){
+		resultVars.push(projectedVariables);
+	}
+
+	if (resultVars.length > 0) {
+		var result = data.map(function(current) {
+			Object.keys(current).forEach(function(variable) {
+				if (resultVars.indexOf(variable) == -1) {
+					delete current[variable];
+				}
+			});
+			return current;
+		});
+		deferred.resolve(result);
+	} else {
+		// if no variables are selected return all
+		deferred.resolve(data);
+	}		
+	return deferred.promise.nodeify(callback);
+}
+
+var applyConstructTemplate = function(data, template, callback) {
+	var deferred = Q.defer();
+	if (!template || !utils.isArray(template)) {
+		throw new Error(errorMessage + "invalid argument 'query.template' must be non-null and of type 'array'");
+	}
+	var result = [];
+	data.forEach(function(current) {
+		// copy template for each entry
+		var templateCopy = JSON.parse(JSON.stringify(template));
+		// for all variables in result
+		Object.keys(current).forEach(function(variable) {
+			// for each triple of template
+			templateCopy.forEach(function(triple) {
+				// for subject/predicate/object
+				Object.keys(triple).map(function(key) {
+					if (utils.isString(triple[key]) && triple[key].substring(0,1) == '?' && triple[key] == variable) {
+						triple[key] = current[variable];
+					}
+				});	
+			})
+		});
+		Array.prototype.push.apply(result,templateCopy);
+	});
+	resolve(result);
+	return deferred.promise.nodeify(callback);
+}
+
+var applyJSONFraming = function(triples, frame, callback) {
+	var deferred = Q.defer();
+	utils.toJSONLDObject(data, function(err, jsonld){	
+		if (err) {
+			deferred.reject(err);
+		} else {
+			JsonLD.frame(jsonld, frame, function(err, framed) {
+			if (err) {
+				deferred.reject(err);
+			} else {				
+				utils.parse(JSON.stringify(framed), 'application/ld+json', function(err, result) {
+					if (err) {
+						deferred.reject(err);
+					} else {
+						deferred.resolve(result);
+					}
+				})
+			}
+		})
+		}
+	});
+	return deferred.promise.nodeify(callback);	
+}
+
+var prepareQuery = function(query, callback) {
+	var deferred = Q.defer();
+	console.log('query before prepare: ' + JSON.stringify(query));
+	// check triples for surrounding <...> brackets and remove them
+	query.triples.forEach(function(triple) {
+		Object.keys(triple).forEach(function(key) {
+			if (triple[key].charAt(0) == '<' && triple[key].slice(-1) == '>') {
+				triple[key] = triple[key].slice(1, -1);
+			}
+		});
+	})
+	console.log('query after prepare: ' + JSON.stringify(query));
+	deferred.resolve(query);
+	return deferred.promise.nodeify(callback);		
+}
+
+StreamUp.prototype.query = function(query, options, callback) {	
+	var deferred = Q.defer();
+	var resultHandler = function(triples, options) {				
+	    if (options.format) {	    		    	
+			utils.toRDF(triples, options.format, function(err, result) {				
+				if(err){
+					deferred.reject(errorMessage + err);
+				} else {					
+	    			deferred.resolve(result);
+	    		}
+			})
+		} else {
+			deferred.resolve(triples);
+		}
+	};
 	var errorMessage = "could not find sensors, reason: ";		
 	if (!query) {
 		deferred.reject(new Error(errorMessage + "invalid argument 'query' must be non-null"));
@@ -136,91 +269,45 @@ StreamUp.prototype.query = function(query, callback) {
 	if (!query.triples || !utils.isArray(query.triples)) {
 		deferred.reject(new Error(errorMessage + "invalid argument 'query.triples' must be non-null and of type 'array'"));
 	}
-	this._tripleStore.query(query.triples, function(err, plainResult) {
-		if (err) {
-			deferred.reject(err);
-		} else {			
-			switch(query.type) {
-		    	case 'SELECT':	      
-					var resultVars = [];
-					if (query.variables && utils.isArray(query.variables)) {
-						resultVars = query.variables;
-					} else if (utils.isString(query.variables) && query.variables.substring(0,1) == '?'){
-						resultVars.push(query.variables);
-					}
- 
-			    	if (resultVars.length > 0) {
-			    		var result = plainResult.map(function(current) {
-			    			Object.keys(current).forEach(function(variable) {
-			    				if (resultVars.indexOf(variable) == -1) {
-			    					delete current[variable];
-			    				}
-			    			});
-			    			return current;
-			    		});
-			    		deferred.resolve(result);
-			    	} else {
-			    		deferred.resolve(plainResult);
-			    	}					   				   
-			        break;
-			    case 'CONSTRUCT':
-			    	if (!query.template || !utils.isArray(query.template)) {
-			    		throw new Error(errorMessage + "invalid argument 'query.template' must be non-null and of type 'array'");
-			    	}
-			    	var result = [];
-			    	plainResult.forEach(function(current) {
-			    		// copy template for each entry
-			    		var template = JSON.parse(JSON.stringify(query.template));
-			    		// for all variables in result
-			    		Object.keys(current).forEach(function(variable) {
-			    			// for each triple of template
-			    			template.forEach(function(triple) {
-			    				// for subject/predicate/object
-			    				Object.keys(triple).map(function(key) {
-									if (utils.isString(triple[key]) && triple[key].substring(0,1) == '?' && triple[key] == variable) {
-										triple[key] = current[variable];
-									}
-								});	
-			    			})
-			    		});
-			    		Array.prototype.push.apply(result,template);
-			    	});
-			    	// convert to JSONLD, apply framing, convert back to triples
-
-			    	// first convert result to string and from string to JSOND-LD
-			    	utils.formatTriples(result, 'application/ld+json', function(err, jsonld) {
-						if (err) {
-							deferred.reject(err);
-						} else {					
-							if (query.frame) {
-								JsonLD.frame(jsonld, query.frame, function(err, framed) {
-									if (err) {
-										deferred.reject(err);
-									} else {
-										utils.JSONLDtoTriples(framed, function(err, result) {
-											if (err) {
-												deferred.reject(err);
-											} else {
-												deferred.resolve(result);	
-											}
-										})
-										
-									}
-								})
-							} else {
-								deferred.resolve(jsonld);
-							}
-						}
-			    	})
-				
-			        break;
-				case 'TEMPLATE':
-					deferred.reject(new Error(errorMessage + "TEMPLATE not implemented yet!"));    
-			        break;	        
-			    default:
-			    deferred.reject(new Error(errorMessage + "invalid argument 'query.type' must be one of 'SELECT', 'CONSTRUCT', 'TEMPLATE'"));    
-			}
-		}				
-	});	
+	prepareQuery(query, function(err, query) {
+		console.log('querying: ' + JSON.stringify(query.triples));
+		this._tripleStore.query(query.triples, function(err, plainResult) {
+			if (err) {
+				deferred.reject(err);
+			} else {			
+				switch(query.type) {
+			    	case 'SELECT':	   
+			    		projectVariables(plainResult, query.variables, callback);					
+				        break;
+				    case 'CONSTRUCT':
+				    	// convert to JSONLD, apply framing, convert back to triples		
+				    	//if (query.frame && options.format == 'application/ld+json') {	    	
+				    	applyConstructTemplate(plainResult, query.template, function(err, triples) {
+				    		if (err) {
+				    			deferred.reject(errorMessage + err);
+				    		} else {
+				    			if (query.frame) {
+					    			applyJSONFraming(triples, query.frame, function(err, result) {
+					    				if (err) {
+					    					def.reject(errorMessage + err);
+					    				} else {
+					    					deferred.resolve(result);
+					    				}
+					    			});
+					    		} else {
+					    			deferred.resolve(triples);
+					    		}
+				    		}
+				    	})
+				        break;
+					case 'TEMPLATE':
+						deferred.reject(new Error(errorMessage + "TEMPLATE not implemented yet!"));    
+				        break;	        
+				    default:
+				    deferred.reject(new Error(errorMessage + "invalid argument 'query.type' must be one of 'SELECT', 'CONSTRUCT', 'TEMPLATE'"));    
+				}
+			}				
+		});	
+	}.bind(this))	
 	return deferred.promise.nodeify(callback);
 }

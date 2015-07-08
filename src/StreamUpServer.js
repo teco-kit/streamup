@@ -69,9 +69,14 @@ function addHandler(handler, callback) {
 	this._server[handler.type].call(this._server, handler.url, function(req, res, next) {
 		this.emit('request', req, res, next);
 		var params = handler.parseParameter(req)
-		handler.target(params, function(err, result) {
+		/*handler.target(params, function(err, result) {
 			sendResponse({ res: res, data: handler.handleResult(err, result)});
-		})
+		})*/
+		params = Object.prototype.toString.call(params) == "[object Array]" ? params : [params];
+		params.push(function(err, result) {
+			sendResponse({ res: res, data: handler.handleResult(err, result)});
+		});
+		handler.target.apply(this, params);
 	},
 	options);
 }

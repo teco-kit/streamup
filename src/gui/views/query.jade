@@ -1,0 +1,176 @@
+extends index
+
+block append header
+	script.
+		$(function(){
+			$(".dropdown-menu li a").click(function(){
+				var value =  $(this).data('value');				
+				$('#pages').find('*').each(function(i, val) {
+						if (val.id.match(/-page$/)) {
+							$(val).hide();
+						}						
+					})
+				$('#' + value + "-page").show();
+			  $(this).parents(".input-group-btn").find('.btn').html($(this).text() + '<span class="caret"></span>');
+			  return false;
+			});
+		});
+
+		function getMatches(string, regex, index) {
+		  index || (index = 0); // default to the first capturing group
+		  var matches = [];
+		  var match;
+		  while (match = regex.exec(string)) {
+		    matches.push(match[index]);
+		  }
+		  return matches;
+		}
+
+		function onlyUnique(value, index, self) { 
+			return self.indexOf(value) === index;
+		}
+
+		function parseForVariables(string) {
+				var regex = /\?([A-Z]|[a-z]|'_'|[0-9])+(\b|\.)/g;
+				return getMatches(string, regex, 0).filter(onlyUnique);
+		}
+
+		$(function(){
+			$('#query-triples-select').bind('input propertychange', function() {				
+				var newVariables = parseForVariables($('#query-triples-select').val());				
+				var presentVariables = parseForVariables($('#query-vars-select').val());
+				var deleted = [];
+				presentVariables.forEach(function(i) {
+					 if (newVariables.indexOf(i) < 0) {
+					 	deleted.push(i);
+					 }
+				});
+				var added = newVariables.filter(function(i) {
+					return presentVariables.indexOf(i) < 0;
+				});
+				presentVariables = $(presentVariables).not(deleted).get();
+				presentVariables = presentVariables.concat(added);
+				var result = presentVariables.reduce(function(prev, curr) {
+					return prev + ' ' + curr;
+				}, '');
+				$('#query-vars-select').val(result);
+			})
+		});		
+		
+		function parseTriples(string) {
+			var result = [];			
+			var regex = /\s*(\S+)\s+(\S+)\s+(\S+)\s*\./g
+			var match;
+		  while (match = regex.exec(string)) {
+		    result.push({
+		    		subject: match[1],
+		    		predicate: match[2],
+		    		object: match[3]
+		    	});
+		  }
+			return result;
+		}
+
+		function executeQuerySelect() {
+			var body = {
+				type: "SELECT",
+				variables: $('#query-vars-select').val().split(' '),
+				triples: parseTriples($('#query-triples-select').val())
+			};
+			var host = document.getElementById("serverHost").value;			
+			var port = document.getElementById("serverPort").value;			
+			var url = 'http://' + host + ':' + port + '/query';
+			var response = executeHTTP('post', url, JSON.stringify(body), {"Content-Type": "application/json"});		
+			displayHttpResponse(response, null, {tabs: {disable: ['chart']}});
+			/*var triples = JSON.parse(response.message);			
+			displayTriples(triples, 'triples-placeholder');*/
+			return false;			
+		}		
+
+		function executeQueryConstruct() {
+			var body = {
+				type: "CONSTRUCT",
+				template: parseTriples($('#query-template-construct').val()),
+				triples: parseTriples($('#query-triples-construct').val())/*,				
+				body: $('#query-frame-construct').val() ? jQuery.parseJSON($('#query-frame-construct').val()) : undefined;*/
+			};
+			if($('#query-frame-construct').val()) {
+				body["frame"] = jQuery.parseJSON($('#query-frame-construct').val());
+			} else {
+				body["frame"] = undefined;
+			}
+			alert('body: ' + JSON.stringify(body));			
+			var host = document.getElementById("serverHost").value;			
+			var port = document.getElementById("serverPort").value;			
+			var url = 'http://' + host + ':' + port + '/query';
+			var response = executeHTTP('post', url, JSON.stringify(body), {"Content-Type": "application/json"});		
+			displayHttpResponse(response);
+			/*var triples = JSON.parse(response.message);			
+			displayTriples(triples, 'triples-placeholder');*/
+			return false;			
+		}		
+
+block content	
+	h1.page-header Query
+	br
+	table(style="width:100%")
+		col(width="130px")
+		tr
+			td
+				| query type
+			td
+				.input-group-btn(align="left")		
+					button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
+						| SELECT
+						span.caret
+					ul.dropdown-menu.pull-left
+						li
+							a(href='#', data-value='select') SELECT
+						li
+							a(href='#', data-value='construct') CONSTRUCT
+	br
+	div(id="pages")
+		form(id="select-page")
+			table(style="width:100%")
+				col(width="130px")
+				tr
+					td
+						|variables
+					td
+						input#query-vars-select(type='text' style="width:100%")
+				tr
+					td
+						|triple pattern
+					td
+						br
+						textarea#query-triples-select(rows='15' style="width:100%")
+				tr
+					td(colspan="2")
+						br
+						button#btnQuerySelect(type='button' onclick='executeQuerySelect()' style='width:50%;height:50px') execute
+		form(id="construct-page" style = "display:none")
+			table(style="width:100%")
+				col(width="130px")
+				tr
+					td
+						|template
+					td
+						textarea#query-template-construct(rows='5' style="width:100%")
+				tr
+					td
+						|triple pattern
+					td
+						br
+						textarea#query-triples-construct(rows='15', style="width:100%")
+				tr
+					td
+						|frame (optional)
+					td
+						br
+						textarea#query-frame-construct(rows='5', style="width:100%")
+				tr
+					td(colspan="2")
+						br
+						button#btnQuerySelect(type='button' onclick='executeQueryConstruct()' style='width:50%;height:50px') execute
+		br
+	#triples-placeholder(style="text-align:left")

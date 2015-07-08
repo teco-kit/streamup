@@ -23,7 +23,8 @@ curl -H "Content-Type: application/json" -X POST http://192.168.59.103:8080/quer
 
 ######################
 ####### CREATE #######
-curl -H "Content-Type: application/json" -X POST http://localhost:8080/create --data @create-body.json
+curl -H "Content-Type: application/json" -X POST http://localhost:8080/devices/create --data @create-device-body.json
+curl -H "Content-Type: application/json" -X POST http://localhost:8080/sensors/create --data @create-sensor-body.json
 ######################
 
 
@@ -48,5 +49,5 @@ curl -H "Content-Type: application/json" -X GET http://172.17.42.1:8080/devices/
 ######################
 ####### QUERY ########
 curl -H "Content-Type: application/json" -X POST http://172.17.42.1:8080/query --data @query-select-body.json
-curl -H "Content-Type: application/json" -X POST http://172.17.42.1:8080/query --data @query-construct-body.json
+curl -H "Content-Type: application/json" -H "Accept: application/ld+json" -X POST http://172.17.42.1:8080/query --data @query-construct-body.json
 ######################

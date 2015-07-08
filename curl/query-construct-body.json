@@ -1,0 +1,24 @@
+{
+	"type"		: 	"CONSTRUCT",
+	"template"	: 	[{ "subject": "?sensor", "predicate": "?p1", "object": "?o1" },
+					 { "subject": "?device", "predicate": "?p2", "object": "?o2" }],
+	"triples"	: 	[	
+						{ "subject" : "?device", "predicate" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.teco.edu/smartteco/Device"},
+						{ "subject" : "?device", "predicate" : "http://www.teco.edu/smartteco/hasSensor", "object": "?sensor"},
+						{ "subject" : "?sensor", "predicate" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.teco.edu/smartteco/Sensor"},
+						{ "subject": "?device", "predicate": "?p2", "object": "?o2" },
+						{ "subject": "?sensor", "predicate": "?p1", "object": "?o1" }
+				  	],
+	"frame"		:	{
+					  "@context": {
+					    "Device":      "http://www.teco.edu/smartteco/Device",
+					    "contains":     "http://www.teco.edu/smartteco/hasSensor",    
+					    "Sensor":      "http://www.teco.edu/smartteco/Sensor"
+					  },
+					  "@explicit": false,
+					  "@type": "Device",
+					  "contains": {
+					    "@type": "Sensor"    
+					  }
+					}
+}

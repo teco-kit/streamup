@@ -19,11 +19,90 @@ module.exports.isFunction = function(func) {
 	return typeof func === 'function';
 }
 
-function _formatTriples(triples, format) {
+//###########################
+
+function parseJSONLD(string, callback) {
+	// ???
+	var temp = JSON.parse(string)
+	console.log('as JSON-LD: ' + JSON.stringify(temp));
+	callback(null, temp);
+}
+
+function _parseRDF(string, format, callback) {
+	var deferred = Q.defer();
+	var parser = N3.Parser({format: format});
+	var result = [];
+	parser.parse(string, function(err, triple, prefixes) {
+		if (err) {
+			deferred.reject(err);
+		} else {
+			if (triple) {
+				result.push(triple);
+			} else {
+				deferred.resolve(result);
+			}
+		}
+	});
+	return deferred.promise.nodeify(callback);
+}
+
+// parses a string in given format to SPO objects
+module.exports.parseRDF = function(string, format, callback) {	
+	var errorMessage = "error parsing triples '" + string + "' to format '" + format + "'";
+	var deferred = Q.defer();
+	console.log("parsing '" + string + "' as '" + format + "'");
+	if (!utils.isString(string)) {
+		deferred.resolve(string);
+	}
+	var convertFunction;	
+	switch(format) {					
+		case 'application/n-triples':
+			format = 'N-Triples';
+		case 'text/turtle':
+		case 'N-Triples':
+		case 'application/trig':
+			_parseRDF(string, format, function(err, result) {
+				if (err) {
+					deferred.reject(err);
+				} else {
+					deferred.resolve(result);
+				}
+			})			
+			break;		
+		case 'application/ld+json':
+			// from string to JSON-LD objects
+			var json = JSON.parse(string);
+			// from JSON-LD object to string of nquads
+			JsonLD.toRDF(json, {format: 'application/nquads'}, function(err, nquads) {
+				// from string of nquads to SPO objects
+				_parseRDF(nquads, 'application/nquads', function(err, result) {
+					if (err) {
+						deferred.reject(err);
+					} else {
+						deferred.resolve(result);
+					}	
+				})
+			});
+			break;		
+		case 'application/rdf+xml':
+			throw "format '" + format + "' not supported yet!"
+			break;
+		case 'application/spo+json':
+			deferred.resolve(JSON.parse(string));
+		default: {
+			// by default try parsing
+			deferred.resolve(JSON.parse(string));
+		}
+	}	
+	return deferred.promise.nodeify(callback);
+}
+
+
+function _toRDF(triples, format, callback) {	
 	var deferred = Q.defer();	
 	var writer = N3.Writer({ format: format });
 	writer.addTriples(triples);
-	writer.end(function (err, result) { 
+	writer.end(function (err, result) { 		
 		if (err) {
 			deferred.reject(err);
 		} else {			
@@ -33,96 +112,67 @@ function _formatTriples(triples, format) {
 	return deferred.promise.nodeify(callback);
 }
 
-module.exports.formatTriples = function(triples, format, callback) {
-	var errorMessage = "error formatting triples: ";
+module.exports.toJSONLDObject = function(triples, callback) {
 	var deferred = Q.defer();
-	var convertFunction;
-	switch(format) {
-		case 'text/turtle':
-			convertFunction = _formatTriples.bind(null, triples, format);
-			break;
-		case 'application/n-triples':
-		case 'N-Triples':
-			convertFunction = _formatTriples.bind(null, triples, 'N-Triples');
-			break;
-		case 'application/trig':
-			convertFunction = _formatTriples.bind(null, triples, format);
-			break;		
-		case 'application/ld+json':
-			convertFunction = triplesToJSONLD.bind(null, triples);
-			break;		
-		case 'application/rdf+xml':
-			throw "format '" + format + "' not supported yet!"
-			break;
-		default: {
-			deferred.reject(errorMessage + "unknown format '" + format + "'")
-		}
-	}	
-	if (convertFunction) {
-		convertFunction(function(err, result) {
-			if (err) {
-				deferred.reject(errorMessage + err);
-			} else {
-				deferred.resolve(result);
-			}
-		})
-	} 	
-	return deferred.promise.nodeify(callback);
-};
-
-module.exports.triplesToJSONLD = function(triples) {
-	var deferred = Q.defer();
-	utils.formatTriples(triples, 'N-Triples', function(err, rdf) {						
+	// ensure current format is nquads because jsonld lib can only parse nquads
+	_toRDF(triples, 'application/nquads', function(err, nquads) {
 		if (err) {
-			deferred.reject(err);
-		} else {					
-			JsonLD.fromRDF(rdf, {format: 'application/nquads'}, function(err, jsonld) {
+			deferred.reject(errorMessage + err);
+		} else {
+			JsonLD.fromRDF(nquads, {format: 'application/nquads'}, function(err, result) {
 				if (err) {
-					deferred.reject(err);
-				} else {		
-					// use framing
-					if (query.frame) {
-						JsonLD.frame(jsonld, query.frame, function(err, framed) {
-							if (err) {
-								deferred.reject(err);
-							} else {
-								deferred.resolve(framed);
-							}
-						})
-					} else {
-						deferred.resolve(jsonld);
-					}
+					deferred.reject(errorMessage + err);
+				} else {
+					deferred.resolve(result);
 				}
 			});
 		}
 	});
 	return deferred.promise.nodeify(callback);
-};
+}
 
-
-module.exports.JSONLDtoTriples = function(jsonld) {
-	var deferred = Q.defer();
-	JsonLD.toRDF(jsonld, {format: 'application/nquads'}, function(err, rdf) {
+// converts SPO objects to string with output format
+module.exports.toRDF = function(triples, format, callback) {
+	// use {subject, predicate, object} as intermediate format
+	var errorMessage = "error converting '" + JSON.stringify(triples) + "' to format '" + format + "'";
+	var deferred = Q.defer();	
+	 switch(format) {
+	 	case 'application/n-triples':
+		case 'N-Triples':
+			format = 'N-Triples';
+		case 'text/turtle':
+		case 'application/trig':
+			convertFunction = _toRDF.bind(null, triples, format);
+			break;		
+		case 'application/ld+json':
+			convertFunction = utils.toJSONLDObject.bind(null, triples);			
+			break;		
+		case 'application/rdf+xml':
+			throw "format '" + format + "' not supported yet!"
+			break;
+		case 'application/spo+json':
+			// do nothing - probably JSON.strinify(triples) to ensure string formating
+			//break;
+		default: {
+			// do nothing
+			convertFunction = function(callback) {
+				callback(null, triples);
+			}
+		}
+	}
+	convertFunction(function(err, result) {
 		if (err) {
-			deferred.reject(err);
-		} else {
-			var parser = N3.Parser();
-			var result = [];
-			parser.parse(rdf, function(err, triple, prefixes) {
-				if (err) {
-					deferred.reject(err);
-				} else {
-					if (triple) {
-						result.push(triple);
-					} else {
-						deferred.resolve(result);
-					}
-				}
-			});
-		}		
-	})
+			deferred.reject(errorMessage + err);
+		} else {							
+			// ensure string formation
+			if (utils.isObject(result)) {
+				result = JSON.stringify(result);
+			}
+			deferred.resolve(result);
+		}
+	});	
 	return deferred.promise.nodeify(callback);
-};
+}
 
 var Interface = function (objectName, methods) {
 	if (arguments.length != 2) {

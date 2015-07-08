@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="home">
+<head>	
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/jquery.flot.js"></script>
+	<script src="js/jquery.flot.time.js"></script>
+	<script type="text/javascript">
+
+	$(function() {
+
+		//var d = [[-373597200000, 315.71], [-370918800000, 317.45]]; 
+		var response = [
+		  {
+		    "value": "10",
+		    "timestamp": 1436266442
+		  },
+		  {
+		    "value": "20",
+		    "timestamp": 1436266446
+		  },
+		  {
+		    "value": "30",
+		    "timestamp": 1436266449
+		  },
+		  {
+		    "value": "40",
+		    "timestamp": 1436266452
+		  },
+		  {
+		    "value": "10",
+		    "timestamp": 1436266457
+		  }
+		];
+
+		var data = response.map(function(entry) {
+			return [entry.timestamp * 1000, entry.value];
+		});
+
+		plot = $.plot("#placeholder-chart", [data], 
+				{
+					xaxis: { mode: "time" },
+				    series: {
+				        lines: { show: false },
+				        points: { show: true }
+					},grid: 
+            {
+            	hoverable: true,
+              autoHighlight: true
+            }
+				}
+		 );
+
+		$("#placeholder-chart").bind("plothover", function (event, pos, item) {		    
+			var context = $('#placeholder-chart .flot-overlay')[0].getContext('2d');
+
+		    if (item) {
+		        var offset = $($('#placeholder-chart .flot-overlay')[0]).offset();
+				var relativPos = {x: item.pageX - offset.left, y: item.pageY - offset.top};
+		    	context.fillText(item.datapoint[1], relativPos.x + 5, relativPos.y - 10);
+		    }
+		});
+
+	});
+
+	</script>
+</head>
+
+<body>
+<div id="placeholder-chart" style="width:600px;height:300px"></div>
+</div>
+
+
+</body>
+</html>

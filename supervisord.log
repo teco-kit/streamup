@@ -1,0 +1,759 @@
+2015-06-11 11:36:14,917 CRIT Supervisor running as root (no user in config file)
+2015-06-11 11:36:14,918 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 11:36:14,920 INFO supervisord started with pid 1
+2015-06-11 11:36:15,922 INFO spawned: 'streamup_server' with pid 8
+2015-06-11 11:36:15,923 INFO spawned: 'streamup_gui' with pid 9
+2015-06-11 11:36:15,963 INFO exited: streamup_gui (exit status 8; not expected)
+2015-06-11 11:36:15,964 INFO exited: streamup_server (exit status 8; not expected)
+2015-06-11 11:36:16,967 INFO spawned: 'streamup_server' with pid 12
+2015-06-11 11:36:16,968 INFO spawned: 'streamup_gui' with pid 13
+2015-06-11 11:36:17,009 INFO exited: streamup_server (exit status 8; not expected)
+2015-06-11 11:36:17,012 INFO exited: streamup_gui (exit status 8; not expected)
+2015-06-11 11:36:19,016 INFO spawned: 'streamup_server' with pid 16
+2015-06-11 11:36:19,017 INFO spawned: 'streamup_gui' with pid 17
+2015-06-11 11:36:19,059 INFO exited: streamup_server (exit status 8; not expected)
+2015-06-11 11:36:19,060 INFO exited: streamup_gui (exit status 8; not expected)
+2015-06-11 11:36:22,065 INFO spawned: 'streamup_server' with pid 20
+2015-06-11 11:36:22,066 INFO spawned: 'streamup_gui' with pid 21
+2015-06-11 11:36:22,111 INFO exited: streamup_server (exit status 8; not expected)
+2015-06-11 11:36:22,111 INFO gave up: streamup_server entered FATAL state, too many start retries too quickly
+2015-06-11 11:36:22,112 INFO exited: streamup_gui (exit status 8; not expected)
+2015-06-11 11:36:23,113 INFO gave up: streamup_gui entered FATAL state, too many start retries too quickly
+2015-06-11 11:36:23,698 WARN received SIGINT indicating exit request
+2015-06-11 11:37:27,183 CRIT Supervisor running as root (no user in config file)
+2015-06-11 11:37:27,183 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 11:37:27,188 INFO supervisord started with pid 1
+2015-06-11 11:37:28,190 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 11:37:28,192 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 11:37:28,233 INFO exited: streamup_gui (exit status 8; not expected)
+2015-06-11 11:37:29,817 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 11:37:29,818 INFO spawned: 'streamup_gui' with pid 16
+2015-06-11 11:37:29,861 INFO exited: streamup_gui (exit status 8; not expected)
+2015-06-11 11:37:31,864 INFO spawned: 'streamup_gui' with pid 18
+2015-06-11 11:37:31,909 INFO exited: streamup_gui (exit status 8; not expected)
+2015-06-11 11:37:34,914 INFO spawned: 'streamup_gui' with pid 20
+2015-06-11 11:37:34,960 INFO exited: streamup_gui (exit status 8; not expected)
+2015-06-11 11:37:35,961 INFO gave up: streamup_gui entered FATAL state, too many start retries too quickly
+2015-06-11 11:37:41,513 WARN received SIGINT indicating exit request
+2015-06-11 11:37:41,513 INFO waiting for streamup_server to die
+2015-06-11 11:37:42,517 INFO stopped: streamup_server (exit status 143)
+2015-06-11 11:38:15,060 CRIT Supervisor running as root (no user in config file)
+2015-06-11 11:38:15,060 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 11:38:15,065 INFO supervisord started with pid 1
+2015-06-11 11:38:16,067 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 11:38:16,068 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 11:38:16,124 INFO exited: streamup_gui (exit status 8; not expected)
+2015-06-11 11:38:17,630 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 11:38:17,631 INFO spawned: 'streamup_gui' with pid 15
+2015-06-11 11:38:17,684 INFO exited: streamup_gui (exit status 8; not expected)
+2015-06-11 11:38:19,687 INFO spawned: 'streamup_gui' with pid 17
+2015-06-11 11:38:19,739 INFO exited: streamup_gui (exit status 8; not expected)
+2015-06-11 11:38:22,609 WARN received SIGINT indicating exit request
+2015-06-11 11:38:22,609 INFO waiting for streamup_server to die
+2015-06-11 11:38:23,614 INFO stopped: streamup_server (exit status 143)
+2015-06-11 11:44:14,475 CRIT Supervisor running as root (no user in config file)
+2015-06-11 11:44:14,476 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 11:44:14,480 INFO supervisord started with pid 1
+2015-06-11 11:44:15,482 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 11:44:15,483 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 11:44:15,944 INFO exited: streamup_server (exit status 8; not expected)
+2015-06-11 11:44:16,946 INFO spawned: 'streamup_server' with pid 15
+2015-06-11 11:44:16,947 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 11:44:17,422 INFO exited: streamup_server (exit status 8; not expected)
+2015-06-11 11:44:19,425 INFO spawned: 'streamup_server' with pid 21
+2015-06-11 11:44:19,895 INFO exited: streamup_server (exit status 8; not expected)
+2015-06-11 11:44:20,363 WARN received SIGINT indicating exit request
+2015-06-11 11:44:20,363 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 11:44:20,365 INFO stopped: streamup_gui (exit status 143)
+2015-06-11 11:45:09,428 CRIT Supervisor running as root (no user in config file)
+2015-06-11 11:45:09,428 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 11:45:09,432 INFO supervisord started with pid 1
+2015-06-11 11:45:10,435 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 11:45:10,436 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 11:45:10,910 INFO exited: streamup_server (exit status 8; not expected)
+2015-06-11 11:45:11,912 INFO spawned: 'streamup_server' with pid 15
+2015-06-11 11:45:11,913 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 11:45:12,363 INFO exited: streamup_server (exit status 8; not expected)
+2015-06-11 11:45:14,366 INFO spawned: 'streamup_server' with pid 21
+2015-06-11 11:45:14,840 INFO exited: streamup_server (exit status 8; not expected)
+2015-06-11 11:45:17,845 INFO spawned: 'streamup_server' with pid 27
+2015-06-11 11:45:18,312 INFO exited: streamup_server (exit status 8; not expected)
+2015-06-11 11:45:19,314 INFO gave up: streamup_server entered FATAL state, too many start retries too quickly
+2015-06-11 11:45:20,450 WARN received SIGINT indicating exit request
+2015-06-11 11:45:20,450 INFO waiting for streamup_gui to die
+2015-06-11 11:45:20,452 INFO stopped: streamup_gui (exit status 143)
+2015-06-11 11:46:32,287 CRIT Supervisor running as root (no user in config file)
+2015-06-11 11:46:32,287 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 11:46:32,291 INFO supervisord started with pid 1
+2015-06-11 11:46:33,294 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 11:46:33,295 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 11:46:34,903 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 11:46:34,903 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 11:54:52,777 WARN received SIGINT indicating exit request
+2015-06-11 11:54:52,777 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 11:54:52,780 INFO stopped: streamup_gui (exit status 143)
+2015-06-11 11:54:52,784 INFO stopped: streamup_server (exit status 143)
+2015-06-11 11:55:22,931 CRIT Supervisor running as root (no user in config file)
+2015-06-11 11:55:22,931 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 11:55:22,935 INFO supervisord started with pid 1
+2015-06-11 11:55:23,937 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 11:55:23,939 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 11:55:25,558 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 11:55:25,558 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 11:56:50,831 WARN received SIGINT indicating exit request
+2015-06-11 11:56:50,831 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 11:56:50,833 INFO stopped: streamup_gui (exit status 143)
+2015-06-11 11:56:51,838 INFO stopped: streamup_server (exit status 143)
+2015-06-11 11:57:20,558 CRIT Supervisor running as root (no user in config file)
+2015-06-11 11:57:20,558 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 11:57:20,560 INFO supervisord started with pid 1
+2015-06-11 11:57:21,562 INFO spawned: 'streamup_server' with pid 8
+2015-06-11 11:57:21,563 INFO spawned: 'streamup_gui' with pid 9
+2015-06-11 11:57:23,164 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 11:57:23,164 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 12:01:20,771 WARN received SIGINT indicating exit request
+2015-06-11 12:01:20,771 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 12:01:20,774 INFO stopped: streamup_gui (exit status 143)
+2015-06-11 12:01:20,778 INFO stopped: streamup_server (exit status 143)
+2015-06-11 12:01:23,713 CRIT Supervisor running as root (no user in config file)
+2015-06-11 12:01:23,713 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 12:01:23,715 INFO supervisord started with pid 1
+2015-06-11 12:01:24,717 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 12:01:24,718 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 12:01:26,297 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 12:01:26,297 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 12:02:31,378 WARN received SIGINT indicating exit request
+2015-06-11 12:02:31,378 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 12:02:31,381 INFO stopped: streamup_gui (exit status 143)
+2015-06-11 12:02:31,385 INFO stopped: streamup_server (exit status 143)
+2015-06-11 12:03:02,986 CRIT Supervisor running as root (no user in config file)
+2015-06-11 12:03:02,986 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 12:03:02,991 INFO supervisord started with pid 1
+2015-06-11 12:03:03,992 INFO spawned: 'streamup_server' with pid 8
+2015-06-11 12:03:03,992 INFO spawned: 'streamup_gui' with pid 9
+2015-06-11 12:03:05,661 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 12:03:05,661 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 12:03:39,513 WARN received SIGINT indicating exit request
+2015-06-11 12:03:39,513 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 12:03:39,516 INFO stopped: streamup_gui (exit status 143)
+2015-06-11 12:03:39,522 INFO stopped: streamup_server (exit status 143)
+2015-06-11 12:03:41,194 CRIT Supervisor running as root (no user in config file)
+2015-06-11 12:03:41,194 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 12:03:41,197 INFO supervisord started with pid 1
+2015-06-11 12:03:42,200 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 12:03:42,201 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 12:03:43,771 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 12:03:43,772 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 12:04:57,159 WARN received SIGINT indicating exit request
+2015-06-11 12:04:57,160 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 12:04:57,163 INFO stopped: streamup_gui (exit status 143)
+2015-06-11 12:04:57,166 INFO stopped: streamup_server (exit status 143)
+2015-06-11 12:05:01,275 CRIT Supervisor running as root (no user in config file)
+2015-06-11 12:05:01,275 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 12:05:01,281 INFO supervisord started with pid 1
+2015-06-11 12:05:02,283 INFO spawned: 'streamup_server' with pid 9
+2015-06-11 12:05:02,285 INFO spawned: 'streamup_gui' with pid 10
+2015-06-11 12:05:03,854 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 12:05:03,854 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 12:05:36,615 WARN received SIGINT indicating exit request
+2015-06-11 12:05:36,615 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 12:05:36,618 INFO stopped: streamup_gui (exit status 143)
+2015-06-11 12:05:36,621 INFO stopped: streamup_server (exit status 143)
+2015-06-11 12:05:46,534 CRIT Supervisor running as root (no user in config file)
+2015-06-11 12:05:46,534 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 12:05:46,537 INFO supervisord started with pid 1
+2015-06-11 12:05:47,538 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 12:05:47,540 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 12:05:49,148 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 12:05:49,148 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 12:09:30,347 WARN received SIGINT indicating exit request
+2015-06-11 12:09:30,348 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 12:09:30,351 INFO stopped: streamup_gui (exit status 143)
+2015-06-11 12:09:30,355 INFO stopped: streamup_server (exit status 143)
+2015-06-11 12:09:36,080 CRIT Supervisor running as root (no user in config file)
+2015-06-11 12:09:36,080 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 12:09:36,083 INFO supervisord started with pid 1
+2015-06-11 12:09:37,086 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 12:09:37,087 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 12:09:38,646 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 12:09:38,646 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 13:16:12,445 WARN received SIGINT indicating exit request
+2015-06-11 13:16:12,445 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 13:16:12,448 INFO stopped: streamup_gui (exit status 143)
+2015-06-11 13:16:12,452 INFO stopped: streamup_server (exit status 143)
+2015-06-11 13:16:23,603 CRIT Supervisor running as root (no user in config file)
+2015-06-11 13:16:23,603 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 13:16:23,607 INFO supervisord started with pid 1
+2015-06-11 13:16:24,609 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 13:16:24,610 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 13:16:26,153 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 13:16:26,153 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 13:17:19,124 WARN received SIGINT indicating exit request
+2015-06-11 13:17:19,124 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 13:17:19,126 INFO stopped: streamup_gui (exit status 143)
+2015-06-11 13:17:19,131 INFO stopped: streamup_server (exit status 143)
+2015-06-11 13:17:20,870 CRIT Supervisor running as root (no user in config file)
+2015-06-11 13:17:20,870 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 13:17:20,875 INFO supervisord started with pid 1
+2015-06-11 13:17:21,877 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 13:17:21,878 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 13:17:23,425 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 13:17:23,425 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 13:17:38,563 WARN received SIGINT indicating exit request
+2015-06-11 13:17:38,563 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 13:17:38,566 INFO stopped: streamup_gui (exit status 143)
+2015-06-11 13:17:38,571 INFO stopped: streamup_server (exit status 143)
+2015-06-11 13:17:44,859 CRIT Supervisor running as root (no user in config file)
+2015-06-11 13:17:44,859 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 13:17:44,864 INFO supervisord started with pid 1
+2015-06-11 13:17:45,865 INFO spawnerr: can't find command 'supervisor'
+2015-06-11 13:17:45,865 INFO spawnerr: can't find command 'supervisor'
+2015-06-11 13:17:46,867 INFO spawnerr: can't find command 'supervisor'
+2015-06-11 13:17:46,867 INFO spawnerr: can't find command 'supervisor'
+2015-06-11 13:17:48,870 INFO spawnerr: can't find command 'supervisor'
+2015-06-11 13:17:48,871 INFO spawnerr: can't find command 'supervisor'
+2015-06-11 13:17:51,364 WARN received SIGINT indicating exit request
+2015-06-11 13:17:51,364 INFO waiting for streamup_server to die
+2015-06-11 13:19:08,531 CRIT Supervisor running as root (no user in config file)
+2015-06-11 13:19:08,531 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 13:19:08,533 INFO supervisord started with pid 1
+2015-06-11 13:19:09,536 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 13:19:09,537 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 13:19:11,217 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 13:19:11,217 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 13:20:23,345 WARN received SIGINT indicating exit request
+2015-06-11 13:20:23,345 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 13:20:23,350 INFO stopped: streamup_gui (exit status 0)
+2015-06-11 13:20:23,350 CRIT reaped unknown pid 36)
+2015-06-11 13:20:23,355 INFO stopped: streamup_server (exit status 0)
+2015-06-11 13:21:00,586 CRIT Supervisor running as root (no user in config file)
+2015-06-11 13:21:00,586 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 13:21:00,590 INFO supervisord started with pid 1
+2015-06-11 13:21:01,592 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 13:21:01,594 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 13:21:03,417 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 13:21:03,417 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 16:17:38,875 WARN received SIGINT indicating exit request
+2015-06-11 16:17:38,875 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 16:17:38,878 INFO stopped: streamup_gui (exit status 0)
+2015-06-11 16:17:38,878 CRIT reaped unknown pid 60)
+2015-06-11 16:17:38,882 INFO stopped: streamup_server (exit status 0)
+2015-06-11 16:17:42,955 CRIT Supervisor running as root (no user in config file)
+2015-06-11 16:17:42,955 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 16:17:42,958 INFO supervisord started with pid 1
+2015-06-11 16:17:43,961 INFO spawned: 'streamup_server' with pid 8
+2015-06-11 16:17:43,962 INFO spawned: 'streamup_gui' with pid 9
+2015-06-11 16:17:45,859 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 16:17:45,859 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 16:21:03,543 WARN received SIGINT indicating exit request
+2015-06-11 16:21:03,544 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 16:21:03,549 INFO stopped: streamup_gui (exit status 0)
+2015-06-11 16:21:03,549 CRIT reaped unknown pid 346)
+2015-06-11 16:21:03,552 INFO stopped: streamup_server (exit status 0)
+2015-06-11 16:21:04,916 CRIT Supervisor running as root (no user in config file)
+2015-06-11 16:21:04,916 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 16:21:04,919 INFO supervisord started with pid 1
+2015-06-11 16:21:05,921 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 16:21:05,922 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 16:21:07,741 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 16:21:07,741 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 16:27:38,920 WARN received SIGINT indicating exit request
+2015-06-11 16:27:38,921 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 16:27:38,924 INFO stopped: streamup_gui (exit status 0)
+2015-06-11 16:27:38,924 CRIT reaped unknown pid 314)
+2015-06-11 16:27:38,927 INFO stopped: streamup_server (exit status 0)
+2015-06-11 16:28:22,144 CRIT Supervisor running as root (no user in config file)
+2015-06-11 16:28:22,144 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 16:28:22,147 INFO supervisord started with pid 1
+2015-06-11 16:28:23,148 INFO spawned: 'streamup_server' with pid 8
+2015-06-11 16:28:23,149 INFO spawned: 'streamup_gui' with pid 9
+2015-06-11 16:28:25,049 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 16:28:25,049 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 16:43:06,899 WARN received SIGINT indicating exit request
+2015-06-11 16:43:06,899 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 16:43:06,902 INFO stopped: streamup_gui (exit status 0)
+2015-06-11 16:43:06,903 CRIT reaped unknown pid 12)
+2015-06-11 16:43:06,907 INFO stopped: streamup_server (exit status 0)
+2015-06-11 16:43:08,280 CRIT Supervisor running as root (no user in config file)
+2015-06-11 16:43:08,280 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 16:43:08,284 INFO supervisord started with pid 1
+2015-06-11 16:43:09,286 INFO spawned: 'streamup_server' with pid 9
+2015-06-11 16:43:09,287 INFO spawned: 'streamup_gui' with pid 10
+2015-06-11 16:43:10,952 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 16:43:10,952 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 17:09:49,889 WARN received SIGINT indicating exit request
+2015-06-11 17:09:49,890 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 17:09:49,894 INFO stopped: streamup_gui (exit status 0)
+2015-06-11 17:09:49,894 CRIT reaped unknown pid 97)
+2015-06-11 17:09:49,898 INFO stopped: streamup_server (exit status 0)
+2015-06-11 17:09:54,014 CRIT Supervisor running as root (no user in config file)
+2015-06-11 17:09:54,014 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 17:09:54,017 INFO supervisord started with pid 1
+2015-06-11 17:09:55,019 INFO spawned: 'streamup_server' with pid 8
+2015-06-11 17:09:55,021 INFO spawned: 'streamup_gui' with pid 9
+2015-06-11 17:09:56,729 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 17:09:56,729 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 17:21:23,438 WARN received SIGINT indicating exit request
+2015-06-11 17:21:23,438 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 17:21:23,441 INFO stopped: streamup_gui (exit status 0)
+2015-06-11 17:21:23,441 CRIT reaped unknown pid 3031)
+2015-06-11 17:21:23,444 INFO stopped: streamup_server (exit status 0)
+2015-06-11 17:21:24,946 CRIT Supervisor running as root (no user in config file)
+2015-06-11 17:21:24,946 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 17:21:24,949 INFO supervisord started with pid 1
+2015-06-11 17:21:25,952 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 17:21:25,953 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 17:21:27,006 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 17:21:27,006 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 17:21:48,470 WARN received SIGINT indicating exit request
+2015-06-11 17:21:48,470 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 17:21:48,474 INFO stopped: streamup_gui (exit status 0)
+2015-06-11 17:21:48,474 CRIT reaped unknown pid 357)
+2015-06-11 17:21:48,481 INFO stopped: streamup_server (exit status 0)
+2015-06-11 17:21:48,482 CRIT reaped unknown pid 12)
+2015-06-11 17:22:18,207 CRIT Supervisor running as root (no user in config file)
+2015-06-11 17:22:18,208 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-11 17:22:18,211 INFO supervisord started with pid 1
+2015-06-11 17:22:19,213 INFO spawned: 'streamup_server' with pid 7
+2015-06-11 17:22:19,214 INFO spawned: 'streamup_gui' with pid 8
+2015-06-11 17:22:20,891 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 17:22:20,891 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-11 17:33:48,651 WARN received SIGINT indicating exit request
+2015-06-11 17:33:48,652 INFO waiting for streamup_server, streamup_gui to die
+2015-06-11 17:33:48,657 INFO stopped: streamup_gui (exit status 0)
+2015-06-11 17:33:48,658 CRIT reaped unknown pid 11)
+2015-06-11 17:33:48,662 INFO stopped: streamup_server (exit status 0)
+2015-06-12 07:35:17,656 CRIT Supervisor running as root (no user in config file)
+2015-06-12 07:35:17,657 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-12 07:35:17,661 INFO supervisord started with pid 1
+2015-06-12 07:35:18,665 INFO spawned: 'streamup_server' with pid 7
+2015-06-12 07:35:18,666 INFO spawned: 'streamup_gui' with pid 8
+2015-06-12 07:35:19,682 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-12 07:35:19,682 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-12 07:40:56,914 WARN received SIGINT indicating exit request
+2015-06-12 07:40:56,915 INFO waiting for streamup_server, streamup_gui to die
+2015-06-12 07:40:56,917 INFO stopped: streamup_gui (exit status 0)
+2015-06-12 07:40:56,917 CRIT reaped unknown pid 222)
+2015-06-12 07:40:56,920 INFO stopped: streamup_server (exit status 0)
+2015-06-12 07:40:58,114 CRIT Supervisor running as root (no user in config file)
+2015-06-12 07:40:58,114 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-12 07:40:58,119 INFO supervisord started with pid 1
+2015-06-12 07:40:59,122 INFO spawned: 'streamup_server' with pid 7
+2015-06-12 07:40:59,123 INFO spawned: 'streamup_gui' with pid 8
+2015-06-12 07:41:00,167 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-12 07:41:00,167 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-12 10:41:05,316 WARN received SIGINT indicating exit request
+2015-06-12 10:41:05,316 INFO waiting for streamup_server, streamup_gui to die
+2015-06-12 10:41:05,320 INFO stopped: streamup_gui (exit status 0)
+2015-06-12 10:41:05,320 CRIT reaped unknown pid 1337)
+2015-06-12 10:41:05,325 INFO stopped: streamup_server (exit status 0)
+2015-06-12 10:41:09,139 CRIT Supervisor running as root (no user in config file)
+2015-06-12 10:41:09,139 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-12 10:41:09,141 INFO supervisord started with pid 1
+2015-06-12 10:41:10,143 INFO spawned: 'streamup_server' with pid 7
+2015-06-12 10:41:10,144 INFO spawned: 'streamup_gui' with pid 8
+2015-06-12 10:41:11,828 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-12 10:41:11,829 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-12 10:47:33,256 WARN received SIGINT indicating exit request
+2015-06-12 10:47:33,257 INFO waiting for streamup_server, streamup_gui to die
+2015-06-12 10:47:33,261 INFO stopped: streamup_gui (exit status 0)
+2015-06-12 10:47:33,261 CRIT reaped unknown pid 46)
+2015-06-12 10:47:33,265 INFO stopped: streamup_server (exit status 0)
+2015-06-12 10:47:34,555 CRIT Supervisor running as root (no user in config file)
+2015-06-12 10:47:34,555 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-12 10:47:34,558 INFO supervisord started with pid 1
+2015-06-12 10:47:35,560 INFO spawned: 'streamup_server' with pid 7
+2015-06-12 10:47:35,562 INFO spawned: 'streamup_gui' with pid 8
+2015-06-12 10:47:37,456 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-12 10:47:37,456 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-12 11:13:34,549 WARN received SIGINT indicating exit request
+2015-06-12 11:13:34,549 INFO waiting for streamup_server, streamup_gui to die
+2015-06-12 11:13:34,552 INFO stopped: streamup_gui (exit status 0)
+2015-06-12 11:13:34,552 CRIT reaped unknown pid 474)
+2015-06-12 11:13:34,557 INFO stopped: streamup_server (exit status 0)
+2015-06-12 11:13:34,557 CRIT reaped unknown pid 231)
+2015-06-12 11:14:08,021 CRIT Supervisor running as root (no user in config file)
+2015-06-12 11:14:08,021 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-12 11:14:08,026 INFO supervisord started with pid 1
+2015-06-12 11:14:09,028 INFO spawned: 'streamup_server' with pid 7
+2015-06-12 11:14:09,030 INFO spawned: 'streamup_gui' with pid 8
+2015-06-12 11:14:10,948 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-12 11:14:10,948 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-12 11:39:34,690 WARN received SIGINT indicating exit request
+2015-06-12 11:39:34,690 INFO waiting for streamup_server, streamup_gui to die
+2015-06-12 11:39:34,695 INFO stopped: streamup_gui (exit status 0)
+2015-06-12 11:39:34,695 CRIT reaped unknown pid 180)
+2015-06-12 11:39:34,699 INFO stopped: streamup_server (exit status 0)
+2015-06-12 11:39:38,514 CRIT Supervisor running as root (no user in config file)
+2015-06-12 11:39:38,514 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-12 11:39:38,518 INFO supervisord started with pid 1
+2015-06-12 11:39:39,520 INFO spawned: 'streamup_server' with pid 7
+2015-06-12 11:39:39,522 INFO spawned: 'streamup_gui' with pid 8
+2015-06-12 11:39:41,260 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-12 11:39:41,260 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-12 12:22:34,094 WARN received SIGINT indicating exit request
+2015-06-12 12:22:34,094 INFO waiting for streamup_server, streamup_gui to die
+2015-06-12 12:22:34,097 INFO stopped: streamup_gui (exit status 0)
+2015-06-12 12:22:34,101 INFO stopped: streamup_server (exit status 0)
+2015-06-15 06:52:26,211 CRIT Supervisor running as root (no user in config file)
+2015-06-15 06:52:26,212 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-15 06:52:26,216 INFO supervisord started with pid 1
+2015-06-15 06:52:27,220 INFO spawned: 'streamup_server' with pid 7
+2015-06-15 06:52:27,221 INFO spawned: 'streamup_gui' with pid 8
+2015-06-15 06:52:28,324 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-15 06:52:28,324 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-15 11:38:29,766 WARN received SIGINT indicating exit request
+2015-06-15 11:38:29,766 INFO waiting for streamup_server, streamup_gui to die
+2015-06-15 11:38:29,770 INFO stopped: streamup_gui (exit status 0)
+2015-06-15 11:38:29,770 CRIT reaped unknown pid 236)
+2015-06-15 11:38:29,773 INFO stopped: streamup_server (exit status 0)
+2015-06-15 11:38:33,472 CRIT Supervisor running as root (no user in config file)
+2015-06-15 11:38:33,472 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-15 11:38:33,476 INFO supervisord started with pid 1
+2015-06-15 11:38:34,478 INFO spawned: 'streamup_server' with pid 7
+2015-06-15 11:38:34,479 INFO spawned: 'streamup_gui' with pid 8
+2015-06-15 11:38:36,422 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-15 11:38:36,422 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-15 13:00:28,730 WARN received SIGINT indicating exit request
+2015-06-15 13:00:28,731 INFO waiting for streamup_server, streamup_gui to die
+2015-06-15 13:00:28,735 INFO stopped: streamup_gui (exit status 0)
+2015-06-15 13:00:28,737 CRIT reaped unknown pid 79)
+2015-06-15 13:00:28,742 INFO stopped: streamup_server (exit status 0)
+2015-06-15 13:00:28,742 CRIT reaped unknown pid 77)
+2015-06-15 13:01:09,649 CRIT Supervisor running as root (no user in config file)
+2015-06-15 13:01:09,649 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-15 13:01:09,652 INFO supervisord started with pid 1
+2015-06-15 13:01:10,654 INFO spawned: 'streamup_server' with pid 7
+2015-06-15 13:01:10,656 INFO spawned: 'streamup_gui' with pid 8
+2015-06-15 13:01:12,344 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-15 13:01:12,344 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-15 13:26:16,679 WARN received SIGINT indicating exit request
+2015-06-15 13:26:16,680 INFO waiting for streamup_server, streamup_gui to die
+2015-06-15 13:26:16,684 INFO stopped: streamup_gui (exit status 0)
+2015-06-15 13:26:16,685 CRIT reaped unknown pid 12)
+2015-06-15 13:26:16,689 INFO stopped: streamup_server (exit status 0)
+2015-06-15 13:26:38,687 CRIT Supervisor running as root (no user in config file)
+2015-06-15 13:26:38,687 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-15 13:26:38,690 INFO supervisord started with pid 1
+2015-06-15 13:26:39,692 INFO spawned: 'streamup_server' with pid 7
+2015-06-15 13:26:39,693 INFO spawned: 'streamup_gui' with pid 8
+2015-06-15 13:26:41,380 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-15 13:26:41,380 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-15 17:03:01,685 WARN received SIGINT indicating exit request
+2015-06-15 17:03:01,686 INFO waiting for streamup_server, streamup_gui to die
+2015-06-15 17:03:01,690 INFO stopped: streamup_gui (exit status 0)
+2015-06-15 17:03:01,693 CRIT reaped unknown pid 11)
+2015-06-15 17:03:01,694 INFO stopped: streamup_server (exit status 0)
+2015-06-16 07:01:31,896 CRIT Supervisor running as root (no user in config file)
+2015-06-16 07:01:31,898 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-16 07:01:31,902 INFO supervisord started with pid 1
+2015-06-16 07:01:32,906 INFO spawned: 'streamup_server' with pid 7
+2015-06-16 07:01:32,907 INFO spawned: 'streamup_gui' with pid 8
+2015-06-16 07:01:34,210 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-16 07:01:34,211 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-16 07:30:42,373 WARN received SIGINT indicating exit request
+2015-06-16 07:30:42,373 INFO waiting for streamup_server, streamup_gui to die
+2015-06-16 07:30:42,378 INFO stopped: streamup_gui (exit status 0)
+2015-06-16 07:30:42,381 CRIT reaped unknown pid 12)
+2015-06-16 07:30:42,383 INFO stopped: streamup_server (exit status 0)
+2015-06-16 07:34:41,544 CRIT Supervisor running as root (no user in config file)
+2015-06-16 07:34:41,544 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-16 07:34:41,546 INFO supervisord started with pid 1
+2015-06-16 07:34:42,549 INFO spawned: 'streamup_server' with pid 7
+2015-06-16 07:34:42,550 INFO spawned: 'streamup_gui' with pid 8
+2015-06-16 07:34:44,453 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-16 07:34:44,454 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-16 13:11:37,180 INFO exited: streamup_server (exit status 8; not expected)
+2015-06-16 13:11:37,182 INFO spawned: 'streamup_server' with pid 20284
+2015-06-16 13:11:37,183 CRIT reaped unknown pid 20282)
+2015-06-16 13:11:38,212 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-16 13:21:05,634 WARN received SIGINT indicating exit request
+2015-06-16 13:21:05,634 INFO waiting for streamup_server, streamup_gui to die
+2015-06-16 13:21:05,637 INFO stopped: streamup_gui (exit status 0)
+2015-06-16 13:21:05,637 CRIT reaped unknown pid 20296)
+2015-06-16 13:21:05,641 INFO stopped: streamup_server (exit status 0)
+2015-06-16 13:21:05,641 CRIT reaped unknown pid 16256)
+2015-06-16 13:28:46,854 CRIT Supervisor running as root (no user in config file)
+2015-06-16 13:28:46,855 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-16 13:28:46,859 INFO supervisord started with pid 1
+2015-06-16 13:28:47,862 INFO spawned: 'streamup_server' with pid 7
+2015-06-16 13:28:47,863 INFO spawned: 'streamup_gui' with pid 8
+2015-06-16 13:28:48,893 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-16 13:28:48,893 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-16 13:30:07,990 INFO exited: streamup_server (exit status 8; not expected)
+2015-06-16 13:30:08,015 INFO spawned: 'streamup_server' with pid 4105
+2015-06-16 13:30:08,015 CRIT reaped unknown pid 4103)
+2015-06-16 13:30:09,022 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-16 13:31:48,166 WARN received SIGINT indicating exit request
+2015-06-16 13:31:48,166 INFO waiting for streamup_server, streamup_gui to die
+2015-06-16 13:31:48,169 INFO stopped: streamup_gui (exit status 0)
+2015-06-16 13:31:48,171 CRIT reaped unknown pid 4106)
+2015-06-16 13:31:48,172 INFO stopped: streamup_server (exit status 0)
+2015-06-16 13:31:48,172 CRIT reaped unknown pid 9335)
+2015-06-16 13:34:36,702 CRIT Supervisor running as root (no user in config file)
+2015-06-16 13:34:36,702 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-16 13:34:36,704 INFO supervisord started with pid 1
+2015-06-16 13:34:37,706 INFO spawned: 'streamup_server' with pid 7
+2015-06-16 13:34:37,707 INFO spawned: 'streamup_gui' with pid 8
+2015-06-16 13:34:39,425 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-16 13:34:39,425 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-16 13:55:17,620 WARN received SIGINT indicating exit request
+2015-06-16 13:55:17,620 INFO waiting for streamup_server, streamup_gui to die
+2015-06-16 13:55:17,622 INFO stopped: streamup_gui (exit status 0)
+2015-06-16 13:55:17,625 CRIT reaped unknown pid 66)
+2015-06-16 13:55:17,626 INFO stopped: streamup_server (exit status 0)
+2015-06-16 13:55:21,407 CRIT Supervisor running as root (no user in config file)
+2015-06-16 13:55:21,407 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-16 13:55:21,411 INFO supervisord started with pid 1
+2015-06-16 13:55:22,414 INFO spawned: 'streamup_server' with pid 7
+2015-06-16 13:55:22,415 INFO spawned: 'streamup_gui' with pid 8
+2015-06-16 13:55:24,102 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-16 13:55:24,102 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-16 16:12:16,855 WARN received SIGINT indicating exit request
+2015-06-16 16:12:16,856 INFO waiting for streamup_server, streamup_gui to die
+2015-06-16 16:12:16,860 INFO stopped: streamup_gui (exit status 0)
+2015-06-16 16:12:16,862 CRIT reaped unknown pid 790)
+2015-06-16 16:12:16,864 INFO stopped: streamup_server (exit status 0)
+2015-06-17 07:31:02,178 CRIT Supervisor running as root (no user in config file)
+2015-06-17 07:31:02,180 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-17 07:31:02,184 INFO supervisord started with pid 1
+2015-06-17 07:31:03,188 INFO spawned: 'streamup_server' with pid 7
+2015-06-17 07:31:03,189 INFO spawned: 'streamup_gui' with pid 8
+2015-06-17 07:31:04,488 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-17 07:31:04,488 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-17 10:20:09,630 WARN received SIGTERM indicating exit request
+2015-06-17 10:20:09,630 INFO waiting for streamup_server, streamup_gui to die
+2015-06-17 10:20:09,632 INFO stopped: streamup_gui (exit status 0)
+2015-06-17 10:20:09,633 CRIT reaped unknown pid 95)
+2015-06-17 10:20:09,634 INFO stopped: streamup_server (exit status 0)
+2015-06-17 10:20:09,634 CRIT reaped unknown pid 93)
+2015-06-24 07:17:32,256 CRIT Supervisor running as root (no user in config file)
+2015-06-24 07:17:32,256 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-24 07:17:32,262 INFO supervisord started with pid 1
+2015-06-24 07:17:33,265 INFO spawned: 'streamup_server' with pid 7
+2015-06-24 07:17:33,266 INFO spawned: 'streamup_gui' with pid 8
+2015-06-24 07:17:34,438 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-24 07:17:34,438 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-24 14:03:18,367 WARN received SIGINT indicating exit request
+2015-06-24 14:03:18,367 INFO waiting for streamup_server, streamup_gui to die
+2015-06-24 14:03:18,370 INFO stopped: streamup_gui (exit status 0)
+2015-06-24 14:03:18,373 CRIT reaped unknown pid 146)
+2015-06-24 14:03:18,374 INFO stopped: streamup_server (exit status 0)
+2015-06-24 14:03:24,047 CRIT Supervisor running as root (no user in config file)
+2015-06-24 14:03:24,047 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-24 14:03:24,052 INFO supervisord started with pid 1
+2015-06-24 14:03:25,054 INFO spawned: 'streamup_server' with pid 7
+2015-06-24 14:03:25,055 INFO spawned: 'streamup_gui' with pid 8
+2015-06-24 14:03:26,861 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-24 14:03:26,861 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-24 15:08:26,755 WARN received SIGINT indicating exit request
+2015-06-24 15:08:26,755 INFO waiting for streamup_server, streamup_gui to die
+2015-06-24 15:08:26,760 INFO stopped: streamup_gui (exit status 0)
+2015-06-24 15:08:26,760 CRIT reaped unknown pid 151)
+2015-06-24 15:08:26,764 INFO stopped: streamup_server (exit status 0)
+2015-06-24 15:08:30,978 CRIT Supervisor running as root (no user in config file)
+2015-06-24 15:08:30,978 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-24 15:08:30,981 INFO supervisord started with pid 1
+2015-06-24 15:08:31,982 INFO spawned: 'streamup_server' with pid 7
+2015-06-24 15:08:31,983 INFO spawned: 'streamup_gui' with pid 8
+2015-06-24 15:08:33,671 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-24 15:08:33,671 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-24 16:21:56,907 WARN received SIGINT indicating exit request
+2015-06-24 16:21:56,907 INFO waiting for streamup_server, streamup_gui to die
+2015-06-24 16:21:56,912 INFO stopped: streamup_gui (exit status 0)
+2015-06-24 16:21:56,912 CRIT reaped unknown pid 3103)
+2015-06-24 16:21:56,919 INFO stopped: streamup_server (exit status 0)
+2015-06-24 16:21:56,919 CRIT reaped unknown pid 3101)
+2015-06-25 07:17:44,887 CRIT Supervisor running as root (no user in config file)
+2015-06-25 07:17:44,888 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-25 07:17:44,892 INFO supervisord started with pid 1
+2015-06-25 07:17:45,895 INFO spawned: 'streamup_server' with pid 8
+2015-06-25 07:17:45,896 INFO spawned: 'streamup_gui' with pid 9
+2015-06-25 07:17:47,128 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-25 07:17:47,128 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-25 09:02:38,530 WARN received SIGINT indicating exit request
+2015-06-25 09:02:38,530 INFO waiting for streamup_server, streamup_gui to die
+2015-06-25 09:02:38,532 INFO stopped: streamup_gui (exit status 0)
+2015-06-25 09:02:38,535 INFO stopped: streamup_server (exit status 0)
+2015-06-25 09:02:42,302 CRIT Supervisor running as root (no user in config file)
+2015-06-25 09:02:42,302 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-25 09:02:42,306 INFO supervisord started with pid 1
+2015-06-25 09:02:43,308 INFO spawned: 'streamup_server' with pid 7
+2015-06-25 09:02:43,309 INFO spawned: 'streamup_gui' with pid 8
+2015-06-25 09:02:45,034 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-25 09:02:45,034 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-25 14:39:04,138 WARN received SIGINT indicating exit request
+2015-06-25 14:39:04,138 INFO waiting for streamup_server, streamup_gui to die
+2015-06-25 14:39:04,144 INFO stopped: streamup_gui (exit status 0)
+2015-06-25 14:39:04,146 CRIT reaped unknown pid 340)
+2015-06-25 14:39:04,154 INFO stopped: streamup_server (exit status 0)
+2015-06-25 14:39:04,155 CRIT reaped unknown pid 338)
+2015-06-25 14:39:08,399 CRIT Supervisor running as root (no user in config file)
+2015-06-25 14:39:08,399 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-25 14:39:08,404 INFO supervisord started with pid 1
+2015-06-25 14:39:09,406 INFO spawned: 'streamup_server' with pid 7
+2015-06-25 14:39:09,408 INFO spawned: 'streamup_gui' with pid 8
+2015-06-25 14:39:11,129 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-25 14:39:11,129 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-25 16:59:22,795 WARN received SIGINT indicating exit request
+2015-06-25 16:59:22,795 INFO waiting for streamup_server, streamup_gui to die
+2015-06-25 16:59:22,800 INFO stopped: streamup_gui (exit status 0)
+2015-06-25 16:59:22,804 INFO stopped: streamup_server (exit status 0)
+2015-06-25 16:59:22,805 CRIT reaped unknown pid 12)
+2015-06-26 07:04:09,397 CRIT Supervisor running as root (no user in config file)
+2015-06-26 07:04:09,399 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-26 07:04:09,403 INFO supervisord started with pid 1
+2015-06-26 07:04:10,407 INFO spawned: 'streamup_server' with pid 7
+2015-06-26 07:04:10,408 INFO spawned: 'streamup_gui' with pid 8
+2015-06-26 07:04:11,428 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-26 07:04:11,428 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-26 12:28:01,329 WARN received SIGINT indicating exit request
+2015-06-26 12:28:01,329 INFO waiting for streamup_server, streamup_gui to die
+2015-06-26 12:28:01,331 INFO stopped: streamup_gui (exit status 0)
+2015-06-26 12:28:01,334 INFO stopped: streamup_server (exit status 0)
+2015-06-29 11:45:21,336 CRIT Supervisor running as root (no user in config file)
+2015-06-29 11:45:21,338 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-29 11:45:21,342 INFO supervisord started with pid 1
+2015-06-29 11:45:22,346 INFO spawned: 'streamup_server' with pid 7
+2015-06-29 11:45:22,347 INFO spawned: 'streamup_gui' with pid 8
+2015-06-29 11:45:23,553 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-29 11:45:23,553 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-29 16:27:11,093 WARN received SIGINT indicating exit request
+2015-06-29 16:27:11,093 INFO waiting for streamup_server, streamup_gui to die
+2015-06-29 16:27:11,096 INFO stopped: streamup_gui (exit status 0)
+2015-06-29 16:27:11,100 INFO stopped: streamup_server (exit status 0)
+2015-06-30 07:25:19,761 CRIT Supervisor running as root (no user in config file)
+2015-06-30 07:25:19,762 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-30 07:25:19,767 INFO supervisord started with pid 1
+2015-06-30 07:25:20,777 INFO spawned: 'streamup_server' with pid 7
+2015-06-30 07:25:20,778 INFO spawned: 'streamup_gui' with pid 8
+2015-06-30 07:25:22,565 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-30 07:25:22,565 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-30 13:33:14,735 WARN received SIGINT indicating exit request
+2015-06-30 13:33:14,735 INFO waiting for streamup_server, streamup_gui to die
+2015-06-30 13:33:14,738 INFO stopped: streamup_gui (exit status 0)
+2015-06-30 13:33:14,738 CRIT reaped unknown pid 3014)
+2015-06-30 13:33:14,740 INFO stopped: streamup_server (exit status 0)
+2015-06-30 13:33:14,740 CRIT reaped unknown pid 4100)
+2015-06-30 13:33:55,461 CRIT Supervisor running as root (no user in config file)
+2015-06-30 13:33:55,461 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-30 13:33:55,465 INFO supervisord started with pid 1
+2015-06-30 13:33:56,467 INFO spawned: 'streamup_server' with pid 7
+2015-06-30 13:33:56,468 INFO spawned: 'streamup_gui' with pid 8
+2015-06-30 13:33:58,275 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-30 13:33:58,275 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-30 13:36:16,671 WARN received SIGINT indicating exit request
+2015-06-30 13:36:16,671 INFO waiting for streamup_server, streamup_gui to die
+2015-06-30 13:36:16,675 INFO stopped: streamup_gui (exit status 0)
+2015-06-30 13:36:16,675 CRIT reaped unknown pid 36)
+2015-06-30 13:36:16,678 INFO stopped: streamup_server (exit status 0)
+2015-06-30 13:36:17,809 CRIT Supervisor running as root (no user in config file)
+2015-06-30 13:36:17,809 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-06-30 13:36:17,812 INFO supervisord started with pid 1
+2015-06-30 13:36:18,814 INFO spawned: 'streamup_server' with pid 7
+2015-06-30 13:36:18,817 INFO spawned: 'streamup_gui' with pid 8
+2015-06-30 13:36:20,531 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-30 13:36:20,531 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-30 13:42:02,070 INFO exited: streamup_server (exit status 8; not expected)
+2015-06-30 13:42:02,070 CRIT reaped unknown pid 1548)
+2015-06-30 13:42:03,073 INFO spawned: 'streamup_server' with pid 1550
+2015-06-30 13:42:04,075 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-06-30 16:14:07,410 WARN received SIGINT indicating exit request
+2015-06-30 16:14:07,410 INFO waiting for streamup_server, streamup_gui to die
+2015-06-30 16:14:07,415 INFO stopped: streamup_gui (exit status 0)
+2015-06-30 16:14:07,416 CRIT reaped unknown pid 2832)
+2015-06-30 16:14:07,420 INFO stopped: streamup_server (exit status 0)
+2015-07-01 07:23:22,417 CRIT Supervisor running as root (no user in config file)
+2015-07-01 07:23:22,418 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-01 07:23:22,423 INFO supervisord started with pid 1
+2015-07-01 07:23:23,427 INFO spawned: 'streamup_server' with pid 7
+2015-07-01 07:23:23,428 INFO spawned: 'streamup_gui' with pid 8
+2015-07-01 07:23:24,590 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-01 07:23:24,590 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-01 08:10:20,173 INFO exited: streamup_server (exit status 8; not expected)
+2015-07-01 08:10:20,202 INFO spawned: 'streamup_server' with pid 9406
+2015-07-01 08:10:20,203 CRIT reaped unknown pid 9404)
+2015-07-01 08:10:21,204 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-01 08:10:32,321 INFO exited: streamup_server (exit status 8; not expected)
+2015-07-01 08:10:32,352 INFO spawned: 'streamup_server' with pid 9998
+2015-07-01 08:10:32,352 CRIT reaped unknown pid 9996)
+2015-07-01 08:10:33,365 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-01 15:02:51,640 INFO exited: streamup_server (exit status 8; not expected)
+2015-07-01 15:02:51,662 INFO spawned: 'streamup_server' with pid 15014
+2015-07-01 15:02:51,669 CRIT reaped unknown pid 15012)
+2015-07-01 15:02:52,663 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-01 16:08:37,319 WARN received SIGINT indicating exit request
+2015-07-01 16:08:37,319 INFO waiting for streamup_server, streamup_gui to die
+2015-07-01 16:08:37,323 INFO stopped: streamup_gui (exit status 0)
+2015-07-01 16:08:37,323 CRIT reaped unknown pid 15775)
+2015-07-01 16:08:37,327 INFO stopped: streamup_server (exit status 0)
+2015-07-01 16:08:37,327 CRIT reaped unknown pid 15777)
+2015-07-02 07:37:04,241 CRIT Supervisor running as root (no user in config file)
+2015-07-02 07:37:04,242 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-02 07:37:04,246 INFO supervisord started with pid 1
+2015-07-02 07:37:05,249 INFO spawned: 'streamup_server' with pid 7
+2015-07-02 07:37:05,250 INFO spawned: 'streamup_gui' with pid 8
+2015-07-02 07:37:06,840 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-02 07:37:06,840 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-02 07:45:44,494 WARN received SIGINT indicating exit request
+2015-07-02 07:45:44,494 INFO waiting for streamup_server, streamup_gui to die
+2015-07-02 07:45:44,497 INFO stopped: streamup_gui (exit status 0)
+2015-07-02 07:45:44,498 CRIT reaped unknown pid 1872)
+2015-07-02 07:45:44,503 INFO stopped: streamup_server (exit status 0)
+2015-07-02 07:45:44,503 CRIT reaped unknown pid 1870)
+2015-07-02 07:45:46,296 CRIT Supervisor running as root (no user in config file)
+2015-07-02 07:45:46,296 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-02 07:45:46,301 INFO supervisord started with pid 1
+2015-07-02 07:45:47,303 INFO spawned: 'streamup_server' with pid 7
+2015-07-02 07:45:47,304 INFO spawned: 'streamup_gui' with pid 8
+2015-07-02 07:45:49,049 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-02 07:45:49,050 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-02 09:35:27,617 INFO exited: streamup_server (exit status 8; not expected)
+2015-07-02 09:35:27,652 INFO spawned: 'streamup_server' with pid 8477
+2015-07-02 09:35:27,653 CRIT reaped unknown pid 8475)
+2015-07-02 09:35:28,670 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-02 10:32:17,521 WARN received SIGINT indicating exit request
+2015-07-02 10:32:17,522 INFO waiting for streamup_server, streamup_gui to die
+2015-07-02 10:32:17,525 INFO stopped: streamup_gui (exit status 0)
+2015-07-02 10:32:17,526 CRIT reaped unknown pid 9413)
+2015-07-02 10:32:17,530 INFO stopped: streamup_server (exit status 0)
+2015-07-02 11:25:21,344 CRIT Supervisor running as root (no user in config file)
+2015-07-02 11:25:21,345 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-02 11:25:21,350 INFO supervisord started with pid 1
+2015-07-02 11:25:22,358 INFO spawned: 'streamup_server' with pid 7
+2015-07-02 11:25:22,359 INFO spawned: 'streamup_gui' with pid 8
+2015-07-02 11:25:23,688 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-02 11:25:23,688 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-02 16:31:50,692 WARN received SIGINT indicating exit request
+2015-07-02 16:31:50,693 INFO waiting for streamup_server, streamup_gui to die
+2015-07-02 16:31:50,695 INFO stopped: streamup_gui (exit status 0)
+2015-07-02 16:31:50,699 INFO stopped: streamup_server (exit status 0)
+2015-07-07 07:08:37,755 CRIT Supervisor running as root (no user in config file)
+2015-07-07 07:08:37,756 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-07 07:08:37,761 INFO supervisord started with pid 1
+2015-07-07 07:08:38,765 INFO spawned: 'streamup_server' with pid 7
+2015-07-07 07:08:38,766 INFO spawned: 'streamup_gui' with pid 8
+2015-07-07 07:08:40,054 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-07 07:08:40,054 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-07 10:53:14,472 WARN received SIGINT indicating exit request
+2015-07-07 10:53:14,472 INFO waiting for streamup_server, streamup_gui to die
+2015-07-07 10:53:14,476 INFO stopped: streamup_gui (exit status 0)
+2015-07-07 10:53:14,480 INFO stopped: streamup_server (exit status 0)
+2015-07-07 10:53:18,813 CRIT Supervisor running as root (no user in config file)
+2015-07-07 10:53:18,813 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-07 10:53:18,816 INFO supervisord started with pid 1
+2015-07-07 10:53:19,818 INFO spawned: 'streamup_server' with pid 7
+2015-07-07 10:53:19,819 INFO spawned: 'streamup_gui' with pid 8
+2015-07-07 10:53:20,948 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-07 10:53:20,948 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-07 13:33:13,606 WARN received SIGINT indicating exit request
+2015-07-07 13:33:13,606 INFO waiting for streamup_server, streamup_gui to die
+2015-07-07 13:33:13,610 INFO stopped: streamup_gui (exit status 0)
+2015-07-07 13:33:13,615 INFO stopped: streamup_server (exit status 0)
+2015-07-08 11:58:35,718 CRIT Supervisor running as root (no user in config file)
+2015-07-08 11:58:35,719 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-08 11:58:35,724 INFO supervisord started with pid 1
+2015-07-08 11:58:36,727 INFO spawned: 'streamup_server' with pid 7
+2015-07-08 11:58:36,729 INFO spawned: 'streamup_gui' with pid 8
+2015-07-08 11:58:37,873 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-08 11:58:37,873 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
