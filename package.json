@@ -9,15 +9,16 @@
   "author": "Michael Jacoby",
   "license": "MIT",
   "dependencies": {
-    "restify": "*",
-    "level": "*",
-    "through": "*",
-    "levelgraph": "*",
-    "levelgraph-n3": "*",
-    "levelgraph-jsonld": "*",
-    "q": "*",
+    "jsonld": "*",
     "lem": "*",
+    "level": "*",
+    "level-browserify": "^1.0.0",
+    "levelgraph": "*",
+    "levelgraph-jsonld": "*",
+    "levelgraph-n3": "*",
     "n3": "*",
-    "jsonld": "*"
+    "q": "*",
+    "restify": "*",
+    "through": "*"
   }
 }

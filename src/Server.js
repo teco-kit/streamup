@@ -18,7 +18,7 @@ var HttpResponse = {
 };
 
 
-var tripleStore 	= TripleStoreLevelGraph('metadata');
+var tripleStore 	= TripleStoreLevelGraph('metadata', { joinAlgorithm: 'basic' });
 var timeSeriesStore = TimeSeriesStoreLemDB('timeseries');
 var streamUp 		= StreamUp(	tripleStore, 
 								timeSeriesStore, 

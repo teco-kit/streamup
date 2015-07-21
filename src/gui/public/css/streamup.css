@@ -4,6 +4,7 @@
 }
 .inputTable>tbody>tr>td:nth-child(2) {
     text-align: left;
+    width:90%;
 }
 
 .myDateTimePicker > div.xdsoft_datetimepicker > div.xdsoft_timepicker > div.xdsoft_time_box > div.xdsoft_time_variant > div.xdsoft_current {

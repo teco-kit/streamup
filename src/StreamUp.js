@@ -115,7 +115,6 @@ StreamUp.prototype.insertValues = function(options, callback) {
 			.then(function(sensorUri) {
 				return this._timeSeriesStore.insertValues( { index: sensorUri, data: options.data });
 			}.bind(this))
-			.tap(console.log)
 			.catch(function(err) {
 				return Q.reject(errorMessage + err);
 			})
@@ -131,7 +130,6 @@ StreamUp.prototype.getValues = function(options, callback) {
 			.then(function(sensorUri) {
 				return this._timeSeriesStore.getValues( { index: sensorUri, start: options.start, end: options.end });
 			}.bind(this))
-			.tap(console.log)
 			.catch(function(err) {
 				return Q.reject(errorMessage + err);
 			})
@@ -233,7 +231,6 @@ var applyJSONFraming = function(triples, frame, callback) {
 
 var prepareQuery = function(query, callback) {
 	var deferred = Q.defer();
-	console.log('query before prepare: ' + JSON.stringify(query));
 	// check triples for surrounding <...> brackets and remove them
 	query.triples.forEach(function(triple) {
 		Object.keys(triple).forEach(function(key) {
@@ -242,7 +239,6 @@ var prepareQuery = function(query, callback) {
 			}
 		});
 	})
-	console.log('query after prepare: ' + JSON.stringify(query));
 	deferred.resolve(query);
 	return deferred.promise.nodeify(callback);		
 }
@@ -270,7 +266,6 @@ StreamUp.prototype.query = function(query, options, callback) {
 		deferred.reject(new Error(errorMessage + "invalid argument 'query.triples' must be non-null and of type 'array'"));
 	}
 	prepareQuery(query, function(err, query) {
-		console.log('querying: ' + JSON.stringify(query.triples));
 		this._tripleStore.query(query.triples, function(err, plainResult) {
 			if (err) {
 				deferred.reject(err);

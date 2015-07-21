@@ -1,326 +1,287 @@
 extends layout
 
-block header  
-  script(src='/js/handlebars-v3.0.3.js')
-  script(src='/js/jquery-1.11.3.min.js')
-  script(src='/js/bootstrap.min.js') 
-  script(src='/js/n3-browser.js')
-  script(src='/js/select2.js')
-  script(src='//cdn.jsdelivr.net/g/es6-promise@1.0.0')
-  script(src='//cdnjs.cloudflare.com/ajax/libs/jsonld/0.3.15/jsonld.js')
-  script(src='js/jquery.flot.js')
-  script(src='js/jquery.flot.time.js')
-  script(src='/js/streamup.js')
-
-  script(type='text/x-handlebars-template' id="responseTemplate").   
-    <div id="responseStatus" class="alert" role="alert"><b>Status</b>     {{status.code}} - {{status.text}}</div>
-    <div id="representationType">      
-      <ul class="nav nav-pills">
-        <li id="tab-table" role="presentation" onclick="switchToTab(this)"><a href="#!">Table</a></li>
-        <li id="tab-rdf" role="presentation" onclick="switchToTab(this)"><a href="#!">RDF</a></li>
-        <li id="tab-chart" role="presentation" onclick="switchToTab(this)"><a href="#!">Chart</a></li>
-        <li id="tab-response" role="presentation" onclick="switchToTab(this)"><a href="#!">Response</a></li>
-      </ul>
-    </div>
-    <div id="representationContent">
-      <div id="view-table" style="display:none"></div>
-      <div id="view-rdf" style="display:none"></div>
-      <div id="view-chart" style="display:none"></div>
-      <div id="view-response" style="display:none"></div>
-    </div>
-  script(type='text/x-handlebars-template' id="template-table").
-    <table class="table table-striped">        
-      <thead>
-        {{#tableheaders}}
-        <th>
-          {{this}}
-        </th>
-        {{/tableheaders}}
-      </thead>
-      <tbody>
-        {{#triples}}
-        <tr>
-          {{#each this}}
-          <td>{{this}}</td>
-          {{/each}}
-        </tr>   
-        {{/triples}}         
-      </tbody>
-    </table>
-  script(type='text/x-handlebars-template' id="template-rdf").
-    <div style="padding-left: 15px;padding-top:10px">
-    <div id="rdf-type" align="left" stlye="display:inline-block;" class="input-group-btn">    
-      <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">SPO Triples<span class="caret"></span></button>
-      <ul class="dropdown-menu pull-left">
-        <li><a href="#!" data-value="application/ld+json">JSON-LD</a></li>
-        <li><a href="#!" data-value="application/rdf+xml">RDF/XML</a></li>
-        <li><a href="#!" data-value="text/turtle">TURTLE</a></li>
-        <li><a href="#!" data-value="application/n-triples">N-Triples</a></li>
-        <li><a href="#!" data-value="application/spo+json">SPO Triples</a></li>
-      </ul>
-    </div>
-    </div>
-    <div class="panel-body">
-      <pre id="rdf-display">{{json RDF 2}}</pre>
-    </div>
-    <scr{{!}}ipt>$(function(){                  
-      $("#rdf-type").find("li a").click(function(){
-        var format =  $(this).data('value');    
-        // change RDF format
-        changeRDFFormat(format);
-        $(this).parents(".input-group-btn").find('.btn').html($(this).text() + '<span class="caret"></span>');
-      });
-    });</scr{{!}}ipt>
-  script(type='text/x-handlebars-template' id="template-chart").
-    <div class="none" id="placeholder-chart" style="width:600px;height:300px"></div>  
-    <scr{{!}}ipt>$(function() {    
-    var response = JSON.parse(window.data.response);
-    var data = response.map(function(entry) {
-      return [entry.timestamp * 1000, entry.value];
-    });
-    plot = $.plot("#placeholder-chart", [data], 
-        {
-          xaxis: 
-            { 
-              mode: "time" 
-            },
-          series: 
-            {
-                  lines: { show: false },
-                  points: { show: true }
-            },
-          grid: 
-            {
-              hoverable: true,
-              autoHighlight: true
-            }
-        }
-     );
-    $("#placeholder-chart").bind("plothover", function (event, pos, item) {       
-        var context = $('#placeholder-chart .flot-overlay')[0].getContext('2d');        
-        if (item) {
-          var offset = $($('#placeholder-chart .flot-overlay')[0]).offset();
-          var relativPos = {x: item.pageX - offset.left, y: item.pageY - offset.top};
-          context.fillText(item.datapoint[1], relativPos.x + 5, relativPos.y - 10);
-        }
-    });
-    });</scr{{!}}ipt>
-  script(type='text/x-handlebars-template' id="template-response").
-    <div class="panel-group" id="accordion">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Headers</a>
-          </h4>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse">
-          <div class="panel-body">
-            {{headers}}
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Response body</a>
-          </h4>
-        </div>
-        <div id="collapseTwo" class="panel-collapse collapse in">
-          <div class="panel-body">
-            <pre>{{response}}</pre>
-          </div>
-        </div>
-      </div>              
-    </div>
-  script.
-    function navigate(dest) {
-      window.location.href = dest + '?host=' + document.getElementById("serverHost").value + '&port=' + document.getElementById("serverPort").value;
-    }
-
-    function transform_response(response, callback) {
-      response.response = JSON.stringify(JSON.parse(response.response), null, 2);
-      callback(null, response);
-    }
-
-    function changeRDFFormat(format) {          
-      formatTriples(data.triples, format, function(err, rdf) {        
-        //$("#rdf-display").text(JSON.stringify(rdf));
-        if (!(Object.prototype.toString.call(rdf) === '[object String]')) { 
-          rdf = JSON.stringify(rdf, null, 2);
-        }
-        data.RDF = rdf;
-        $("#rdf-display").text(rdf);
-      });
-      return false;
-    }
-
-    function transform_rdf(response, callback) {
-      var triples = response.triples;
-      if (!triples) {
-        var rdf = response.response;
-        var format = response.contentType;
-        if (format == "application/json") {
-          rdf = JSON.parse(rdf);
-        }
-        parseRdfAsTriples(rdf, format, function(err, asTriples) {
-          response.triples = asTriples;
-          triples = asTriples;          
-        });            
-      }
-      var format = $("#rdf-type > .dropdown-menu > li > a:contains('" + $("#rdf-type > .dropdown-toggle").text() + "')").data('value');
-      formatTriples(triples, format, function(err, rdf) {
-        response.RDF = rdf;
-        callback(null, response)
-      });
-      // format as select
-      //response.RDF = JSON.stringify(JSON.parse(response.response), null, 2);
-      //return response;
-    }
-
-    function transform_table(response, callback) {      
-      triples = JSON.parse(response.response);
-      var headers = [];
-      if (triples && triples.length >= 1) {
-        for (var property in triples[0]) {
-          if (triples[0].hasOwnProperty(property)) {
-            headers.push(property);
-          }
-        }
-      } 
-      response.tableheaders = headers;
-      response.triples = triples;      
-      callback(null, response);
-    }
-
-    function capitalizeFirstLetter(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
-    function switchToTab(newTab) {     
-      newTab = $(newTab);
-      // deactive all tabs
-      $('#representationType>ul').children('li').each(function() {
-        $(this).removeClass('active');
-      });
-      // active new tab
-      newTab.addClass('active');
-      // new corresponding content view for new tab      
-      var newTabName = newTab.attr('id').substring(newTab.attr('id').indexOf('-'));
-      var newDiv = $('#view' + newTabName);
-      // hide all content views
-      $('#representationContent').children('div').each(function() {
-        $(this).hide();
-      });
-      // check if function for parsing data for new view is present (by magic naming convention)
-      var transformDataFunc = window['transform_' + newTabName.substring(1)];
-      if (typeof transformDataFunc == 'function') {
-        transformDataFunc(data, function(err, newData) {
-            // load new view template and populate it with data
-            loadTemplateToPlaceholder("template" + newTabName, newData, "view" + newTabName);
-            data = newData;
-            // show new content view
-            newDiv.show();            
-          });
-      } else {
-        // load new view template and populate it with data
-        loadTemplateToPlaceholder("template" + newTabName, data, "view" + newTabName);
-        // show new content view
-        newDiv.show();            
-      }
-      return false;
-    }
-
-    function loadTemplateToPlaceholder(template, data, placeholder) {
-      // try to find placeholder      
-      if (Object.prototype.toString.call(placeholder) === '[object String]') {
-        placeholder = $('#' + placeholder);//document.getElementById(placeholder);
-      }
-      if (!placeholder || typeof placeholder == 'undefined') {
-        placeholder = $('#triples-placeholder');//document.getElementById("triples-placeholder");
-      }
-      // if non found don't do anything
-      if (!placeholder || typeof placeholder == 'undefined') {
-        return;
-      }      
-      // get template and compile
-      var template = Handlebars.compile(document.getElementById(template).textContent);    
-      // set data to template and show in placeholder
-      placeholder.html(template(data));  
-    }
-
-
-    function displayHttpResponse(response, placeholder, options) {      
-      // get needed content from response
-      options = options || { tabs: {}};
-      data = { 
-        status : {  code: response.status,
-                    text: response.statusText
-                 },
-        headers : response.getAllResponseHeaders(),
-        contentType: response.getResponseHeader("Content-Type"),
-        response: response.responseText
-      };
-      Handlebars.registerHelper('json', function(context, indent, options) {
-        if (indent) {
-          return JSON.stringify(context, null, indent);
-        }
-        return JSON.stringify(context);
-      });
-      loadTemplateToPlaceholder("responseTemplate", data, placeholder);
-      // set css class to emphasize HTTP result
-      if (response.status == 200) {
-        $('#responseStatus').addClass('alert-success');
-      } else {
-        $('#responseStatus').addClass('alert-danger');
-      }
-      // handle options
-      // options.tabs.disable = all tabs that should be disabled
-      if (options.tabs.disable) {
-        options.tabs.disable.forEach(function(tab) {
-            $('#tab-' + tab).hide();
-          })
-      }
-      options.tabs.initial = options.tabs.initial ||  'table';
-      // options.tabs.initial = tab to display after this method has been called
-      switchToTab($('#tab-' + options.tabs.initial), data);      
-    } 
-  
-
-  title UpStream GUI
-
-block top-nav
-  nav.navbar.navbar-inverse.navbar-fixed-top
-    .navbar-header
-      a.navbar-brand(href='#')
-        | StreamUp GUI
-    #navbar.navbar-collapse.collapse
-      form.navbar-form(style="margin-left:16.5%;color:#9d9d9d")
-        b
-          | HOST
-        input#serverHost.form-control(value='#{host}', type='text', style="width:300px;margin-left:10px;margin-right:25px")
-        b
-          | PORT
-        input#serverPort.form-control(value='#{port}', type='text', style="width:100px;margin-left:10px")
-
-block side-nav
-  .container-fluid
-    .row
-      .col-sm-3.col-md-2.sidebar
-        ul.nav.nav-sidebar
-          li#createDevice
-            a(href='#' onclick='navigate("createDevice")') create device
-          li#createSensor
-            a(href='#' onclick='navigate("createSensor")') create sensor            
-          li#insertValues
-            a(href='#' onclick='navigate("insertValues")') insert values
-          li#getValues
-            a(href='#' onclick='navigate("getValues")') get values
-          li#query
-            a(href='#' onclick='navigate("query")') query
-      .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-        #content.row.placeholders
-          block content
-    script.
-        document.getElementById('#{activelink}').className += "active";
-
-
+block content
+  h1.page-header Introduction
+  br
+  div(style="text-align:left")
+    h2 Table of Contents
+    ul(style="font-size: 16px;line-height: 1.6;")
+      li 
+        a(href="#WhatIsStreamUp")
+          | What is StreamUp?
+      li 
+        a(href="#HowToUse")
+          | How to use this demo / Example
+          ul(style="font-size: 16px;line-height: 1.6;")
+            li 
+              a(href="#Example-createDevice")
+                | create device
+            li 
+              a(href="#Example-createSensor")
+                | create Sensor
+            li 
+              a(href="#Example-insertValues")
+                | insert values
+            li 
+              a(href="#Example-getValues")
+                | get values
+            li 
+              a(href="#Example-query")
+                | query               
+      li 
+        a(href="#RESTAPI")
+          | REST-API
+          ul(style="font-size: 16px;line-height: 1.6;")
+            li 
+              a(href="#REST-createDevice")
+                | create device
+            li 
+              a(href="#REST-createSensor")
+                | create Sensor
+            li 
+              a(href="#REST-insertValues")
+                | insert values
+            li 
+              a(href="#REST-getValues")
+                | get values
+            li 
+              a(href="#REST-query")
+                | query           
+    br
+    br
+    a(name="WhatIsStreamUp")
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title 
+          b
+            | What is StreamUp?
+      .panel-body        
+        | StreamUp is a JavaScript-based library for managing sensor metadata and readings. It combines the descriptive power of a semantic database for managing the sensor metadata and the power of a 
+        | time series database for handling large amount of sensor readings. It can be used as a Node.js server-side project or as a client-side JavaScript library by using browserify. 
+        | This demo uses a server-side REST-based interface together with a nice web-frontend.
+        br
+        | StreamUp is agnostic to the semantic database, time series database and ontology used. This concrete demonstration uses 
+        a(href='https://github.com/mcollina/levelgraph') LevelGraph
+        |  as semantic database and 
+        a(href='https://github.com/binocarlos/lem') LemDB
+        |  as time series store implementation. As ontology a custom made ontology called TECO ontology is used.
+    br
+    a(name="HowToUse")
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title 
+          b
+            |How to use this demo / Example
+      .panel-body
+        | In the TECO ontology used in this demo sensors are hierarchically clustered by the devices they belong to. Therefore, the first neccessary step to create a sensor is to create the corresponding device. 
+        | Each device is described by a unique 
+        em deviceId
+        |  of type string. As optional parameter a detailed semantic description of the sensor can be passed.
+        br
+        | After the device is created the different sensors can be created by passing a 
+        em sensorId
+        |  and again a detailed semantic description of the sensor as optional parameter.
+        br
+        br
+        | As an example assume we have a µPart sensor
+        | [ 
+        a(href='http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.299.664&rep=rep1&type=pdf') 1
+        | , 
+        a(href='http://particle.teco.edu/devices/index.html') 2
+        |  ] like shown in this picture with a sensor for movement, light and temperature.
+        br
+        img(src="img/upart.jpg" height="200" width="200") 
+        br
+        br
+        a(name="Example-createDevice")
+        h4 1. Create device
+        hr(style="margin: 10px auto;")
+        | We want to manage this sensor and it's reading with StremaUp. So, first of all, we have to create the device corresponding to the µPart. We also want to feed some metadata of the µPart 
+        | (like its location or which artifact it is attatched to) to the system so that we later can find sensors e.g. by location. To achieve this we navigate to the 
+        a(href='#' onclick='navigate("createDevice")') create device
+        |  page and enter the following data:
+        br
+        table
+          tr
+            td(style="padding-right: 30px;vertical-align: top;")
+              | deviceId: 
+            td(style="padding-bottom: 20px")
+              | abc:def:0000:0001 
+              i // the identification of the µPart          
+          tr
+            td(style="padding-right: 30px;vertical-align: top;")
+              | metadata:
+            td
+              :escape
+                <?device> <http://www.teco.edu/smartteco/locatedAt> <http://www.teco.edu/smartteco/ConferenceRoom> .              
+              br 
+              :escape
+                <?device> <http://www.teco.edu/smartteco/attachtedTo> <http://www.teco.edu/smartteco/DoorConferenceRoom> .
+        br
+        br
+        | We can use the ?device variable to reference the auto-generated URI of the device.
+        br
+        | As result we get the device description as RDF generated by StreamUp:
+        br
+        br
+        i
+          :escape
+            <http://www.teco.edu/smartteco/devices/abc:def:0000:0001> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.teco.edu/smartteco/Device>.
+          br
+          :escape
+            <http://www.teco.edu/smartteco/devices/abc:def:0000:0001> <http://www.teco.edu/smartteco/hasID> "abc:def:0000:0001"^^<http://www.w3.org/2001/XMLSchema#string>.
+          br
+          :escape
+            <http://www.teco.edu/smartteco/devices/abc:def:0000:0001> <http://www.teco.edu/smartteco/locatedAt> <http://www.teco.edu/smartteco/ConferenceRoom>.
+          br
+          :escape
+            <http://www.teco.edu/smartteco/devices/abc:def:0000:0001> <http://www.teco.edu/smartteco/attachtedTo> <http://www.teco.edu/smartteco/DoorConferenceRoom>.
+        br
+        br
+        a(name="Example-createSensor")
+        h4 2. Create sensor
+        hr(style="margin: 10px auto;")
+        | Next, we want to create the sensors that are present at the µPart. We also want to model the sensor metadata (like unit of measurement, precision and so on) using the 
+        a(href='http://www.w3.org/DesignIssues/LinkedData.html') Linked Open Data principles
+        | . Therefore we navigate to the 
+        a(href='#' onclick='navigate("createSensor")') create sensor
+        |  page. As device we choose the just created device with the ID abc:def:0000:0001 from the dropdown. In addition we enter the following data into the form:
+        br
+        br
+        table
+          tr
+            td(style="padding-right: 30px;vertical-align: top;")
+              | sensorId: 
+            td(style="padding-bottom: 20px")
+              | temperature
+              i // the identification of the concrete sensor of the µPart          
+          tr
+            td(style="padding-right: 30px;vertical-align: top;")
+              | metadata:
+            td
+              :escape
+                <?sensor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.teco.edu/smartteco/TemperatureSensor> .
+              br 
+              :escape
+                <?sensor> <http://www.teco.edu/smartteco/hasUnitOfMeasurement> <http://purl.oclc.org/NET/muo/ucum/unit/temperature/degree-Celsius> .          
+              br
+              :escape
+                <?sensor> <http://purl.oclc.org/NET/ssnx/ssn#observes> <http://purl.oclc.org/NET/ssnx/qu/dim#Temperature> .
+        br
+        | We can use the ?sensor variable to reference the auto-generated URI of the sensor. 
+        br
+        | To describe the unit of measurement of the sensor we reference the 
+        a(href='http://idi.fundacionctic.org/muo/muo-vocab.html') Measurement Units Ontology
+        | . In the last line we specify that our sensor observes (defined as by 
+        a(href='http://www.w3.org/2005/Incubator/ssn/ssnx/ssn#observes') Semantic Sensor Network Ontology (SSN)
+        |  ) the physical quantity temperature as defined by the 
+        a(href='http://www.w3.org/2005/Incubator/ssn/ssnx/cf/cf-feature.html#Temperature') Climate and Forecast features Ontology
+        | .
+        br
+        | As result we get the sensor description as RDF generated by StreamUp:
+        br
+        br
+        i
+          :escape
+            <http://www.teco.edu/smartteco/devices/abc:def:0000:0001> <http://www.teco.edu/smartteco/hasSensor> <http://www.teco.edu/smartteco/devices/abc:def:0000:0001/sensors/temperature>.
+          br
+          :escape
+            <http://www.teco.edu/smartteco/devices/abc:def:0000:0001/sensors/temperature> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.teco.edu/smartteco/Sensor>.
+          br
+          :escape
+            <http://www.teco.edu/smartteco/devices/abc:def:0000:0001/sensors/temperature> <http://www.teco.edu/smartteco/hasID> "temperature"^^<http://www.w3.org/2001/XMLSchema#string>.
+          br
+          :escape
+            <http://www.teco.edu/smartteco/devices/abc:def:0000:0001/sensors/temperature> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.teco.edu/smartteco/TemperatureSensor>.
+          br
+          :escape
+            <http://www.teco.edu/smartteco/devices/abc:def:0000:0001/sensors/temperature> <http://www.teco.edu/smartteco/hasUnitOfMeasurement> <http://purl.oclc.org/NET/muo/ucum/unit/temperature/degree-Celsius>.
+          br
+          :escape
+            <http://www.teco.edu/smartteco/devices/abc:def:0000:0001/sensors/temperature> <http://purl.oclc.org/NET/ssnx/ssn#observes> <http://purl.oclc.org/NET/ssnx/qu/dim#Temperature>.
+        br
+        br
+        a(name="Example-insertValues")
+        h4 3. Insert values for sensor
+        hr(style="margin: 10px auto;")
+        | Now we want to manually insert a sensor reading, therefore we navigate to the 
+        a(href='#' onclick='navigate("insertValues")') insert values
+        |  page. There we select our device from the dropdown and afterwards the sensor. The field value must be filled. With the date picker component we can choose a when the value was sensed. 
+        | If no date is specified the server takes the current timestamp which can be seen in the result.
+        br
+        br
+        a(name="Example-getValues")
+        h4 4. Get values for sensor
+        hr(style="margin: 10px auto;")
+        | We now want to query the avaibale sensor reading for a specific sensor. So we navigate to the
+        a(href='#' onclick='navigate("getValues")') get values
+        |  page where we choose the device and sensor via the dropdowns. By selecting a start and/or end date we can specify any time interval. To get all sensor values simply don't specify a start and end date. 
+        br
+        br
+        a(name="Example-query")
+        h4 5. Querying the metadata
+        hr(style="margin: 10px auto;")
+        | On the 
+        a(href='#' onclick='navigate("query")') query
+        |  page we can formulate any query on the metadata by specifying triple patterns. A sample query would be to list all devices with their location and sensors with their unit of measurement and observed feature.
+        | This can be done with this query:
+        br
+        br
+        i
+          :escape
+            ?device <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.teco.edu/smartteco/Device>.
+          br
+          :escape
+            ?device <http://www.teco.edu/smartteco/hasSensor> ?sensor.
+          br
+          :escape
+            ?device <http://www.teco.edu/smartteco/locatedAt> ?location.
+          br
+          :escape
+            ?sensor <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.teco.edu/smartteco/Sensor>.
+          br
+          :escape
+            ?sensor <http://www.teco.edu/smartteco/hasUnitOfMeasurement> ?unit.
+          br
+          :escape
+            ?sensor <http://purl.oclc.org/NET/ssnx/ssn#observes> ?observedFeature.
+    br
+    a(name="RESTAPI")
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title 
+          b
+            | REST-API
+      .panel-body
+        a(name="REST-createDevice")
+        h4 create device
+        hr(style="margin: 10px auto;")
+        | ...
+        br
+        br
+        a(name="REST-createSensor")
+        h4 create sensor
+        hr(style="margin: 10px auto;")
+        | ...
+        br   
+        br
+        a(name="REST-insertValues")
+        h4 insert values
+        hr(style="margin: 10px auto;")
+        | ...
+        br   
+        br
+        a(name="REST-getValues")
+        h4 get values
+        hr(style="margin: 10px auto;")
+        | ...
+        br   
+        br
+        a(name="REST-query")
+        h4 query
+        hr(style="margin: 10px auto;")
+        | ...
+        br   
+    br      
+   
+        

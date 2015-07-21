@@ -63,9 +63,6 @@ block append header
 			return false;			
 		}		
 
-
-
-
 block content	
 	h1.page-header Insert Values
 	br
@@ -75,20 +72,20 @@ block content
 				td
 					b
 						|device
-				td
-					input#deviceId.select2(style="width:100%")
+				td					
+					input#deviceId.select2(style="width:700px")
 			tr
 				td
 					b 
 						|sensor
 				td
-					input#sensorId.select2(style="width:100%")
+					input#sensorId(type='text' style="width:700px")
 			tr
 				td
 					b
 						|value
 				td
-					input#value(type='text' style="width:100%")						
+					input#value(type='text' style="width:700px")						
 			tr
 				td
 					b
@@ -119,7 +116,7 @@ block content
 				td
 				td
 					br
-					button#btnInsertValues(type='button' onclick='executeInsertValues()' style='width:100%;height:50px') execute
+					button#btnInsertValues(type='button' onclick='executeInsertValues()' style='width:700px;height:50px') execute
 	br
 	#triples-placeholder(style="text-align:left")
 

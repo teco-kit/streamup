@@ -1,5 +1,5 @@
 var lem 				= require('lem'),
-	level 				= require('level'),
+	level 				= require('level-browserify'), // using level-browserify instead of level to work with browserify
 	Q 					= require('q'),
 	through 			= require('through'),
 	utils				= require('./Utils.js');
@@ -129,7 +129,6 @@ Store.prototype.getValues = function(options, callback) {
 		deferred.reject(new Error("Invalid argument '" + JSON.stringify(options) + "' must contain property 'index' of type 'string'"));
 	}	
 	var result = [];
-	console.log('searching between start ' + parseTimestamp(options.start) + ' and end ' + parseTimestamp(options.end));
 	this._lemdb.valuestream(options.index, {
 	    start : parseTimestamp(options.start),
 	    end : parseTimestamp(options.end)
@@ -162,7 +161,6 @@ Store.prototype.insertValue = function(options, callback) {
 					if (!options.data.timestamp) {
 						options.data.timestamp = Math.floor(new Date().getTime() / 1000);
 					}
-					console.log("inserting value '" + parseTimestamp(options.data.timestamp) + "'");
 					this._lemdb.recorder(options.index)(options.data.value, parseTimestamp(options.data.timestamp), function(err) {
 							if (err) {
 								deferred.reject(errorMessage + err);

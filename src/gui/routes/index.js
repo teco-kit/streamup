@@ -9,6 +9,9 @@ function getParams(req, link) {
 			};
 }
 
+var jade = require('jade');
+jade.filters.escape = jade.runtime.escape
+
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', null);

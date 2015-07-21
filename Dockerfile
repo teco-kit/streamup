@@ -9,6 +9,9 @@ RUN npm install -g supervisor
 RUN apt-get install -y supervisor
 RUN service supervisor restart
 
+# Install browserify
+RUN npm install -g browserify
+
 # Supervisor init config
 ADD supervisor.conf /etc/supervisor.conf
 

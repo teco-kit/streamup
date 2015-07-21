@@ -12,7 +12,6 @@ block append header
 					})
 				$('#' + value + "-page").show();
 			  $(this).parents(".input-group-btn").find('.btn').html($(this).text() + '<span class="caret"></span>');
-			  return false;
 			});
 		});
 
@@ -136,41 +135,43 @@ block content
 				tr
 					td
 						|variables
-					td
-						input#query-vars-select(type='text' style="width:100%")
+					td(style="text-align:left")
+						input#query-vars-select(type='text' style="width:700px")
 				tr
 					td
 						|triple pattern
-					td
+					td(style="text-align:left")
 						br
-						textarea#query-triples-select(rows='15' style="width:100%")
+						textarea#query-triples-select(rows='15' style="width:700px")
 				tr
-					td(colspan="2")
+					td
+					td(style="text-align:left")
 						br
-						button#btnQuerySelect(type='button' onclick='executeQuerySelect()' style='width:50%;height:50px') execute
+						button#btnQuerySelect(type='button' onclick='executeQuerySelect()' style='width:700px;height:50px') execute
 		form(id="construct-page" style = "display:none")
 			table(style="width:100%")
 				col(width="130px")
 				tr
 					td
 						|template
-					td
-						textarea#query-template-construct(rows='5' style="width:100%")
+					td(style="text-align:left")
+						textarea#query-template-construct(rows='5' style="width:700px")
 				tr
 					td
 						|triple pattern
-					td
+					td(style="text-align:left")
 						br
-						textarea#query-triples-construct(rows='15', style="width:100%")
+						textarea#query-triples-construct(rows='15', style="width:700px")
 				tr
 					td
 						|frame (optional)
-					td
+					td(style="text-align:left")
 						br
-						textarea#query-frame-construct(rows='5', style="width:100%")
+						textarea#query-frame-construct(rows='5', style="width:700px")
 				tr
-					td(colspan="2")
+					td
+					td(style="text-align:left")
 						br
-						button#btnQuerySelect(type='button' onclick='executeQueryConstruct()' style='width:50%;height:50px') execute
+						button#btnQuerySelect(type='button' onclick='executeQueryConstruct()' style='width:700px;height:50px') execute
 		br
 	#triples-placeholder(style="text-align:left")
