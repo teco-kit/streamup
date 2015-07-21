@@ -1,0 +1,7 @@
+- query construct
+- query result JSON-LD
+- timestamp filter fixen
+- GIT branch lemdb
+- node dependencies and docker
+- docker sudo?
+- StreamUp rethink

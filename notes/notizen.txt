@@ -1,0 +1,26 @@
+- anlegen device sensor trennen
+	- metadaten anlegen fehlt komplett in implementierung!!!
+	- convert/parse/format functions gescheit definieren
+		- parse string with format
+		- convert data (object/string) formatSource formatDest
+- sinnvolle beispiele (LOD) + Doku
+- insert/get dropdown
+- list sensors -> link to values
+- browserify
+- values triplify
+- plot (opt)
+
+
+Status: 200 - OK
+
+Table
+RDF
+response
+
+!!! SELECT hat mehrere spalten + schließt alle RDF formate aus
+
+--> ein Tab für RDF der selbst converted
+JSON-LD
+RDF/XML
+TURTLE
+N-Triples
