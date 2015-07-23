@@ -1,0 +1,42 @@
+{
+  "name": "streamup",
+  "version": "0.1.0",
+  "description": "A combination of triple store and time series database to manage sensor and their readings.",
+  "main": "src/StreamUp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://jacoby@projects.teco.edu/streamup.git"
+  },
+  "keywords": [
+    "triple",
+    "store",
+    "semantic",
+    "web",
+    "time",
+    "series",
+    "database",
+    "sensor",
+    "networks",
+    "TECO"
+  ],
+  "dependencies": {
+    "q": "",
+    "jsonld": "",
+    "through": "",
+    "lem": "mjacoby/lem",
+    "levelgraph": ">= 0.10 < 0.11",
+    "levelgraph-jsonld": "",
+    "levelgraph-n3": "~0.5.0",
+    "n3": "",
+	"level-browserify": ""
+  },
+  "author": "Michael Jacoby <jacoby@teco.edu> (http://www.teco.edu)",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "mocha": "^2.2.5"
+  }
+}
