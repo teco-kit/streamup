@@ -2,9 +2,9 @@
   "name": "streamup",
   "version": "0.1.0",
   "description": "A combination of triple store and time series database to manage sensor and their readings.",
-  "main": "src/StreamUp.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test"
   },
   "repository": {
     "type": "git",

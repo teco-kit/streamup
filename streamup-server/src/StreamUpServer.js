@@ -1,11 +1,10 @@
-var EventEmitter = require('events').EventEmitter;
-var util = require('util');
-var utils = require('./Utils.js');
-
+var EventEmitter	= require('events').EventEmitter;
+var util 			= require('util');
+var utils 			= require('streamup').Utils;
+var StreamUp 			= require('streamup');
 var restify 			= require('restify');
 var Q 					= require('q');
 	
-
 var IStreamUp = new utils.Interface('IStreamUp', 
 	[
 		'createSensor', 

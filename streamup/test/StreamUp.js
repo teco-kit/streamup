@@ -1,4 +1,4 @@
-var should                = require('chai').should(),
+var should                = require('chai').should(),    
     StreamUp              = require('../src/StreamUp'),
     TripleStoreLevelGraph = require('../src/TripleStoreLevelGraph'),
     TimeSeriesStoreLemDB  = require('../src/TimeSeriesStoreLemDB');

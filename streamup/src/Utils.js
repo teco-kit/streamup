@@ -213,4 +213,4 @@ Interface.ensureImplements = function (object) {
 	}
 };
 
-exports.Interface = Interface;
+module.exports.Interface = Interface;
