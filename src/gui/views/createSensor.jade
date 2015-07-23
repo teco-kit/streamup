@@ -37,7 +37,45 @@ block append header
 
 block content	
 	h1.page-header Create Sensor
-	br
+	#accordion.panel-group
+		.panel.panel-default
+			.panel-heading
+				h4.panel-title(data-toggle='collapse', data-parent='#accordion', href='#collapseOne')
+					div(style="text-align:left")
+						span.glyphicon.glyphicon-menu-down(aria-hidden='true' style="margin-right:10px")
+						| Example
+			#collapseOne.panel-collapse.collapse(style="text-align:left")
+				br
+				| This example shows how to create a sensor belonging to the device created in the device example.
+				br
+				br
+				table
+					tr
+						td(style="padding-right: 30px;vertical-align: top;")
+							b
+								| device id 
+						td(style="padding-bottom: 20px" id="demo-deviceid")
+							| abc:def:0000:0001
+					tr
+						td(style="padding-right: 30px;vertical-align: top;")
+							b
+								| sensor id 
+						td(style="padding-bottom: 20px" id="demo-sensorid")
+							| temperature
+					tr
+						td(style="padding-right: 30px;vertical-align: top;")
+							b
+								| metadata
+						td(id="demo-metadata")
+							:escape
+								<?sensor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.teco.edu/smartteco/TemperatureSensor> .
+							br 
+							:escape
+								<?sensor> <http://www.teco.edu/smartteco/hasUnitOfMeasurement> <http://purl.oclc.org/NET/muo/ucum/unit/temperature/degree-Celsius> .          
+							br
+							:escape
+								<?sensor> <http://purl.oclc.org/NET/ssnx/ssn#observes> <http://purl.oclc.org/NET/ssnx/qu/dim#Temperature> .
+				button.btn.btn-default(type='button', onclick="$('#deviceId').val(($('#demo-deviceid').text())).trigger('change');$('#sensorId').val(($('#demo-sensorid').text()));$('#metadata').val($('#demo-metadata').text().replace(/>\\s*\\.\\s*([<|$])/gm, '> .\\n$1'));") load example		
 	form
 		table(class="inputTable")			
 			tr

@@ -201,7 +201,7 @@ var applyConstructTemplate = function(data, template, callback) {
 		});
 		Array.prototype.push.apply(result,templateCopy);
 	});
-	resolve(result);
+	deferred.resolve(result);
 	return deferred.promise.nodeify(callback);
 }
 
@@ -257,7 +257,7 @@ StreamUp.prototype.query = function(query, options, callback) {
 		} else {
 			deferred.resolve(triples);
 		}
-	};
+	};	
 	var errorMessage = "could not find sensors, reason: ";		
 	if (!query) {
 		deferred.reject(new Error(errorMessage + "invalid argument 'query' must be non-null"));
@@ -267,6 +267,7 @@ StreamUp.prototype.query = function(query, options, callback) {
 	}
 	prepareQuery(query, function(err, query) {
 		this._tripleStore.query(query.triples, function(err, plainResult) {
+			console.log('alive 1');
 			if (err) {
 				deferred.reject(err);
 			} else {			
@@ -277,7 +278,7 @@ StreamUp.prototype.query = function(query, options, callback) {
 				    case 'CONSTRUCT':
 				    	// convert to JSONLD, apply framing, convert back to triples		
 				    	//if (query.frame && options.format == 'application/ld+json') {	    	
-				    	applyConstructTemplate(plainResult, query.template, function(err, triples) {
+				    	applyConstructTemplate(plainResult, query.template, function(err, triples) {				    		
 				    		if (err) {
 				    			deferred.reject(errorMessage + err);
 				    		} else {

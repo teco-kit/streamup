@@ -2,18 +2,6 @@ extends index
 
 block append header
 	script.
-		$(function(){
-			$(".dropdown-menu li a").click(function(){
-				var value =  $(this).data('value');				
-				$('#pages').find('*').each(function(i, val) {
-						if (val.id.match(/-page$/)) {
-							$(val).hide();
-						}						
-					})
-				$('#' + value + "-page").show();
-			  $(this).parents(".input-group-btn").find('.btn').html($(this).text() + '<span class="caret"></span>');
-			});
-		});
 
 		function getMatches(string, regex, index) {
 		  index || (index = 0); // default to the first capturing group
@@ -98,7 +86,6 @@ block append header
 			} else {
 				body["frame"] = undefined;
 			}
-			alert('body: ' + JSON.stringify(body));			
 			var host = document.getElementById("serverHost").value;			
 			var port = document.getElementById("serverPort").value;			
 			var url = 'http://' + host + ':' + port + '/query';
@@ -110,68 +97,156 @@ block append header
 		}		
 
 block content	
-	h1.page-header Query
-	br
-	table(style="width:100%")
-		col(width="130px")
-		tr
-			td
-				| query type
-			td
-				.input-group-btn(align="left")		
-					button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
-						| SELECT
-						span.caret
-					ul.dropdown-menu.pull-left
-						li
-							a(href='#', data-value='select') SELECT
-						li
-							a(href='#', data-value='construct') CONSTRUCT
-	br
-	div(id="pages")
-		form(id="select-page")
-			table(style="width:100%")
-				col(width="130px")
-				tr
-					td
-						|variables
-					td(style="text-align:left")
-						input#query-vars-select(type='text' style="width:700px")
-				tr
-					td
-						|triple pattern
-					td(style="text-align:left")
-						br
-						textarea#query-triples-select(rows='15' style="width:700px")
-				tr
-					td
-					td(style="text-align:left")
-						br
-						button#btnQuerySelect(type='button' onclick='executeQuerySelect()' style='width:700px;height:50px') execute
-		form(id="construct-page" style = "display:none")
-			table(style="width:100%")
-				col(width="130px")
-				tr
-					td
-						|template
-					td(style="text-align:left")
-						textarea#query-template-construct(rows='5' style="width:700px")
-				tr
-					td
-						|triple pattern
-					td(style="text-align:left")
-						br
-						textarea#query-triples-construct(rows='15', style="width:700px")
-				tr
-					td
-						|frame (optional)
-					td(style="text-align:left")
-						br
-						textarea#query-frame-construct(rows='5', style="width:700px")
-				tr
-					td
-					td(style="text-align:left")
-						br
-						button#btnQuerySelect(type='button' onclick='executeQueryConstruct()' style='width:700px;height:50px') execute
+	div(style="text-align:left")
+		h1.page-header(align="center") Query
 		br
-	#triples-placeholder(style="text-align:left")
+		.container(style="display:inline-block;")
+			ul.nav.nav-tabs
+				li.active
+					a(href='#select', data-toggle='tab') SELECT query
+				li
+					a(href='#construct', data-toggle='tab') CONSTRUCT query
+			.tab-content
+				#select.tab-pane.active(style="float:left;text-align:left")
+					#accordionSelect.panel-group
+						.panel.panel-default
+							.panel-heading
+								h4.panel-title(data-toggle='collapse', data-parent='#accordionSelect', href='#collapseOneSelect')
+									div(style="text-align:left")
+										span.glyphicon.glyphicon-menu-down(aria-hidden='true' style="margin-right:10px")
+										| Examples
+							#collapseOneSelect.panel-collapse.collapse
+								.panel-body()
+									.container(style="float:left")
+										ul.nav.nav-tabs
+											li.active
+												a(href='#select1', data-toggle='tab') Get all data
+											li
+												a(href='#select2', data-toggle='tab') Get all sensors
+											li
+												a(href='#select3', data-toggle='tab') Get all sensors with location
+										.tab-content
+											#select1.tab-pane.active(style="float:left;text-align:left")
+												h3 Get all data in the store												
+												br
+												em#select1triples ?subject ?predicate ?object .
+												br
+												br
+												button.btn.btn-default(type='button', onclick="$('#query-triples-select').val(($('#select1triples').text()));$('#query-triples-select').trigger('propertychange')") load query
+											#select2.tab-pane(style="float:left")
+												h3 Get all sensors												
+												br
+												em#select2triples
+													| ?device http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.teco.edu/smartteco/Device . <br>
+													| ?device http://www.teco.edu/smartteco/hasSensor ?sensor . <br>
+													| ?sensor http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.teco.edu/smartteco/Sensor .
+												br
+												br
+												button.btn.btn-default(type='button', onclick="$('#query-triples-select').val(($('#select2triples').text()));$('#query-triples-select').trigger('propertychange')") load query
+											#select3.tab-pane(style="float:left")
+												h3 Get all sensors with location
+												br
+												em#select3triples
+													| ?device http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.teco.edu/smartteco/Device . <br>
+													| ?device http://www.teco.edu/smartteco/hasSensor ?sensor . <br>
+													| ?sensor http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.teco.edu/smartteco/Sensor . <br>
+													| ?device http://www.w3.org/2003/01/geo/wgs84_pos#lat ?latitude . <br>
+													| ?device http://www.w3.org/2003/01/geo/wgs84_pos#long ?longitude . 
+												br
+												br
+												button.btn.btn-default(type='button', onclick="$('#query-triples-select').val(($('#select3triples').text()));$('#query-triples-select').trigger('propertychange')") load query												
+					form(id="select-page")
+						table(style="width:100%")
+							col(width="130px")
+							tr
+								td
+									|variables
+								td(style="text-align:left")
+									input#query-vars-select(type='text' style="width:700px")
+							tr
+								td
+									|triple pattern
+								td(style="text-align:left")
+									br
+									textarea#query-triples-select(rows='15' style="width:700px")
+							tr
+								td
+								td(style="text-align:left")
+									br
+									button#btnQuerySelect(type='button' onclick='executeQuerySelect()' style='width:700px;height:50px') execute											
+				#construct.tab-pane(style="float:left")
+					#accordionConstruct.panel-group
+						.panel.panel-default
+							.panel-heading
+								h4.panel-title(data-toggle='collapse', data-parent='#accordionConstruct', href='#collapseOneConstruct')
+									div(style="text-align:left")
+										span.glyphicon.glyphicon-menu-down(aria-hidden='true' style="margin-right:10px")
+										| Examples
+							#collapseOneConstruct.panel-collapse.collapse
+								.panel-body()
+									.container(style="float:left")
+										ul.nav.nav-tabs
+											li.active
+												a(href='#1', data-toggle='tab') Sensor-Device relationship
+											li
+												a(href='#2', data-toggle='tab') Get all sensors
+										.tab-content
+											#1.tab-pane.active(style="float:left;text-align:left")
+												h3 Sensor-Device relationship using construct template
+												br
+												b
+													| template
+												br
+												em#construct1template ?sensor http://www.teco.edu/smartteco/isPartOf ?device .
+												br
+												br
+												b
+													| triple pattern
+												br
+												em#construct1pattern ?device http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.teco.edu/smartteco/Device . <br>
+													| ?device http://www.teco.edu/smartteco/hasSensor ?sensor . <br>
+													| ?sensor http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.teco.edu/smartteco/Sensor .
+												br
+												br
+												button.btn.btn-default(type='button', onclick="$('#query-triples-construct').val(($('#construct1pattern').text()));$('#query-template-construct').val($('#construct1template').text())") load query
+											#2.tab-pane(style="float:left")
+												h3 Get all sensors												
+												br
+												em#query2
+													| ?device	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.teco.edu/smartteco/Device . <br>
+													| ?device http://www.teco.edu/smartteco/hasSensor ?sensor . <br>
+													| ?sensor http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.teco.edu/smartteco/Sensor .
+												br
+												br
+												button.btn.btn-default(type='button', onclick="$('#query-triples-select').val(($('#query2').text()));$('#query-triples-select').trigger('propertychange')") load query
+					br
+					form(id="construct-page")
+						table(style="width:100%")
+							col(width="130px")
+							tr
+								td
+									|template
+								td(style="text-align:left")
+									textarea#query-template-construct(rows='5' style="width:700px")
+							tr
+								td
+									|triple pattern
+								td(style="text-align:left")
+									br
+									textarea#query-triples-construct(rows='15', style="width:700px")
+							tr
+								td
+									|frame (optional)
+								td(style="text-align:left")
+									br
+									textarea#query-frame-construct(rows='5', style="width:700px")
+							tr
+								td
+								td(style="text-align:left")
+									br
+									button#btnQuerySelect(type='button' onclick='executeQueryConstruct()' style='width:700px;height:50px') execute
+				
+		br
+		br
+		div 
+			#triples-placeholder(style="text-align:left")

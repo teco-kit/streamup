@@ -9,5 +9,5 @@
 + browserify
 - values triplify
 + plot (opt)
-- BUG: dropdowns not closing
++ BUG: dropdowns not closing
 - opt: icons to tabs

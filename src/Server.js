@@ -230,7 +230,7 @@ var handlers = [
 							var options = {};
 							if (contentType) {
 								options.format = contentType;
-							}
+							}							
 							return [req.body, options];
 						   },
 		handleResult	: function(err, result) {							

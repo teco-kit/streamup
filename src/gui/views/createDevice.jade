@@ -24,7 +24,45 @@ block append header
 
 block content	
 	h1.page-header Create Device
-	br
+	#accordion.panel-group
+		.panel.panel-default
+			.panel-heading
+				h4.panel-title(data-toggle='collapse', data-parent='#accordion', href='#collapseOne')
+					div(style="text-align:left")
+						span.glyphicon.glyphicon-menu-down(aria-hidden='true' style="margin-right:10px")
+						| Example
+			#collapseOne.panel-collapse.collapse(style="text-align:left")
+				br
+				| This example shows how to create a device that is a µPart device which a specific location provided as GPS coordinate as well as semantic location (the TECO conference Room in this case).
+				br
+				br
+				table
+					tr
+						td(style="padding-right: 30px;vertical-align: top;")
+							b
+								| device id 
+						td(style="padding-bottom: 20px" id="demo-deviceid")
+							| abc:def:0000:0001
+					tr
+						td(style="padding-right: 30px;vertical-align: top;")
+							b
+								| metadata
+						td(id="demo-metadata")
+							:escape
+								<?device> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.teco.edu/smartteco/µPart> .
+							br
+							:escape
+								<?device> <http://www.teco.edu/smartteco/locatedAt> <http://www.teco.edu/smartteco/ConferenceRoom> .
+							br 							
+							:escape
+								<?device> <http://www.teco.edu/smartteco/attachtedTo> <http://www.teco.edu/smartteco/DoorConferenceRoom> .
+							br 
+							:escape
+								<?device> <http://www.w3.org/2003/01/geo/wgs84_pos#lat> "49.01281"^^<http://www.w3.org/2001/XMLSchema#double> .
+							br 
+							:escape
+								<?device> <http://www.w3.org/2003/01/geo/wgs84_pos#long> "8.42405"^^<http://www.w3.org/2001/XMLSchema#double> .
+				button.btn.btn-default(type='button', onclick="$('#deviceId').val(($('#demo-deviceid').text()));$('#metadata').val($('#demo-metadata').text().replace(/>\\s*\\.\\s*([<|$])/gm, '> .\\n$1'));") load example
 	form
 		table(class="inputTable")			
 			tr

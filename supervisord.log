@@ -1920,3 +1920,25 @@
 2015-07-21 13:37:48,975 INFO spawned: 'streamup_gui' with pid 8
 2015-07-21 13:37:50,796 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2015-07-21 13:37:50,797 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-21 15:51:32,323 WARN received SIGINT indicating exit request
+2015-07-21 15:51:32,323 INFO waiting for streamup_server, streamup_gui to die
+2015-07-21 15:51:32,327 INFO stopped: streamup_gui (exit status 0)
+2015-07-21 15:51:32,331 INFO stopped: streamup_server (exit status 0)
+2015-07-22 07:05:54,536 CRIT Supervisor running as root (no user in config file)
+2015-07-22 07:05:54,538 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-22 07:05:54,542 INFO supervisord started with pid 1
+2015-07-22 07:05:55,546 INFO spawned: 'streamup_server' with pid 7
+2015-07-22 07:05:55,547 INFO spawned: 'streamup_gui' with pid 8
+2015-07-22 07:05:56,773 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-22 07:05:56,773 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-22 15:32:22,611 WARN received SIGINT indicating exit request
+2015-07-22 15:32:22,611 INFO waiting for streamup_server, streamup_gui to die
+2015-07-22 15:32:22,615 INFO stopped: streamup_gui (exit status 0)
+2015-07-22 15:32:22,620 INFO stopped: streamup_server (exit status 0)
+2015-07-23 07:20:17,593 CRIT Supervisor running as root (no user in config file)
+2015-07-23 07:20:17,594 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-23 07:20:17,598 INFO supervisord started with pid 1
+2015-07-23 07:20:18,602 INFO spawned: 'streamup_server' with pid 7
+2015-07-23 07:20:18,602 INFO spawned: 'streamup_gui' with pid 8
+2015-07-23 07:20:19,679 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-23 07:20:19,679 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)

@@ -117,6 +117,13 @@ block content
               br 
               :escape
                 <?device> <http://www.teco.edu/smartteco/attachtedTo> <http://www.teco.edu/smartteco/DoorConferenceRoom> .
+              br 
+              :escape
+                <?device> <http://www.w3.org/2003/01/geo/wgs84_pos#lat> "49.01281"^^<http://www.w3.org/2001/XMLSchema#double> .
+              br 
+              :escape
+                <?device> <http://www.w3.org/2003/01/geo/wgs84_pos#long> "8.42405"^^<http://www.w3.org/2001/XMLSchema#double> .                
+
         br
         br
         | We can use the ?device variable to reference the auto-generated URI of the device.
@@ -256,32 +263,261 @@ block content
         a(name="REST-createDevice")
         h4 create device
         hr(style="margin: 10px auto;")
-        | ...
+        table.inputTable(style="border-collapse:separate; border-spacing:1em;")
+          tr
+            td 
+              b method
+            td POST
+          tr
+            td 
+              b URL
+            td http://[host]:[port]/devices/create            
+          tr
+            td(valign="top") 
+              b example
+            td 
+              pre#createDeviceJSON.
+          tr
+            td 
+              b deviceId
+            td The ID of the device of type string (must be unique).
+          tr
+            td(valign="top") 
+              b format
+            td (optional) The encoding format of the metadata. Must be one of 
+              em application/n-triples
+              | , 
+              em text/turtle
+              | , 
+              em application/trig
+              | , 
+              em application/ld+json
+              | , 
+              em application/rdf+xml
+              | , 
+              em application/spo+json
+              | .
+          tr
+            td 
+              b metadata
+            td The metadata to insert for this device. 
+              em ?device
+              |  can be used as variable for the generated device URI.
         br
         br
         a(name="REST-createSensor")
         h4 create sensor
         hr(style="margin: 10px auto;")
-        | ...
+        table.inputTable(style="border-collapse:separate; border-spacing:1em;")
+          tr
+            td 
+              b method
+            td POST
+          tr
+            td 
+              b URL
+            td http://[host]:[port]/sensors/create            
+          tr
+            td(valign="top") 
+              b example
+            td 
+              pre#createSensorJSON.
+          tr
+            td 
+              b deviceId
+            td The ID of the device of type string (device must already exist).
+          tr
+            td 
+              b sensorId
+            td The ID of the sensor of type string (must be unique for the device).
+          tr
+            td(valign="top") 
+              b format
+            td (optional) The encoding format of the metadata. Must be one of 
+              em application/n-triples
+              | , 
+              em text/turtle
+              | , 
+              em application/trig
+              | , 
+              em application/ld+json
+              | , 
+              em application/rdf+xml
+              | , 
+              em application/spo+json
+              | .
+          tr
+            td 
+              b metadata
+            td The metadata to insert for this sensor. 
+              em ?device
+              | /
+              em ?sensor
+              |  can be used as variable for the generated device/sensor URI.
         br   
         br
         a(name="REST-insertValues")
         h4 insert values
-        hr(style="margin: 10px auto;")
-        | ...
+        hr(style="margin: 10px auto;")        
+        table.inputTable(style="border-collapse:separate; border-spacing:1em;")
+          tr
+            td 
+              b method
+            td PUT
+          tr
+            td 
+              b URL
+            td http://[host]:[port]/devices/[deviceId]/sensors/[sensorId]/values
+          tr
+            td(valign="top") 
+              b example
+            td 
+              pre#insertValuesJSON.
+          tr
+            td 
+              b value
+            td The value to store (of type string). 
+          tr
+            td(valign="top") 
+              b timestamp
+            td (optional) A timestamp as unix time (in seconds from 1/1/1970 UTC). If not provided it will be generated on server-side as the current timestamp.          
         br   
         br
         a(name="REST-getValues")
         h4 get values
         hr(style="margin: 10px auto;")
-        | ...
+        table.inputTable(style="border-collapse:separate; border-spacing:1em;")
+          tr
+            td 
+              b method
+            td GET
+          tr
+            td 
+              b URL
+            td http://[host]:[port]/devices/[deviceId]/sensors/[sensorId]/values?start=[start]&end=[end]
+          tr
+            td(valign="top") 
+              b example
+            td 
+              pre#getValuesJSON.
+                GET http://localhost:8080/devices/abc:def:0000:0001/sensors/temperature/values?start=1436257620&end=1435739220
+          tr
+            td 
+              b start
+            td (optional) Timestamp as unix time (in seconds from 1/1/1970 UTC).
+          tr
+            td 
+              b end
+            td (optional) Timestamp as unix time (in seconds from 1/1/1970 UTC).
         br   
         br
         a(name="REST-query")
         h4 query
-        hr(style="margin: 10px auto;")
-        | ...
+        hr(style="margin: 10px auto;")        
+        b
+          | For SELECT queries
+        table.inputTable(style="border-collapse:separate; border-spacing:1em;")
+          tr
+            td 
+              b method
+            td GET
+          tr
+            td 
+              b URL
+            td http://[host]:[port]/query
+          tr
+            td(valign="top") 
+              b example
+            td 
+              pre#querySelectJSON.
+          tr
+            td 
+              b type
+            td Must be 
+              em SELECT
+              |  for a select query. Alternatives are 
+              em CONSTRUCT
+              | .
+          tr
+            td 
+              b variables
+            td (optinal) The variables from the query to be returned. If not specified all variables are return. Variable names must start with a
+              em ?
+              |  and must follow the 
+              a(href='http://www.w3.org/TR/rdf-sparql-query/#rVARNAME') SPARQL grammar 
+              | .
+          tr
+            td 
+              b tripels
+            td An array of triple object of the form               
+              em {subject: '', predicate: '', object: ''}              
+              |  where each part can be an URI or a variable a specified above.
+        br
+        br
+        b
+          | For CONSTRUCT queries
+        table.inputTable(style="border-collapse:separate; border-spacing:1em;")
+          tr
+            td 
+              b method
+            td GET
+          tr
+            td 
+              b URL
+            td http://[host]:[port]/query
+          tr
+            td(valign="top") 
+              b example
+            td 
+              pre#queryConstructJSON.
+          tr
+            td 
+              b type
+            td Must be 
+              em CONSTRUCT
+              | .
+          tr
+            td 
+              b template
+            td An array of triple of the form
+              em {subject: '', predicate: '', object: ''}
+              |  that specify how the resulting triples should be constructed.
+          tr
+            td 
+              b tripels
+            td An array of triple object of the form               
+              em {subject: '', predicate: '', object: ''}              
+              |  where each part can be an URI or a variable a specified above.          
+          tr
+            td 
+              b frame
+            td (optiona) A JSON-LD frame specifying how the returned triples should be formatted.
         br   
+        script.
+          var createDevice = {  "deviceId":"abc:def:0000:00012",
+                                "format":"application/n-triples",
+                                "metadata":"<?device> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.teco.edu/smartteco/µPart> .<?device> <http://www.teco.edu/smartteco/locatedAt> <http://www.teco.edu/smartteco/ConferenceRoom> .<?device> <http://www.teco.edu/smartteco/attachtedTo> <http://www.teco.edu/smartteco/DoorConferenceRoom> .<?device> <http://www.w3.org/2003/01/geo/wgs84_pos#lat> \"49.01281\"^^<http://www.w3.org/2001/XMLSchema#double> .<?device> <http://www.w3.org/2003/01/geo/wgs84_pos#long> \"8.42405\"^^<http://www.w3.org/2001/XMLSchema#double> ."
+                             };
+          var createSensor = {  "deviceId":"abc:def:0000:0001",
+                                "sensorId":"temperature",
+                                "format":"application/n-triples",
+                                "metadata":"<?sensor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.teco.edu/smartteco/TemperatureSensor> .<?sensor> <http://www.teco.edu/smartteco/hasUnitOfMeasurement> <http://purl.oclc.org/NET/muo/ucum/unit/temperature/degree-Celsius> .<?sensor> <http://purl.oclc.org/NET/ssnx/ssn#observes> <http://purl.oclc.org/NET/ssnx/qu/dim#Temperature> ."};
+          var insertValues = [{"value":"90.0","timestamp":1435824000},
+                              {"value":"100.10","timestamp":1435825000}];
+          var querySelect = { "type":"SELECT",
+                              "variables":["?subject","?predicate","?object"],
+                              "triples":[{"subject":"?subject","predicate":"?predicate","object":"?object"}]
+                            };
+          var queryConstruct = {
+                                "type":"CONSTRUCT",
+                                "template":[{"subject":"?sensor","predicate":"http://www.teco.edu/smartteco/isPartOf" ,"object":"?device"}],
+                                "triples":[{"subject":"?device","predicate":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type","object":"http://www.teco.edu/smartteco/Device"},{"subject":"?device","predicate":"http://www.teco.edu/smartteco/hasSensor","object":"?sensor"},{"subject":"?sensor","predicate":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type","object":"http://www.teco.edu/smartteco/Sensor"}]
+                              };
+          $('#createDeviceJSON').text(JSON.stringify(createDevice, null, 2));
+          $('#createSensorJSON').text(JSON.stringify(createSensor, null, 2));
+          $('#insertValuesJSON').text(JSON.stringify(insertValues, null, 2));
+          $('#querySelectJSON').text(JSON.stringify(querySelect, null, 2));
+          $('#queryConstructJSON').text(JSON.stringify(queryConstruct, null, 2));
     br      
    
         
