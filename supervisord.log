@@ -1942,3 +1942,9 @@
 2015-07-23 07:20:18,602 INFO spawned: 'streamup_gui' with pid 8
 2015-07-23 07:20:19,679 INFO success: streamup_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2015-07-23 07:20:19,679 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-23 10:47:15,154 WARN received SIGINT indicating exit request
+2015-07-23 10:47:15,155 INFO waiting for streamup_server, streamup_gui to die
+2015-07-23 10:47:15,157 INFO stopped: streamup_gui (exit status 0)
+2015-07-23 10:47:15,157 CRIT reaped unknown pid 329)
+2015-07-23 10:47:15,159 INFO stopped: streamup_server (exit status 0)
+2015-07-23 10:47:15,159 CRIT reaped unknown pid 335)
