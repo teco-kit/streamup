@@ -1,0 +1,28 @@
+extends layout
+
+block header
+    script(src="/javascripts/dropzone.js")
+    script(src="/javascripts/extractor-util.js")
+    link(rel='stylesheet', href='/stylesheets/dropzone.css') 
+    title InstaGuide Style Extractor
+
+block nav
+     div#nav
+        span InstaGuide Style Extractor
+
+block content
+    div#content
+        div#instructions    
+            p Please upload a HTML converted Word Document
+            p The Style of this document will be saved under 
+                span.thicker &lt;this-server-url&gt;/hosting/&lt;fileName&gt;
+        div.columns
+            div.column
+                p Upload:
+                div#uploader
+                    form#style-drop.dropzone(action="/file-upload", method="post", enctype="multipart/form-data")
+            div.column
+                p Preview:
+                div#preview-container
+                    iframe#preview(src="demo-data.htm", scrolling="yes")
+    //- div#myDropzone.dropzone

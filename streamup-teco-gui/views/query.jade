@@ -1,0 +1,252 @@
+extends index
+
+block append header
+	script.
+
+		function getMatches(string, regex, index) {
+		  index || (index = 0); // default to the first capturing group
+		  var matches = [];
+		  var match;
+		  while (match = regex.exec(string)) {
+		    matches.push(match[index]);
+		  }
+		  return matches;
+		}
+
+		function onlyUnique(value, index, self) { 
+			return self.indexOf(value) === index;
+		}
+
+		function parseForVariables(string) {
+				var regex = /\?([A-Z]|[a-z]|'_'|[0-9])+(\b|\.)/g;
+				return getMatches(string, regex, 0).filter(onlyUnique);
+		}
+
+		$(function(){
+			$('#query-triples-select').bind('input propertychange', function() {				
+				var newVariables = parseForVariables($('#query-triples-select').val());				
+				var presentVariables = parseForVariables($('#query-vars-select').val());
+				var deleted = [];
+				presentVariables.forEach(function(i) {
+					 if (newVariables.indexOf(i) < 0) {
+					 	deleted.push(i);
+					 }
+				});
+				var added = newVariables.filter(function(i) {
+					return presentVariables.indexOf(i) < 0;
+				});
+				presentVariables = $(presentVariables).not(deleted).get();
+				presentVariables = presentVariables.concat(added);
+				var result = presentVariables.reduce(function(prev, curr) {
+					return prev + ' ' + curr;
+				}, '');
+				$('#query-vars-select').val(result);
+			})
+		});		
+		
+		function parseTriples(string) {
+			var result = [];			
+			var regex = /\s*(\S+)\s+(\S+)\s+(\S+)\s*\./g
+			var match;
+		  while (match = regex.exec(string)) {
+		    result.push({
+		    		subject: match[1],
+		    		predicate: match[2],
+		    		object: match[3]
+		    	});
+		  }
+			return result;
+		}
+
+		function executeQuerySelect() {
+			var body = {
+				type: "SELECT",
+				variables: $('#query-vars-select').val().split(' '),
+				triples: parseTriples($('#query-triples-select').val())
+			};
+			var host = document.getElementById("serverHost").value;			
+			var port = document.getElementById("serverPort").value;			
+			var url = 'http://' + host + ':' + port + '/query';
+			var response = executeHTTP('post', url, JSON.stringify(body), {"Content-Type": "application/json"});		
+			displayHttpResponse(response, null, {tabs: {disable: ['chart']}});
+			/*var triples = JSON.parse(response.message);			
+			displayTriples(triples, 'triples-placeholder');*/
+			return false;			
+		}		
+
+		function executeQueryConstruct() {
+			var body = {
+				type: "CONSTRUCT",
+				template: parseTriples($('#query-template-construct').val()),
+				triples: parseTriples($('#query-triples-construct').val())/*,				
+				body: $('#query-frame-construct').val() ? jQuery.parseJSON($('#query-frame-construct').val()) : undefined;*/
+			};
+			if($('#query-frame-construct').val()) {
+				body["frame"] = jQuery.parseJSON($('#query-frame-construct').val());
+			} else {
+				body["frame"] = undefined;
+			}
+			var host = document.getElementById("serverHost").value;			
+			var port = document.getElementById("serverPort").value;			
+			var url = 'http://' + host + ':' + port + '/query';
+			var response = executeHTTP('post', url, JSON.stringify(body), {"Content-Type": "application/json"});		
+			displayHttpResponse(response);
+			/*var triples = JSON.parse(response.message);			
+			displayTriples(triples, 'triples-placeholder');*/
+			return false;			
+		}		
+
+block content	
+	div(style="text-align:left")
+		h1.page-header(align="center") Query
+		br
+		.container(style="display:inline-block;")
+			ul.nav.nav-tabs
+				li.active
+					a(href='#select', data-toggle='tab') SELECT query
+				li
+					a(href='#construct', data-toggle='tab') CONSTRUCT query
+			.tab-content
+				#select.tab-pane.active(style="float:left;text-align:left")
+					#accordionSelect.panel-group
+						.panel.panel-default
+							.panel-heading
+								h4.panel-title(data-toggle='collapse', data-parent='#accordionSelect', href='#collapseOneSelect')
+									div(style="text-align:left")
+										span.glyphicon.glyphicon-menu-down(aria-hidden='true' style="margin-right:10px")
+										| Examples
+							#collapseOneSelect.panel-collapse.collapse
+								.panel-body()
+									.container(style="float:left")
+										ul.nav.nav-tabs
+											li.active
+												a(href='#select1', data-toggle='tab') Get all data
+											li
+												a(href='#select2', data-toggle='tab') Get all sensors
+											li
+												a(href='#select3', data-toggle='tab') Get all sensors with location
+										.tab-content
+											#select1.tab-pane.active(style="float:left;text-align:left")
+												h3 Get all data in the store												
+												br
+												em#select1triples ?subject ?predicate ?object .
+												br
+												br
+												button.btn.btn-default(type='button', onclick="$('#query-triples-select').val(($('#select1triples').text()));$('#query-triples-select').trigger('propertychange')") load query
+											#select2.tab-pane(style="float:left")
+												h3 Get all sensors												
+												br
+												em#select2triples
+													| ?device http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.teco.edu/smartteco/Device . <br>
+													| ?device http://www.teco.edu/smartteco/hasSensor ?sensor . <br>
+													| ?sensor http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.teco.edu/smartteco/Sensor .
+												br
+												br
+												button.btn.btn-default(type='button', onclick="$('#query-triples-select').val(($('#select2triples').text()));$('#query-triples-select').trigger('propertychange')") load query
+											#select3.tab-pane(style="float:left")
+												h3 Get all sensors with location
+												br
+												em#select3triples
+													| ?device http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.teco.edu/smartteco/Device . <br>
+													| ?device http://www.teco.edu/smartteco/hasSensor ?sensor . <br>
+													| ?sensor http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.teco.edu/smartteco/Sensor . <br>
+													| ?device http://www.w3.org/2003/01/geo/wgs84_pos#lat ?latitude . <br>
+													| ?device http://www.w3.org/2003/01/geo/wgs84_pos#long ?longitude . 
+												br
+												br
+												button.btn.btn-default(type='button', onclick="$('#query-triples-select').val(($('#select3triples').text()));$('#query-triples-select').trigger('propertychange')") load query												
+					form(id="select-page")
+						table(style="width:100%")
+							col(width="130px")
+							tr
+								td
+									|variables
+								td(style="text-align:left")
+									input#query-vars-select(type='text' style="width:700px")
+							tr
+								td
+									|triple pattern
+								td(style="text-align:left")
+									br
+									textarea#query-triples-select(rows='15' style="width:700px")
+							tr
+								td
+								td(style="text-align:left")
+									br
+									button#btnQuerySelect(type='button' onclick='executeQuerySelect()' style='width:700px;height:50px') execute											
+				#construct.tab-pane(style="float:left")
+					#accordionConstruct.panel-group
+						.panel.panel-default
+							.panel-heading
+								h4.panel-title(data-toggle='collapse', data-parent='#accordionConstruct', href='#collapseOneConstruct')
+									div(style="text-align:left")
+										span.glyphicon.glyphicon-menu-down(aria-hidden='true' style="margin-right:10px")
+										| Examples
+							#collapseOneConstruct.panel-collapse.collapse
+								.panel-body()
+									.container(style="float:left")
+										ul.nav.nav-tabs
+											li.active
+												a(href='#1', data-toggle='tab') Sensor-Device relationship
+											li
+												a(href='#2', data-toggle='tab') Get all sensors
+										.tab-content
+											#1.tab-pane.active(style="float:left;text-align:left")
+												h3 Sensor-Device relationship using construct template
+												br
+												b
+													| template
+												br
+												em#construct1template ?sensor http://www.teco.edu/smartteco/isPartOf ?device .
+												br
+												br
+												b
+													| triple pattern
+												br
+												em#construct1pattern ?device http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.teco.edu/smartteco/Device . <br>
+													| ?device http://www.teco.edu/smartteco/hasSensor ?sensor . <br>
+													| ?sensor http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.teco.edu/smartteco/Sensor .
+												br
+												br
+												button.btn.btn-default(type='button', onclick="$('#query-triples-construct').val(($('#construct1pattern').text()));$('#query-template-construct').val($('#construct1template').text())") load query
+											#2.tab-pane(style="float:left")
+												h3 Get all sensors												
+												br
+												em#query2
+													| ?device	http://www.w3.org/1999/02/22-rdf-syntax-ns#type	http://www.teco.edu/smartteco/Device . <br>
+													| ?device http://www.teco.edu/smartteco/hasSensor ?sensor . <br>
+													| ?sensor http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.teco.edu/smartteco/Sensor .
+												br
+												br
+												button.btn.btn-default(type='button', onclick="$('#query-triples-select').val(($('#query2').text()));$('#query-triples-select').trigger('propertychange')") load query
+					br
+					form(id="construct-page")
+						table(style="width:100%")
+							col(width="130px")
+							tr
+								td
+									|template
+								td(style="text-align:left")
+									textarea#query-template-construct(rows='5' style="width:700px")
+							tr
+								td
+									|triple pattern
+								td(style="text-align:left")
+									br
+									textarea#query-triples-construct(rows='15', style="width:700px")
+							tr
+								td
+									|frame (optional)
+								td(style="text-align:left")
+									br
+									textarea#query-frame-construct(rows='5', style="width:700px")
+							tr
+								td
+								td(style="text-align:left")
+									br
+									button#btnQuerySelect(type='button' onclick='executeQueryConstruct()' style='width:700px;height:50px') execute
+				
+		br
+		br
+		div 
+			#triples-placeholder(style="text-align:left")

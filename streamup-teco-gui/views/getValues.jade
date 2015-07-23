@@ -1,0 +1,164 @@
+extends index
+
+block append header
+	link(rel='stylesheet', href='css/jquery.datetimepicker.css')
+	script(src="/js/jquery.datetimepicker.js")		
+	script(src="/js/moment.min.js")
+	script.
+		$(window).bind('load', function(){
+			clearDateTimePicker();
+		});
+
+		$(document).ready(function() {					
+			getDropdownDataDevice(
+				document.getElementById("serverHost").value,
+				document.getElementById("serverPort").value,
+				function(err, data) {
+					$("#deviceId").select2({
+				        data: data					        	
+				    });
+				})
+			$('#deviceId').on("change", function (e) 
+			{ 
+				getDropdownDataSensorsForDevice(
+					document.getElementById("serverHost").value,
+					document.getElementById("serverPort").value,
+					e.added.id,
+					function(err, data) {
+						$("#sensorId").select2({
+					        data: data					        	
+					    });
+					})
+			});
+		});
+
+		function clearDateTimePicker() {
+			$(document).find('div.xdsoft_datetimepicker > div.xdsoft_timepicker > div.xdsoft_time_box > div.xdsoft_time_variant > div.xdsoft_current').removeClass('xdsoft_current');
+			$(document).find('div.xdsoft_datetimepicker > div.xdsoft_datepicker > div.xdsoft_calendar td.xdsoft_current').removeClass('xdsoft_current');
+			// needed for some reasons
+			setTimeout(function() {
+				$(document).find('div.xdsoft_datetimepicker > div.xdsoft_timepicker > div.xdsoft_time_box > div.xdsoft_time_variant > div.xdsoft_current').removeClass('xdsoft_current');
+				$(document).find('div.xdsoft_datetimepicker > div.xdsoft_datepicker > div.xdsoft_calendar td.xdsoft_current').removeClass('xdsoft_current');
+			}, 1);			
+		}
+
+		function executeGetValues() {			
+			var host = document.getElementById("serverHost").value;			
+			var port = document.getElementById("serverPort").value;
+			var device = document.getElementById("deviceId").value;			
+			var sensor = document.getElementById("sensorId").value;
+			var start;
+			if ($('#dateStart').val()) {
+				start = moment($('#dateStart').val(), "DD-MM-YYYY HH:mm:ss").unix();
+			}
+			var end;
+			if ($('#dateEnd').val()) {
+				end = moment($('#dateEnd').val(), "DD-MM-YYYY HH:mm:ss").unix();
+			}
+			var url = 'http://' + host + ':' + port + '/devices/' + device + '/sensors/' + sensor + '/values';			
+			var suffix = '';
+			if (start) {
+				suffix += 'start=' + start;
+			}
+			if (end) {
+				if (suffix.length > 0) {
+					suffix += '&';
+				}
+				suffix += 'end=' + end;
+			}
+			if (suffix.length > 0) {
+				url += '?' + suffix;
+			}
+			var response = executeHTTP('get', url);			
+			displayHttpResponse(response, null, {tabs: {disable: ['rdf'], initial: 'chart'}});
+			return false;			
+		}		
+
+block content	
+	h1.page-header Get Values
+	br
+	form
+		table(class="inputTable")			
+			tr
+				td
+					b
+						|device
+				td
+					input#deviceId.select2(style="width:700px")
+			tr
+				td
+					b
+						|sensor
+				td
+					input#sensorId.select2(style="width:700px")
+			tr 
+				td(style="text-align: right;padding-right: 20px;")
+								b
+									|start date
+							td
+								br
+								div#dateStartDiv
+									input#dateStart(type='text')
+									script(type='text/javascript').
+										$(document).ready(function(){
+											jQuery('#dateStart').datetimepicker({
+												format:'d.m.Y H:i:s',
+												inline: true,
+												startDate: '01.01.2000 10:00:00',
+												inputVisibleWhenInline: true,
+												lang:'en',
+												onSelectTime: function(ct, $input) {
+													if ($input.val()) {
+														$input.val($input.val().slice(0, -2) + "00");
+													}												
+												},
+												onSelectDate: function(ct, $input) {
+													if ($input.val()) {
+														$input.val($input.val().slice(0, -2) + "00");
+													} 
+												},
+												onChangeDateTime: function(ct, $input) {
+													if (!ct) {
+														clearDateTimePicker();
+													}
+												}
+											});								
+										});	
+			tr
+				td(style="text-align: right;padding-right: 20px;padding-left: 20px;")
+								b
+									|end date
+							td
+								br
+								input#dateEnd(type='text')
+								script(type='text/javascript').
+									$(document).ready(function(){
+										jQuery('#dateEnd').datetimepicker({
+											format:'d.m.Y H:i:s',
+											inline: true,
+											inputVisibleWhenInline: true,
+											lang:'en',
+											onSelectTime: function(ct, $input) {
+												if ($input.val()) {
+													$input.val($input.val().slice(0, -2) + "00");
+												}												
+											},
+											onSelectDate: function(ct, $input) {
+												if ($input.val()) {
+													$input.val($input.val().slice(0, -2) + "00");
+												}												
+											},
+											onChangeDateTime: function(ct, $input) {
+												if (!ct) {
+													clearDateTimePicker();
+												}
+											}
+										});
+									});									
+			tr
+				td
+				td
+					br
+					button#btnQuerySelect(type='button' onclick='executeGetValues()' style='width:700px;height:50px') execute
+	br
+	#triples-placeholder(style="text-align:left")
