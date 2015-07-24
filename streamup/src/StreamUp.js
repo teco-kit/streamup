@@ -63,7 +63,7 @@ StreamUp.prototype.createSensor = function(sensor, callback) {
 	if (!sensor) {
 		throw new Error(errorMessage + "'sensor' is required");
 	}		
-	var deferred = Q.defer();	
+	var deferred = Q.defer();		
 	// create time series index
 	this._timeSeriesStore.createIndex({index: this._getSensorUri(sensor)}, function(err, index) {
 		if (err) {
@@ -245,7 +245,8 @@ var prepareQuery = function(query, callback) {
 
 StreamUp.prototype.query = function(query, options, callback) {	
 	var deferred = Q.defer();
-	var resultHandler = function(triples, options) {				
+	/*var resultHandler = function(triples, options, callback) {				
+		var deferred = Q.defer();
 	    if (options.format) {	    		    	
 			utils.toRDF(triples, options.format, function(err, result) {				
 				if(err){
@@ -257,7 +258,8 @@ StreamUp.prototype.query = function(query, options, callback) {
 		} else {
 			deferred.resolve(triples);
 		}
-	};	
+		return deferred.promise.nodeify(callback);	
+	};	*/
 	var errorMessage = "could not find sensors, reason: ";		
 	if (!query) {
 		deferred.reject(new Error(errorMessage + "invalid argument 'query' must be non-null"));
@@ -266,44 +268,54 @@ StreamUp.prototype.query = function(query, options, callback) {
 		deferred.reject(new Error(errorMessage + "invalid argument 'query.triples' must be non-null and of type 'array'"));
 	}
 	prepareQuery(query, function(err, query) {
-		this._tripleStore.query(query.triples, function(err, plainResult) {
-			console.log('alive 1');
-			if (err) {
-				deferred.reject(err);
-			} else {			
-				switch(query.type) {
-			    	case 'SELECT':	   
-			    		projectVariables(plainResult, query.variables, callback);					
-				        break;
-				    case 'CONSTRUCT':
-				    	// convert to JSONLD, apply framing, convert back to triples		
-				    	//if (query.frame && options.format == 'application/ld+json') {	    	
-				    	applyConstructTemplate(plainResult, query.template, function(err, triples) {				    		
-				    		if (err) {
-				    			deferred.reject(errorMessage + err);
-				    		} else {
-				    			if (query.frame) {
-					    			applyJSONFraming(triples, query.frame, function(err, result) {
-					    				if (err) {
-					    					def.reject(errorMessage + err);
-					    				} else {
-					    					deferred.resolve(result);
-					    				}
-					    			});
+		if (err) {
+			deferred.reject(errorMessage + err);
+		} else {
+			this._tripleStore.query(query.triples, function(err, plainResult) {
+				if (err) {
+					deferred.reject(err);
+				} else {			
+					switch(query.type) {
+				    	case 'SELECT':	   
+				    		//projectVariables(plainResult, query.variables, callback);					
+				    		projectVariables(plainResult, query.variables, function(err, result) {
+				    			if (err) {
+				    				deferred.reject(errorMessage + err);
+				    			} else {
+				    				deferred.resolve(result);
+				    			}
+				    		});
+					        break;
+					    case 'CONSTRUCT':
+					    	// convert to JSONLD, apply framing, convert back to triples		
+					    	//if (query.frame && options.format == 'application/ld+json') {	    	
+					    	applyConstructTemplate(plainResult, query.template, function(err, triples) {				    		
+					    		if (err) {
+					    			deferred.reject(errorMessage + err);
 					    		} else {
-					    			deferred.resolve(triples);
+					    			if (query.frame) {
+						    			applyJSONFraming(triples, query.frame, function(err, result) {
+						    				if (err) {
+						    					def.reject(errorMessage + err);
+						    				} else {
+						    					deferred.resolve(result);
+						    				}
+						    			});
+						    		} else {
+						    			deferred.resolve(triples);
+						    		}
 					    		}
-				    		}
-				    	})
-				        break;
-					case 'TEMPLATE':
-						deferred.reject(new Error(errorMessage + "TEMPLATE not implemented yet!"));    
-				        break;	        
-				    default:
-				    deferred.reject(new Error(errorMessage + "invalid argument 'query.type' must be one of 'SELECT', 'CONSTRUCT', 'TEMPLATE'"));    
-				}
-			}				
-		});	
+					    	})
+					        break;
+						case 'TEMPLATE':
+							deferred.reject(new Error(errorMessage + "TEMPLATE not implemented yet!"));    
+					        break;	        
+					    default:
+					    	deferred.reject(new Error(errorMessage + "invalid argument 'query.type' must be one of 'SELECT', 'CONSTRUCT', 'TEMPLATE'"));    
+					}
+				}				
+			});	
+		}		
 	}.bind(this))	
 	return deferred.promise.nodeify(callback);
 }

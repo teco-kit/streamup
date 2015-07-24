@@ -1,7 +1,7 @@
 {
-  "name": "streamup",
+  "name": "streamup-server-teco",
   "version": "0.1.0",
-  "description": "A combination of triple store and time series database to manage sensor and their readings.",
+  "description": "A concrete implementation of the streamup-server with a teco-specific REST interface and ontology.",
   "main": "src/index.js",
   "scripts": {
     "test": "make test"
@@ -23,21 +23,17 @@
     "TECO"
   ],
   "dependencies": {
-    "q": "",
-    "jsonld": "",
-    "through": "",
-    "lem": "mjacoby/lem",
-    "levelgraph": ">= 0.10 < 0.11",
-    "levelgraph-jsonld": "",
-    "levelgraph-n3": "~0.5.0",
-    "n3": "",
-    "level-browserify": ""
+    "n3": "^0.4.3",
+    "streamup": "file:../streamup",
+    "streamup-server": "file:../streamup-server"
   },
   "author": "Michael Jacoby <jacoby@teco.edu> (http://www.teco.edu)",
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.2.0",
     "chai-as-promised": "^5.1.0",
-    "mocha": "^2.2.5"
+    "chai-http": "^1.0.0",
+    "mocha": "^2.2.5",
+    "q": "^1.4.1"
   }
 }

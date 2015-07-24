@@ -1,9 +1,8 @@
-var StreamUp 				= require('../StreamUp.js'),
-	TripleStoreLevelGraph 	= require('../TripleStoreLevelGraph.js'),
-	TimeSeriesStoreLemDB	= require('../TimeSeriesStoreLemDB.js'),
-	Ontology				= require('../SmartTecoOntology'),
-	utils 					= require('../Utils.js');
-	
+var StreamUp 				= require('streamup'),
+	TripleStoreLevelGraph 	= StreamUp.TripleStoreLevelGraph,
+	TimeSeriesStoreLemDB	= StreamUp.TimeSeriesStoreLemDB,
+	Ontology				= require('./SmartTecoOntology'),
+	utils 					= StreamUp.Utils;
 
 // bind concrete implementations to StreamUp
 // expose need libraries to global window

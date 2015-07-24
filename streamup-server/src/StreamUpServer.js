@@ -52,7 +52,6 @@ function StreamUpServer(streamUp, options){
 util.inherits(StreamUpServer, EventEmitter);
 
 function sendResponse(options, callback) {
-	console.log('sending response with options: ' + JSON.stringify(options.data));
 	if (options.data.asJson === true) {
 		options.res.send(options.data.code, options.data.body);
 	} else {
@@ -65,9 +64,9 @@ function addHandler(handler, callback) {
 	if (handler.options) {
 		options = handler.options;
 	}
-	this._server[handler.type].call(this._server, handler.url, function(req, res, next) {
-		this.emit('request', req, res, next);
-		var params = handler.parseParameter(req)
+	this._server[handler.type].call(this._server, handler.url, function(req, res, next) {		
+		this.emit('request', req, res, next);		
+		var params = handler.parseParameter(req)	
 		/*handler.target(params, function(err, result) {
 			sendResponse({ res: res, data: handler.handleResult(err, result)});
 		})*/
@@ -81,20 +80,26 @@ function addHandler(handler, callback) {
 }
 
 StreamUpServer.prototype.start = function(handlers, callback) {	
+	var deferred = Q.defer();	
 	handlers.map(function(handler) {
 		addHandler.call(this, handler);
 	}.bind(this));
 	this._server.listen(this._options.port, function(err, result) {
-		if (!err) {
-			this.emit('start');
+		if (err) {
+			deferred.reject(err);			
+		} else {			
 			console.log('server up and listening on port ' + this._options.port);
-		}		
-		if (callback) {
-			callback(err, result);	
-		} 
+			this.emit('start');
+			deferred.resolve(result);
+		}
 	}.bind(this));
+	return deferred.promise.nodeify(callback);
 }
 
 StreamUpServer.prototype.stop = function(options, callback) {
-	this._server.close(callback);
+	var deferred = Q.defer();	
+	this._server.close(function() {
+		deferred.resolve();
+	});
+	return deferred.promise.nodeify(callback);
 }

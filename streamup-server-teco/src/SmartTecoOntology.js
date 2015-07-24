@@ -1,6 +1,6 @@
 var N3 		= require('n3');
 var N3Util	= N3.Util;
-var utils	= require('./Utils.js');
+var utils	= require('streamup').Utils;
 // ------------- attributes -------------
 
 // smartteco ontology
