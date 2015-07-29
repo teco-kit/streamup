@@ -6,7 +6,11 @@
   "author": "Michael Jacoby",
   "license": "MIT",
   "dependencies": {
-    "express": "*",
-    "jquery":  "*"
+    "express": "^4.13.1",
+    "jade": "^1.11.0",
+    "jquery": "*",
+    "morgan": "^1.6.1",
+    "path": "^0.11.14",
+    "request": "^2.60.0"
   }
 }

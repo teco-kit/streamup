@@ -1,0 +1,56 @@
+crashing child
+Starting child process with 'node streamup-demo/src/streamup-demo.js'
+server up and listening on port 8080
+tripleStore cleared (108/108 triples delete successfully)
+timeSeriesStore cleared successfully
+107 triples inserted from file 'data/smartteco.n3'
+crashing child
+Starting child process with 'node streamup-demo/src/streamup-demo.js'
+server up and listening on port 8080
+tripleStore cleared (108/108 triples delete successfully)
+timeSeriesStore cleared successfully
+107 triples inserted from file 'data/smartteco.n3'
+parsing '<http://www.teco.edu/smartteco/devices/abc:def:0000:0001/sensors/temperature> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.teco.edu/smartteco/TemperatureSensor> .
+<http://www.teco.edu/smartteco/devices/abc:def:0000:0001/sensors/temperature> <http://www.teco.edu/smartteco/hasUnitOfMeasurement> <http://purl.oclc.org/NET/muo/ucum/unit/temperature/degree-Celsius> .
+<http://www.teco.edu/smartteco/devices/abc:def:0000:0001/sensors/temperature> <http://purl.oclc.org/NET/ssnx/ssn#observes> <http://purl.oclc.org/NET/ssnx/qu/dim#Temperature> .' as 'application/n-triples'
+deviceExists undefined
+triplesExists undefined
+crashing child
+Starting child process with 'node streamup-demo/src/streamup-demo.js'
+server up and listening on port 8080
+tripleStore cleared (108/108 triples delete successfully)
+timeSeriesStore cleared successfully
+107 triples inserted from file 'data/smartteco.n3'
+parsing '<http://www.teco.edu/smartteco/devices/abc:def:0000:0001/sensors/temperature> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.teco.edu/smartteco/TemperatureSensor> .
+<http://www.teco.edu/smartteco/devices/abc:def:0000:0001/sensors/temperature> <http://www.teco.edu/smartteco/hasUnitOfMeasurement> <http://purl.oclc.org/NET/muo/ucum/unit/temperature/degree-Celsius> .
+<http://www.teco.edu/smartteco/devices/abc:def:0000:0001/sensors/temperature> <http://purl.oclc.org/NET/ssnx/ssn#observes> <http://purl.oclc.org/NET/ssnx/qu/dim#Temperature> .' as 'application/n-triples'
+deviceExists [object Object]
+triplesExists [object Object]
+crashing child
+Starting child process with 'node streamup-demo/src/streamup-demo.js'
+server up and listening on port 8080
+tripleStore cleared (108/108 triples delete successfully)
+timeSeriesStore cleared successfully
+107 triples inserted from file 'data/smartteco.n3'
+crashing child
+Starting child process with 'node streamup-demo/src/streamup-demo.js'
+server up and listening on port 8080
+tripleStore cleared (108/108 triples delete successfully)
+timeSeriesStore cleared successfully
+107 triples inserted from file 'data/smartteco.n3'
+crashing child
+Starting child process with 'node streamup-demo/src/streamup-demo.js'
+server up and listening on port 8080
+tripleStore cleared (108/108 triples delete successfully)
+timeSeriesStore cleared successfully
+107 triples inserted from file 'data/smartteco.n3'
+parsing '<http://www.teco.edu/smartteco/devices/abc:def:0000:0001> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.teco.edu/smartteco/µPart> .
+<http://www.teco.edu/smartteco/devices/abc:def:0000:0001> <http://www.teco.edu/smartteco/locatedAt> <http://www.teco.edu/smartteco/ConferenceRoom> .
+<http://www.teco.edu/smartteco/devices/abc:def:0000:0001> <http://www.teco.edu/smartteco/attachtedTo> <http://www.teco.edu/smartteco/DoorConferenceRoom> .
+<http://www.teco.edu/smartteco/devices/abc:def:0000:0001> <http://www.w3.org/2003/01/geo/wgs84_pos#lat> "49.01281"^^<http://www.w3.org/2001/XMLSchema#double> .
+<http://www.teco.edu/smartteco/devices/abc:def:0000:0001> <http://www.w3.org/2003/01/geo/wgs84_pos#long> "8.42405"^^<http://www.w3.org/2001/XMLSchema#double> .' as 'application/n-triples'
+parsing '<http://www.teco.edu/smartteco/devices/abc:def:0000:0001/sensors/temperature> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.teco.edu/smartteco/TemperatureSensor> .
+<http://www.teco.edu/smartteco/devices/abc:def:0000:0001/sensors/temperature> <http://www.teco.edu/smartteco/hasUnitOfMeasurement> <http://purl.oclc.org/NET/muo/ucum/unit/temperature/degree-Celsius> .
+<http://www.teco.edu/smartteco/devices/abc:def:0000:0001/sensors/temperature> <http://purl.oclc.org/NET/ssnx/ssn#observes> <http://purl.oclc.org/NET/ssnx/qu/dim#Temperature> .' as 'application/n-triples'
+inserting data: [{"value":"2edw","timestamp":1435679460}]
+Sending SIGTERM to child...

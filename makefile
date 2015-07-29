@@ -18,14 +18,7 @@ shell:
 	sudo docker run --rm -it --name $(NAME)-$(INSTANCE) -i -t $(PORTS) $(VOLUMES) $(NS)/$(REPO):$(VERSION) /bin/bash
 
 browserify: 
-	@echo $(shell set -e ;\
-	for f in src/deployments/*.js ;\
-	do \
-	filename=$$(basename "$$f");\
-	filename="$${filename%.*}";\
-	echo "browserifying $$f to $$filename.standalone.js as $$filename";\
-	sudo docker run --rm -it --name $(NAME)-$(INSTANCE) -i -t $(PORTS) $(VOLUMES) $(NS)/$(REPO):$(VERSION) browserify $$f --standalone $$filename > src/gui/public/js/$$filename.standalone.js ;\
-	done ;)
+	sudo docker run --rm -it --name $(NAME)-$(INSTANCE) -i -t $(PORTS) $(VOLUMES) $(NS)/$(REPO):$(VERSION) browserify streamup-server-teco/src/index.js --standalone StreamupServerTeco > streamup-server-teco/src/StreamUpServerTeco.standalone.js 
 
 run:
 	sudo docker run --rm -it --name $(NAME)-$(INSTANCE) $(PORTS) $(VOLUMES) $(NS)/$(REPO):$(VERSION)
@@ -44,16 +37,3 @@ release: build
 
 
 default: build	
-
-#	script for browserifying all *.js files in /src
-
-#	{ \
-#	set -o xtrace;\
-#	set -e ;\
-#	for f in src/*.js ;\
-#	do \
-#	filename=$$(basename "$$f");\
-#	filename="$${filename%.*}";\
-#	sudo docker run --rm -it --name $(NAME)-$(INSTANCE) -i -t $(PORTS) $(VOLUMES) $(NS)/$(REPO):$(VERSION) browserify $$f --standalone $$filename '>' src/gui/public/js/$$filename.standalone.js ;\
-#	done ;\
-#	}	

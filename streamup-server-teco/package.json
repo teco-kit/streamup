@@ -24,6 +24,7 @@
   ],
   "dependencies": {
     "n3": "^0.4.3",
+    "q": "^1.4.1",
     "streamup": "file:../streamup",
     "streamup-server": "file:../streamup-server"
   },

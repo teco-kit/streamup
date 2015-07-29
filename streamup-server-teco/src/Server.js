@@ -55,7 +55,7 @@ var deviceExists = function(deviceId, callback) {
 }
 
 var sensorExists = function(deviceId, sensorId, callback) {
-	triplesExists(Ontology.getSensorTriples(deviceId, sensorId), callback);	
+	triplesExists.bind(this)(Ontology.getSensorTriples(deviceId, sensorId), callback);	
 }
 
 // public constructor
@@ -93,7 +93,7 @@ function StreamUpServerTeco(options){
 									} else {
 										// check  device exists
 										// query onotology with device triples
-										var triples = Ontology.getDeviceTriples(options.deviceId);
+										var triples = Ontology.getDeviceTriples(options.deviceId);										
 										deviceExists.bind(this)(options.deviceId, function(err, exists) {
 											if (err || exists) {
 												deferred.reject("device already exists!");
@@ -114,11 +114,11 @@ function StreamUpServerTeco(options){
 																result = result.concat(metaResult);
 																deferred.resolve(result);
 															}		
-														});
+														}.bind(this));
 													} else {
 														deferred.resolve(triples);
 													}
-												});
+												}.bind(this));
 											}
 										}.bind(this))									
 									}
@@ -152,7 +152,7 @@ function StreamUpServerTeco(options){
 									if (err) {
 										deferred.reject(err);
 									} else {
-										deviceExists(options.deviceId, function(err, exists) {
+										deviceExists.bind(this)(options.deviceId, function(err, exists) {
 											if (err || !exists) {
 												deferred.reject(err || 'device does not exist');
 											} else {
@@ -169,7 +169,7 @@ function StreamUpServerTeco(options){
 									}
 								}.bind(this));
 								return deferred.promise.nodeify(callback);							
-							  },
+							  }.bind(this),
 			parseParameter	: function(req) {
 								return 	{
 											deviceId: req.body.deviceId, 
