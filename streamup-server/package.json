@@ -23,8 +23,8 @@
     "TECO"
   ],
   "dependencies": {
-    "q": "",
-    "restify": "",
+    "q": "^1.4.1",
+    "restify": "^3.0.3",
     "streamup": "file:../streamup"
   },
   "author": "Michael Jacoby <jacoby@teco.edu> (http://www.teco.edu)",
