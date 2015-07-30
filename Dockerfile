@@ -12,14 +12,18 @@ RUN service supervisor restart
 # Install browserify
 RUN npm install -g browserify
 
+# Install linklocal for linking local node dependencies
+RUN npm install -g linklocal
+
 # Supervisor init config
-ADD supervisor.conf /etc/supervisor.conf
+ADD conf/supervisor.conf /etc/supervisor.conf
 
 # StreamUp supervisor script
-ADD streamup-servers.conf /etc/supervisor/conf.d/streamup-servers.conf
+ADD conf/streamup-servers.conf /etc/supervisor/conf.d/streamup-servers.conf
 
 WORKDIR /usr/src/app
 
 EXPOSE 8080 8081
-CMD ["supervisord", "-c", "/etc/supervisor.conf"]
+#CMD ["supervisord", "-c", "/etc/supervisor.conf"]
+CMD ["/bin/bash", "startup.sh"]
 

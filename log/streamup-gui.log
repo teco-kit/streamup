@@ -8,29 +8,128 @@ Running node-supervisor with
 Starting child process with 'node streamup-teco-gui/index.js'
 Watching directory '/usr/src/app' for changes.
 Express server listening on port 8081 in development mode.
+Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Express server listening on port 8081 in development mode.
+Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Express server listening on port 8081 in development mode.
+Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Express server listening on port 8081 in development mode.
+Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Express server listening on port 8081 in development mode.
+Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Express server listening on port 8081 in development mode.
+Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Express server listening on port 8081 in development mode.
+Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Express server listening on port 8081 in development mode.
+Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Express server listening on port 8081 in development mode.
+Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Express server listening on port 8081 in development mode.
 Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
 Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
 Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET / [32m200 [0m456.481 ms - 30193[0m
-[0mGET /css/bootstrap.css [32m200 [0m8.172 ms - 141622[0m
-[0mGET /css/docs.min.css [32m200 [0m6.713 ms - 31684[0m
-[0mGET /css/dashboard.css [32m200 [0m7.872 ms - 1557[0m
-[0mGET /css/streamup.css [32m200 [0m8.207 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m8.292 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m8.479 ms - 16890[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m2.997 ms - 35951[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m3.077 ms - 95957[0m
-[0mGET /js/n3-browser.js [32m200 [0m3.108 ms - 67458[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m3.001 ms - 144082[0m
-[0mGET /js/select2.js [32m200 [0m3.108 ms - 147254[0m
-[0mGET /js/jquery.flot.js [32m200 [0m3.548 ms - 122971[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m3.166 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m2.955 ms - 5651[0m
-[0mGET /img/upart.jpg [32m200 [0m0.737 ms - 116391[0m
+[0mGET / [32m200 [0m286.908 ms - 30193[0m
+[0mGET /css/bootstrap.css [32m200 [0m4.956 ms - 141622[0m
+[0mGET /css/docs.min.css [32m200 [0m5.187 ms - 31684[0m
+[0mGET /css/dashboard.css [32m200 [0m4.722 ms - 1557[0m
+[0mGET /css/streamup.css [32m200 [0m5.085 ms - 655[0m
+[0mGET /css/select2.css [32m200 [0m5.250 ms - 19457[0m
+[0mGET /css/select2-bootstrap.css [32m200 [0m5.787 ms - 16890[0m
+[0mGET /js/jquery-1.11.3.min.js [32m200 [0m2.589 ms - 95957[0m
+[0mGET /js/handlebars-v3.0.3.js [32m200 [0m1.142 ms - 144082[0m
+[0mGET /js/bootstrap.min.js [32m200 [0m1.186 ms - 35951[0m
+[0mGET /js/n3-browser.js [32m200 [0m1.074 ms - 67458[0m
+[0mGET /js/select2.js [32m200 [0m1.024 ms - 147254[0m
+[0mGET /js/jquery.flot.time.js [32m200 [0m1.267 ms - 11768[0m
+[0mGET /js/jquery.flot.js [32m200 [0m0.848 ms - 122971[0m
+[0mGET /js/streamup.js [32m200 [0m0.622 ms - 5651[0m
+[0mGET /img/upart.jpg [32m200 [0m0.904 ms - 116391[0m
 Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
 Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
 Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /favicon.ico [33m404 [0m102.267 ms - 12499[0m
+[0mGET /favicon.ico [33m404 [0m95.717 ms - 12499[0m
 Sending SIGTERM to child...
 
 Running node-supervisor with
@@ -97,717 +196,44 @@ Running node-supervisor with
 Starting child process with 'node streamup-teco-gui/index.js'
 Watching directory '/usr/src/app' for changes.
 Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
+Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+[0mGET / [32m200 [0m277.042 ms - 30193[0m
+[0mGET /css/bootstrap.css [32m200 [0m4.790 ms - 141622[0m
+[0mGET /css/docs.min.css [32m200 [0m4.009 ms - 31684[0m
+[0mGET /css/dashboard.css [32m200 [0m4.143 ms - 1557[0m
+[0mGET /css/streamup.css [32m200 [0m4.253 ms - 655[0m
+[0mGET /css/select2.css [32m200 [0m2.686 ms - 19457[0m
+[0mGET /css/select2-bootstrap.css [32m200 [0m2.735 ms - 16890[0m
+[0mGET /js/bootstrap.min.js [32m200 [0m1.450 ms - 35951[0m
+[0mGET /js/jquery-1.11.3.min.js [32m200 [0m1.526 ms - 95957[0m
+[0mGET /js/handlebars-v3.0.3.js [32m200 [0m1.461 ms - 144082[0m
+[0mGET /js/n3-browser.js [32m200 [0m1.751 ms - 67458[0m
+[0mGET /js/select2.js [32m200 [0m1.764 ms - 147254[0m
+[0mGET /js/jquery.flot.js [32m200 [0m2.233 ms - 122971[0m
+[0mGET /js/jquery.flot.time.js [32m200 [0m1.817 ms - 11768[0m
+[0mGET /js/streamup.js [32m200 [0m0.939 ms - 5651[0m
+[0mGET /img/upart.jpg [32m200 [0m0.426 ms - 116391[0m
 Warning: missing space before text for line 67 of jade file "/usr/src/app/streamup-teco-gui/views/createDevice.jade"
 Warning: missing space before text for line 105 of jade file "/usr/src/app/streamup-teco-gui/views/createDevice.jade"
 Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
 Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
 Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /createDevice?host=localhost&port=8080 [32m200 [0m210.201 ms - 15468[0m
-[0mGET /css/bootstrap.css [32m200 [0m5.649 ms - 141622[0m
-[0mGET /css/docs.min.css [32m200 [0m5.989 ms - 31684[0m
-[0mGET /css/dashboard.css [32m200 [0m6.692 ms - 1557[0m
-[0mGET /css/streamup.css [32m200 [0m6.823 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m6.919 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m7.229 ms - 16890[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m2.500 ms - 35951[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m2.470 ms - 95957[0m
-[0mGET /js/n3-browser.js [32m200 [0m2.768 ms - 67458[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m2.428 ms - 144082[0m
-[0mGET /js/select2.js [32m200 [0m2.756 ms - 147254[0m
-[0mGET /js/jquery.flot.js [32m200 [0m2.565 ms - 122971[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m2.058 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m1.553 ms - 5651[0m
-[0mGET /fonts/glyphicons-halflings-regular.woff2 [32m200 [0m0.678 ms - 18028[0m
-Warning: missing space before text for line 80 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 85 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 103 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 124 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /createSensor?host=localhost&port=8080 [32m200 [0m136.787 ms - 15832[0m
-[0mGET /css/bootstrap.css [32m200 [0m0.583 ms - 141622[0m
-[0mGET /css/docs.min.css [32m200 [0m0.365 ms - 31684[0m
-[0mGET /css/dashboard.css [32m200 [0m0.253 ms - 1557[0m
-[0mGET /css/streamup.css [32m200 [0m0.243 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m0.334 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m0.336 ms - 16890[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m0.247 ms - 95957[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m0.259 ms - 144082[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m0.285 ms - 35951[0m
-[0mGET /js/n3-browser.js [32m200 [0m1.034 ms - 67458[0m
-[0mGET /js/select2.js [32m200 [0m0.620 ms - 147254[0m
-[0mGET /js/jquery.flot.js [32m200 [0m0.532 ms - 122971[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m0.253 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m0.285 ms - 5651[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /css/select2.png [33m404 [0m87.222 ms - 12499[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /css/select2.png [33m404 [0m52.520 ms - 12499[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /query?host=localhost&port=8080 [32m200 [0m132.818 ms - 20944[0m
-[0mGET /css/bootstrap.css [32m200 [0m0.481 ms - 141622[0m
-[0mGET /css/docs.min.css [32m200 [0m0.704 ms - 31684[0m
-[0mGET /css/dashboard.css [32m200 [0m0.480 ms - 1557[0m
-[0mGET /css/streamup.css [32m200 [0m0.285 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m0.271 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m0.311 ms - 16890[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m0.220 ms - 95957[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m0.230 ms - 144082[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m0.221 ms - 35951[0m
-[0mGET /js/n3-browser.js [32m200 [0m0.212 ms - 67458[0m
-[0mGET /js/select2.js [32m200 [0m0.217 ms - 147254[0m
-[0mGET /js/jquery.flot.js [32m200 [0m3.395 ms - 122971[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m2.065 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m1.481 ms - 5651[0m
-Warning: missing space before text for line 67 of jade file "/usr/src/app/streamup-teco-gui/views/createDevice.jade"
-Warning: missing space before text for line 105 of jade file "/usr/src/app/streamup-teco-gui/views/createDevice.jade"
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /createDevice?host=localhost&port=8080 [32m200 [0m131.482 ms - 15468[0m
-[0mGET /css/docs.min.css [32m200 [0m0.853 ms - 31684[0m
-[0mGET /css/bootstrap.css [32m200 [0m0.866 ms - 141622[0m
-[0mGET /css/dashboard.css [32m200 [0m0.681 ms - 1557[0m
-[0mGET /css/streamup.css [32m200 [0m0.219 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m0.202 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m0.370 ms - 16890[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m0.282 ms - 95957[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m1.103 ms - 144082[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m0.659 ms - 35951[0m
-[0mGET /js/n3-browser.js [32m200 [0m0.233 ms - 67458[0m
-[0mGET /js/select2.js [32m200 [0m0.243 ms - 147254[0m
-[0mGET /js/jquery.flot.js [32m200 [0m0.353 ms - 122971[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m0.204 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m0.442 ms - 5651[0m
-Warning: missing space before text for line 67 of jade file "/usr/src/app/streamup-teco-gui/views/createDevice.jade"
-Warning: missing space before text for line 105 of jade file "/usr/src/app/streamup-teco-gui/views/createDevice.jade"
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /createDevice?host=localhost&port=8080 [32m200 [0m86.174 ms - 15468[0m
-[0mGET /css/bootstrap.css [32m200 [0m0.703 ms - 141622[0m
-[0mGET /css/docs.min.css [32m200 [0m0.467 ms - 31684[0m
-[0mGET /css/dashboard.css [32m200 [0m0.728 ms - 1557[0m
-[0mGET /css/streamup.css [32m200 [0m0.264 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m0.334 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m0.245 ms - 16890[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m0.243 ms - 95957[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m0.415 ms - 144082[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m0.364 ms - 35951[0m
-[0mGET /js/n3-browser.js [32m200 [0m0.260 ms - 67458[0m
-[0mGET /js/select2.js [32m200 [0m0.252 ms - 147254[0m
-[0mGET /js/jquery.flot.js [32m200 [0m0.446 ms - 122971[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m0.502 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m0.533 ms - 5651[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /query?host=localhost&port=8080 [32m200 [0m124.682 ms - 20944[0m
-[0mGET /css/bootstrap.css [32m200 [0m0.403 ms - 141622[0m
-[0mGET /css/docs.min.css [32m200 [0m0.277 ms - 31684[0m
-[0mGET /css/dashboard.css [32m200 [0m0.237 ms - 1557[0m
-[0mGET /css/streamup.css [32m200 [0m1.603 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m1.221 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m0.888 ms - 16890[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m0.524 ms - 95957[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m0.452 ms - 144082[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m0.251 ms - 35951[0m
-[0mGET /js/n3-browser.js [32m200 [0m0.572 ms - 67458[0m
-[0mGET /js/select2.js [32m200 [0m0.541 ms - 147254[0m
-[0mGET /js/jquery.flot.js [32m200 [0m0.453 ms - 122971[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m0.251 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m0.233 ms - 5651[0m
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Warning: missing space before text for line 67 of jade file "/usr/src/app/streamup-teco-gui/views/createDevice.jade"
-Warning: missing space before text for line 105 of jade file "/usr/src/app/streamup-teco-gui/views/createDevice.jade"
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /createDevice?host=localhost&port=8080 [32m200 [0m214.284 ms - 15468[0m
-[0mGET /css/bootstrap.css [32m200 [0m4.516 ms - 141622[0m
-[0mGET /css/docs.min.css [32m200 [0m4.036 ms - 31684[0m
-[0mGET /css/dashboard.css [32m200 [0m3.074 ms - 1557[0m
-[0mGET /css/streamup.css [32m200 [0m3.174 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m3.216 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m2.828 ms - 16890[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m2.086 ms - 95957[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m1.796 ms - 35951[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m2.020 ms - 144082[0m
-[0mGET /js/n3-browser.js [32m200 [0m1.903 ms - 67458[0m
-[0mGET /js/select2.js [32m200 [0m2.141 ms - 147254[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m2.009 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m1.465 ms - 5651[0m
-[0mGET /js/jquery.flot.js [32m200 [0m1.809 ms - 122971[0m
-Warning: missing space before text for line 80 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 85 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 103 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 124 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /createSensor?host=localhost&port=8080 [32m200 [0m138.602 ms - 15832[0m
-[0mGET /css/bootstrap.css [32m200 [0m0.768 ms - 141622[0m
-[0mGET /css/docs.min.css [32m200 [0m2.391 ms - 31684[0m
-[0mGET /css/dashboard.css [32m200 [0m2.134 ms - 1557[0m
-[0mGET /css/streamup.css [32m200 [0m1.672 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m2.047 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m1.080 ms - 16890[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m0.786 ms - 95957[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m0.368 ms - 144082[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m0.416 ms - 35951[0m
-[0mGET /js/n3-browser.js [32m200 [0m0.490 ms - 67458[0m
-[0mGET /js/select2.js [32m200 [0m1.252 ms - 147254[0m
-[0mGET /js/jquery.flot.js [32m200 [0m0.609 ms - 122971[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m0.393 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m0.277 ms - 5651[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /css/select2.png [33m404 [0m94.353 ms - 12499[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /css/select2.png [33m404 [0m53.234 ms - 12499[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /css/select2-spinner.gif [33m404 [0m53.332 ms - 12499[0m
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-Sending SIGTERM to child...
-
-Running node-supervisor with
-  program 'streamup-teco-gui/index.js'
-  --watch '.'
-  --extensions 'node,js'
-  --exec 'node'
-
-Starting child process with 'node streamup-teco-gui/index.js'
-Watching directory '/usr/src/app' for changes.
-Express server listening on port 8081 in development mode.
-Warning: missing space before text for line 67 of jade file "/usr/src/app/streamup-teco-gui/views/createDevice.jade"
-Warning: missing space before text for line 105 of jade file "/usr/src/app/streamup-teco-gui/views/createDevice.jade"
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /createDevice?host=localhost&port=8080 [32m200 [0m302.256 ms - 15468[0m
-[0mGET /css/bootstrap.css [32m200 [0m6.430 ms - 141622[0m
-[0mGET /css/docs.min.css [32m200 [0m6.260 ms - 31684[0m
-[0mGET /css/dashboard.css [32m200 [0m4.755 ms - 1557[0m
-[0mGET /css/streamup.css [32m200 [0m4.856 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m4.775 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m3.588 ms - 16890[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m3.195 ms - 95957[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m2.898 ms - 35951[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m3.102 ms - 144082[0m
-[0mGET /js/n3-browser.js [32m200 [0m3.121 ms - 67458[0m
-[0mGET /js/select2.js [32m200 [0m3.096 ms - 147254[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m1.959 ms - 11768[0m
-[0mGET /js/jquery.flot.js [32m200 [0m1.515 ms - 122971[0m
-[0mGET /js/streamup.js [32m200 [0m1.979 ms - 5651[0m
-Warning: missing space before text for line 80 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 85 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 103 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 124 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /createSensor?host=localhost&port=8080 [32m200 [0m136.863 ms - 15832[0m
-[0mGET /css/docs.min.css [32m200 [0m1.864 ms - 31684[0m
-[0mGET /css/bootstrap.css [32m200 [0m1.839 ms - 141622[0m
-[0mGET /css/dashboard.css [32m200 [0m1.828 ms - 1557[0m
-[0mGET /css/streamup.css [32m200 [0m1.587 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m2.003 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m1.612 ms - 16890[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m1.849 ms - 95957[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m1.871 ms - 35951[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m1.878 ms - 144082[0m
-[0mGET /js/n3-browser.js [32m200 [0m1.802 ms - 67458[0m
-[0mGET /js/select2.js [32m200 [0m1.378 ms - 147254[0m
-[0mGET /js/jquery.flot.js [32m200 [0m1.022 ms - 122971[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m0.786 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m0.228 ms - 5651[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /css/select2.png [33m404 [0m90.813 ms - 12499[0m
-Warning: missing space before text for line 67 of jade file "/usr/src/app/streamup-teco-gui/views/createDevice.jade"
-Warning: missing space before text for line 105 of jade file "/usr/src/app/streamup-teco-gui/views/createDevice.jade"
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /createDevice?host=localhost&port=8080 [32m200 [0m101.061 ms - 15468[0m
-[0mGET /css/bootstrap.css [32m200 [0m0.501 ms - 141622[0m
-[0mGET /css/docs.min.css [32m200 [0m0.634 ms - 31684[0m
-[0mGET /css/dashboard.css [32m200 [0m0.535 ms - 1557[0m
-[0mGET /css/streamup.css [32m200 [0m0.224 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m0.221 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m0.293 ms - 16890[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m0.326 ms - 95957[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m0.460 ms - 144082[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m0.245 ms - 35951[0m
-[0mGET /js/n3-browser.js [32m200 [0m0.248 ms - 67458[0m
-[0mGET /js/select2.js [32m200 [0m0.238 ms - 147254[0m
-[0mGET /js/jquery.flot.js [32m200 [0m0.503 ms - 122971[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m0.835 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m1.673 ms - 5651[0m
-Warning: missing space before text for line 80 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 85 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 103 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 124 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /createSensor?host=localhost&port=8080 [32m200 [0m110.857 ms - 15832[0m
-[0mGET /css/bootstrap.css [32m200 [0m0.877 ms - 141622[0m
-[0mGET /css/docs.min.css [32m200 [0m0.965 ms - 31684[0m
-[0mGET /css/dashboard.css [32m200 [0m0.697 ms - 1557[0m
-[0mGET /css/streamup.css [32m200 [0m1.148 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m1.443 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m0.691 ms - 16890[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m0.482 ms - 95957[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m0.717 ms - 35951[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m1.088 ms - 144082[0m
-[0mGET /js/n3-browser.js [32m200 [0m0.718 ms - 67458[0m
-[0mGET /js/select2.js [32m200 [0m0.444 ms - 147254[0m
-[0mGET /js/jquery.flot.js [32m200 [0m0.646 ms - 122971[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m0.396 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m0.225 ms - 5651[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /css/select2.png [33m404 [0m69.935 ms - 12499[0m
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-crashing child
-Starting child process with 'node streamup-teco-gui/index.js'
-Express server listening on port 8081 in development mode.
-Warning: missing space before text for line 67 of jade file "/usr/src/app/streamup-teco-gui/views/createDevice.jade"
-Warning: missing space before text for line 105 of jade file "/usr/src/app/streamup-teco-gui/views/createDevice.jade"
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /createDevice?host=localhost&port=8080 [32m200 [0m209.555 ms - 15468[0m
-[0mGET /css/docs.min.css [32m200 [0m5.010 ms - 31684[0m
-[0mGET /css/bootstrap.css [32m200 [0m5.033 ms - 141622[0m
-[0mGET /css/streamup.css [32m200 [0m4.081 ms - 655[0m
-[0mGET /css/dashboard.css [32m200 [0m4.714 ms - 1557[0m
-[0mGET /css/select2.css [32m200 [0m4.727 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m2.688 ms - 16890[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m2.742 ms - 95957[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m2.428 ms - 35951[0m
-[0mGET /js/n3-browser.js [32m200 [0m2.205 ms - 67458[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m2.478 ms - 144082[0m
-[0mGET /js/select2.js [32m200 [0m1.618 ms - 147254[0m
-[0mGET /js/jquery.flot.js [32m200 [0m1.755 ms - 122971[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m2.224 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m1.674 ms - 5651[0m
-Warning: missing space before text for line 80 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 85 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 103 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 124 of jade file "/usr/src/app/streamup-teco-gui/views/createSensor.jade"
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /createSensor?host=localhost&port=8080 [32m200 [0m138.747 ms - 15832[0m
-[0mGET /css/docs.min.css [32m200 [0m1.683 ms - 31684[0m
-[0mGET /css/bootstrap.css [32m200 [0m1.747 ms - 141622[0m
-[0mGET /css/dashboard.css [32m200 [0m1.844 ms - 1557[0m
-[0mGET /css/streamup.css [32m200 [0m2.514 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m1.868 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m1.750 ms - 16890[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m1.465 ms - 95957[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m2.228 ms - 144082[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m2.880 ms - 35951[0m
-[0mGET /js/n3-browser.js [32m200 [0m2.477 ms - 67458[0m
-[0mGET /js/select2.js [32m200 [0m2.027 ms - 147254[0m
-[0mGET /js/jquery.flot.js [32m200 [0m0.805 ms - 122971[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m0.905 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m0.241 ms - 5651[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /css/select2.png [33m404 [0m84.962 ms - 12499[0m
-Warning: missing space before text for line 5 of jade file "/usr/src/app/streamup-teco-gui/views/insertValues.jade"
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/insertValues.jade"
-Warning: missing space before text for line 70 of jade file "/usr/src/app/streamup-teco-gui/views/insertValues.jade"
-Warning: missing space before text for line 75 of jade file "/usr/src/app/streamup-teco-gui/views/insertValues.jade"
-Warning: missing space before text for line 88 of jade file "/usr/src/app/streamup-teco-gui/views/insertValues.jade"
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /insertValues?host=localhost&port=8080 [32m200 [0m93.060 ms - 15005[0m
-[0mGET /css/bootstrap.css [32m200 [0m0.689 ms - 141622[0m
-[0mGET /css/docs.min.css [32m200 [0m0.791 ms - 31684[0m
-[0mGET /css/dashboard.css [32m200 [0m0.533 ms - 1557[0m
-[0mGET /css/streamup.css [32m200 [0m0.230 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m0.437 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m0.230 ms - 16890[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m0.236 ms - 95957[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m0.467 ms - 144082[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m0.326 ms - 35951[0m
-[0mGET /js/n3-browser.js [32m200 [0m0.313 ms - 67458[0m
-[0mGET /js/select2.js [32m200 [0m0.265 ms - 147254[0m
-[0mGET /js/jquery.flot.js [32m200 [0m0.279 ms - 122971[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m0.223 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m0.896 ms - 5651[0m
-[0mGET /css/jquery.datetimepicker.css [32m200 [0m1.650 ms - 17872[0m
-[0mGET /js/moment.min.js [32m200 [0m1.110 ms - 34436[0m
-[0mGET /js/jquery.datetimepicker.js [32m200 [0m1.686 ms - 79637[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /css/select2.png [33m404 [0m53.179 ms - 12499[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /css/select2.png [33m404 [0m54.315 ms - 12499[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /css/select2-spinner.gif [33m404 [0m69.312 ms - 12499[0m
-Warning: missing space before text for line 5 of jade file "/usr/src/app/streamup-teco-gui/views/getValues.jade"
-Warning: missing space before text for line 81 of jade file "/usr/src/app/streamup-teco-gui/views/getValues.jade"
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /getValues?host=localhost&port=8080 [32m200 [0m106.965 ms - 15933[0m
-[0mGET /css/bootstrap.css [32m200 [0m3.824 ms - 141622[0m
-[0mGET /css/dashboard.css [32m200 [0m2.110 ms - 1557[0m
-[0mGET /css/docs.min.css [32m200 [0m2.139 ms - 31684[0m
-[0mGET /css/streamup.css [32m200 [0m1.535 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m1.284 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m0.471 ms - 16890[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m0.261 ms - 95957[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m0.265 ms - 144082[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m0.328 ms - 35951[0m
-[0mGET /js/n3-browser.js [32m200 [0m0.874 ms - 67458[0m
-[0mGET /js/select2.js [32m200 [0m0.667 ms - 147254[0m
-[0mGET /js/jquery.flot.js [32m200 [0m0.382 ms - 122971[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m0.719 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m0.256 ms - 5651[0m
-[0mGET /css/jquery.datetimepicker.css [32m200 [0m0.323 ms - 17872[0m
-[0mGET /js/jquery.datetimepicker.js [32m200 [0m0.216 ms - 79637[0m
-[0mGET /js/moment.min.js [32m200 [0m0.210 ms - 34436[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /css/select2.png [33m404 [0m84.399 ms - 12499[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /css/select2.png [33m404 [0m52.248 ms - 12499[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /css/select2-spinner.gif [33m404 [0m46.932 ms - 12499[0m
-Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
-[0mGET /query?host=localhost&port=8080 [32m200 [0m166.016 ms - 20944[0m
-[0mGET /css/bootstrap.css [32m200 [0m0.656 ms - 141622[0m
-[0mGET /css/docs.min.css [32m200 [0m1.000 ms - 31684[0m
-[0mGET /css/dashboard.css [32m200 [0m0.599 ms - 1557[0m
-[0mGET /css/streamup.css [32m200 [0m0.317 ms - 655[0m
-[0mGET /css/select2.css [32m200 [0m0.220 ms - 19457[0m
-[0mGET /css/select2-bootstrap.css [32m200 [0m0.197 ms - 16890[0m
-[0mGET /js/jquery-1.11.3.min.js [32m200 [0m0.374 ms - 95957[0m
-[0mGET /js/handlebars-v3.0.3.js [32m200 [0m0.323 ms - 144082[0m
-[0mGET /js/bootstrap.min.js [32m200 [0m0.218 ms - 35951[0m
-[0mGET /js/n3-browser.js [32m200 [0m0.486 ms - 67458[0m
-[0mGET /js/select2.js [32m200 [0m0.252 ms - 147254[0m
-[0mGET /js/jquery.flot.js [32m200 [0m0.246 ms - 122971[0m
-[0mGET /js/jquery.flot.time.js [32m200 [0m0.219 ms - 11768[0m
-[0mGET /js/streamup.js [32m200 [0m0.258 ms - 5651[0m
+[0mGET /createDevice?host=localhost&port=8080 [32m200 [0m163.877 ms - 15468[0m
+[0mGET /css/docs.min.css [32m200 [0m1.663 ms - 31684[0m
+[0mGET /css/dashboard.css [32m200 [0m2.599 ms - 1557[0m
+[0mGET /css/bootstrap.css [32m200 [0m1.795 ms - 141622[0m
+[0mGET /css/streamup.css [32m200 [0m3.391 ms - 655[0m
+[0mGET /css/select2.css [32m200 [0m3.408 ms - 19457[0m
+[0mGET /css/select2-bootstrap.css [32m200 [0m2.851 ms - 16890[0m
+[0mGET /js/bootstrap.min.js [32m200 [0m3.217 ms - 35951[0m
+[0mGET /js/jquery-1.11.3.min.js [32m200 [0m3.393 ms - 95957[0m
+[0mGET /js/handlebars-v3.0.3.js [32m200 [0m3.283 ms - 144082[0m
+[0mGET /js/n3-browser.js [32m200 [0m2.571 ms - 67458[0m
+[0mGET /js/select2.js [32m200 [0m2.098 ms - 147254[0m
+[0mGET /js/jquery.flot.time.js [32m200 [0m1.680 ms - 11768[0m
+[0mGET /js/jquery.flot.js [32m200 [0m1.978 ms - 122971[0m
+[0mGET /js/streamup.js [32m200 [0m1.292 ms - 5651[0m
+[0mGET /fonts/glyphicons-halflings-regular.woff2 [32m200 [0m0.712 ms - 18028[0m
 Sending SIGTERM to child...
