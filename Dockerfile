@@ -3,6 +3,9 @@ MAINTAINER Michael Jacoby <michael_jacoby@hotmail.com>
 
 RUN apt-get update
 
+# install sudo
+RUN apt-get install sudo
+
 RUN npm install -g supervisor
 
 # Install supervisor for startup script management

@@ -1,182 +1,40 @@
-2015-07-30 08:02:49,786 CRIT Supervisor running as root (no user in config file)
-2015-07-30 08:02:49,787 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
-2015-07-30 08:02:49,792 INFO supervisord started with pid 1
-2015-07-30 08:02:50,795 INFO spawned: 'streamup-teco-server' with pid 8
-2015-07-30 08:02:50,796 INFO spawned: 'streamup_gui' with pid 9
-2015-07-30 08:02:52,587 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 08:02:52,587 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 08:02:56,090 WARN received SIGINT indicating exit request
-2015-07-30 08:02:56,090 INFO waiting for streamup-teco-server, streamup_gui to die
-2015-07-30 08:02:56,096 INFO stopped: streamup_gui (exit status 0)
-2015-07-30 08:02:56,096 CRIT reaped unknown pid 13)
-2015-07-30 08:02:56,101 INFO stopped: streamup-teco-server (exit status 0)
-2015-07-30 08:02:56,101 CRIT reaped unknown pid 12)
-2015-07-30 08:59:59,647 CRIT Supervisor running as root (no user in config file)
-2015-07-30 08:59:59,647 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
-2015-07-30 08:59:59,652 INFO supervisord started with pid 1
-2015-07-30 09:00:00,654 INFO spawned: 'streamup-teco-server' with pid 7
-2015-07-30 09:00:00,655 INFO spawned: 'streamup_gui' with pid 8
-2015-07-30 09:00:02,387 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:00:02,387 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:00:04,800 WARN received SIGINT indicating exit request
-2015-07-30 09:00:04,800 INFO waiting for streamup-teco-server, streamup_gui to die
-2015-07-30 09:00:04,806 INFO stopped: streamup_gui (exit status 0)
-2015-07-30 09:00:04,807 CRIT reaped unknown pid 12)
-2015-07-30 09:00:04,814 INFO stopped: streamup-teco-server (exit status 0)
-2015-07-30 09:00:04,814 CRIT reaped unknown pid 11)
-2015-07-30 09:03:52,985 CRIT Supervisor running as root (no user in config file)
-2015-07-30 09:03:52,985 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
-2015-07-30 09:03:52,989 INFO supervisord started with pid 1
-2015-07-30 09:03:53,992 INFO spawned: 'streamup-teco-server' with pid 7
-2015-07-30 09:03:53,993 INFO spawned: 'streamup_gui' with pid 8
-2015-07-30 09:03:55,929 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:03:55,929 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:04:37,791 WARN received SIGINT indicating exit request
-2015-07-30 09:04:37,792 INFO waiting for streamup-teco-server, streamup_gui to die
-2015-07-30 09:04:37,799 INFO stopped: streamup_gui (exit status 0)
-2015-07-30 09:04:37,799 CRIT reaped unknown pid 11)
-2015-07-30 09:04:37,806 INFO stopped: streamup-teco-server (exit status 0)
-2015-07-30 09:04:37,806 CRIT reaped unknown pid 12)
-2015-07-30 09:10:29,156 CRIT Supervisor running as root (no user in config file)
-2015-07-30 09:10:29,157 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
-2015-07-30 09:10:29,161 INFO supervisord started with pid 8
-2015-07-30 09:10:30,163 INFO spawned: 'streamup-teco-server' with pid 11
-2015-07-30 09:10:30,165 INFO spawned: 'streamup_gui' with pid 12
-2015-07-30 09:10:31,579 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:10:31,579 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:10:31,579 WARN received SIGINT indicating exit request
-2015-07-30 09:10:31,579 INFO waiting for streamup-teco-server, streamup_gui to die
-2015-07-30 09:10:31,849 INFO stopped: streamup_gui (exit status 0)
-2015-07-30 09:10:31,946 INFO stopped: streamup-teco-server (exit status 0)
-2015-07-30 09:11:29,399 CRIT Supervisor running as root (no user in config file)
-2015-07-30 09:11:29,399 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
-2015-07-30 09:11:29,403 INFO supervisord started with pid 32
-2015-07-30 09:11:30,406 INFO spawned: 'streamup-teco-server' with pid 35
-2015-07-30 09:11:30,407 INFO spawned: 'streamup_gui' with pid 36
-2015-07-30 09:11:32,203 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:11:32,203 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:11:33,163 WARN received SIGINT indicating exit request
-2015-07-30 09:11:33,164 INFO waiting for streamup-teco-server, streamup_gui to die
-2015-07-30 09:11:33,172 INFO stopped: streamup_gui (exit status 0)
-2015-07-30 09:11:33,179 INFO stopped: streamup-teco-server (exit status 0)
-2015-07-30 09:12:01,679 CRIT Supervisor running as root (no user in config file)
-2015-07-30 09:12:01,679 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
-2015-07-30 09:12:01,683 INFO supervisord started with pid 57
-2015-07-30 09:12:02,685 INFO spawned: 'streamup-teco-server' with pid 60
-2015-07-30 09:12:02,687 INFO spawned: 'streamup_gui' with pid 61
-2015-07-30 09:12:04,631 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:12:04,631 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:12:08,050 WARN received SIGINT indicating exit request
-2015-07-30 09:12:08,051 INFO waiting for streamup-teco-server, streamup_gui to die
-2015-07-30 09:12:08,055 INFO stopped: streamup_gui (exit status 0)
-2015-07-30 09:12:08,061 INFO stopped: streamup-teco-server (exit status 0)
-2015-07-30 09:14:40,084 CRIT Supervisor running as root (no user in config file)
-2015-07-30 09:14:40,084 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
-2015-07-30 09:14:40,089 INFO supervisord started with pid 83
-2015-07-30 09:14:41,091 INFO spawned: 'streamup-teco-server' with pid 86
-2015-07-30 09:14:41,092 INFO spawned: 'streamup_gui' with pid 87
-2015-07-30 09:14:42,169 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:14:42,169 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:14:42,170 WARN received SIGINT indicating exit request
-2015-07-30 09:14:42,170 INFO waiting for streamup-teco-server, streamup_gui to die
-2015-07-30 09:14:42,240 INFO stopped: streamup_gui (exit status 0)
-2015-07-30 09:14:42,343 INFO stopped: streamup-teco-server (exit status 0)
-2015-07-30 09:15:03,915 CRIT Supervisor running as root (no user in config file)
-2015-07-30 09:15:03,915 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
-2015-07-30 09:15:03,919 INFO supervisord started with pid 107
-2015-07-30 09:15:04,921 INFO spawned: 'streamup-teco-server' with pid 110
-2015-07-30 09:15:04,922 INFO spawned: 'streamup_gui' with pid 111
-2015-07-30 09:15:06,742 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:15:06,742 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:15:06,770 WARN received SIGINT indicating exit request
-2015-07-30 09:15:06,770 INFO waiting for streamup-teco-server, streamup_gui to die
-2015-07-30 09:15:06,775 INFO stopped: streamup_gui (exit status 0)
-2015-07-30 09:15:06,784 INFO stopped: streamup-teco-server (exit status 0)
-2015-07-30 09:15:37,534 CRIT Supervisor running as root (no user in config file)
-2015-07-30 09:15:37,534 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
-2015-07-30 09:15:37,539 INFO supervisord started with pid 131
-2015-07-30 09:15:38,541 INFO spawned: 'streamup-teco-server' with pid 134
-2015-07-30 09:15:38,543 INFO spawned: 'streamup_gui' with pid 135
-2015-07-30 09:15:40,272 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:15:40,272 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:15:40,578 WARN received SIGINT indicating exit request
-2015-07-30 09:15:40,578 INFO waiting for streamup-teco-server, streamup_gui to die
-2015-07-30 09:15:40,585 INFO stopped: streamup_gui (exit status 0)
-2015-07-30 09:15:40,591 INFO stopped: streamup-teco-server (exit status 0)
-2015-07-30 09:41:08,030 CRIT Supervisor running as root (no user in config file)
-2015-07-30 09:41:08,030 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
-2015-07-30 09:41:08,034 INFO supervisord started with pid 2240
-2015-07-30 09:41:09,037 INFO spawned: 'streamup-teco-server' with pid 2243
-2015-07-30 09:41:09,038 INFO spawned: 'streamup_gui' with pid 2244
-2015-07-30 09:41:10,817 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:41:10,817 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:41:22,167 WARN received SIGINT indicating exit request
-2015-07-30 09:41:22,167 INFO waiting for streamup-teco-server, streamup_gui to die
-2015-07-30 09:41:22,177 INFO stopped: streamup_gui (exit status 0)
-2015-07-30 09:41:22,184 INFO stopped: streamup-teco-server (exit status 0)
-2015-07-30 09:42:20,489 CRIT Supervisor running as root (no user in config file)
-2015-07-30 09:42:20,489 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
-2015-07-30 09:42:20,493 INFO supervisord started with pid 2241
-2015-07-30 09:42:21,496 INFO spawned: 'streamup-teco-server' with pid 2244
-2015-07-30 09:42:21,497 INFO spawned: 'streamup_gui' with pid 2245
-2015-07-30 09:42:23,207 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:42:23,207 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:42:24,566 WARN received SIGINT indicating exit request
-2015-07-30 09:42:24,566 INFO waiting for streamup-teco-server, streamup_gui to die
-2015-07-30 09:42:24,573 INFO stopped: streamup_gui (exit status 0)
-2015-07-30 09:42:24,581 INFO stopped: streamup-teco-server (exit status 0)
-2015-07-30 09:43:34,947 CRIT Supervisor running as root (no user in config file)
-2015-07-30 09:43:34,947 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
-2015-07-30 09:43:34,951 INFO supervisord started with pid 2240
-2015-07-30 09:43:35,954 INFO spawned: 'streamup-teco-server' with pid 2243
-2015-07-30 09:43:35,955 INFO spawned: 'streamup_gui' with pid 2244
-2015-07-30 09:43:37,779 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:43:37,779 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:45:15,060 WARN received SIGINT indicating exit request
-2015-07-30 09:45:15,061 INFO waiting for streamup-teco-server, streamup_gui to die
-2015-07-30 09:45:15,068 INFO stopped: streamup_gui (exit status 0)
-2015-07-30 09:45:15,076 INFO stopped: streamup-teco-server (exit status 0)
-2015-07-30 09:45:20,419 CRIT Supervisor running as root (no user in config file)
-2015-07-30 09:45:20,420 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
-2015-07-30 09:45:20,424 INFO supervisord started with pid 42
-2015-07-30 09:45:21,426 INFO spawned: 'streamup-teco-server' with pid 45
-2015-07-30 09:45:21,428 INFO spawned: 'streamup_gui' with pid 46
-2015-07-30 09:45:22,482 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:45:22,482 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:45:27,060 WARN received SIGINT indicating exit request
-2015-07-30 09:45:27,060 INFO waiting for streamup-teco-server, streamup_gui to die
-2015-07-30 09:45:27,064 INFO stopped: streamup_gui (exit status 0)
-2015-07-30 09:45:27,068 INFO stopped: streamup-teco-server (exit status 0)
-2015-07-30 09:45:57,276 CRIT Supervisor running as root (no user in config file)
-2015-07-30 09:45:57,276 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
-2015-07-30 09:45:57,280 INFO supervisord started with pid 55
-2015-07-30 09:45:58,283 INFO spawned: 'streamup-teco-server' with pid 58
-2015-07-30 09:45:58,284 INFO spawned: 'streamup_gui' with pid 59
-2015-07-30 09:45:59,282 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:45:59,350 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:46:01,116 WARN received SIGINT indicating exit request
-2015-07-30 09:46:01,116 INFO waiting for streamup-teco-server, streamup_gui to die
-2015-07-30 09:46:01,120 INFO stopped: streamup_gui (exit status 0)
-2015-07-30 09:46:01,125 INFO stopped: streamup-teco-server (exit status 0)
-2015-07-30 09:50:01,025 CRIT Supervisor running as root (no user in config file)
-2015-07-30 09:50:01,025 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
-2015-07-30 09:50:01,029 INFO supervisord started with pid 2241
-2015-07-30 09:50:02,032 INFO spawned: 'streamup-teco-server' with pid 2244
-2015-07-30 09:50:02,033 INFO spawned: 'streamup_gui' with pid 2245
-2015-07-30 09:50:03,921 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:50:03,921 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:51:42,033 WARN received SIGINT indicating exit request
-2015-07-30 09:51:42,033 INFO waiting for streamup-teco-server, streamup_gui to die
-2015-07-30 09:51:42,036 INFO stopped: streamup_gui (exit status 0)
-2015-07-30 09:51:42,042 INFO stopped: streamup-teco-server (exit status 0)
-2015-07-30 09:54:44,926 CRIT Supervisor running as root (no user in config file)
-2015-07-30 09:54:44,926 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
-2015-07-30 09:54:44,930 INFO supervisord started with pid 4448
-2015-07-30 09:54:45,933 INFO spawned: 'streamup-teco-server' with pid 4451
-2015-07-30 09:54:45,934 INFO spawned: 'streamup_gui' with pid 4452
-2015-07-30 09:54:47,677 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:54:47,677 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2015-07-30 09:55:13,839 WARN received SIGINT indicating exit request
-2015-07-30 09:55:13,839 INFO waiting for streamup-teco-server, streamup_gui to die
-2015-07-30 09:55:13,846 INFO stopped: streamup_gui (exit status 0)
-2015-07-30 09:55:13,852 INFO stopped: streamup-teco-server (exit status 0)
+2015-07-30 12:20:51,618 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-30 12:20:51,623 INFO supervisord started with pid 2265
+2015-07-30 12:20:52,626 INFO spawned: 'streamup-teco-server' with pid 2268
+2015-07-30 12:20:52,629 INFO spawned: 'streamup_gui' with pid 2269
+2015-07-30 12:20:54,545 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 12:20:54,545 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 12:21:49,999 WARN received SIGINT indicating exit request
+2015-07-30 12:21:50,000 INFO waiting for streamup-teco-server, streamup_gui to die
+2015-07-30 12:21:50,006 INFO stopped: streamup_gui (exit status 0)
+2015-07-30 12:21:50,015 INFO stopped: streamup-teco-server (exit status 0)
+2015-07-30 12:32:45,036 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-30 12:32:45,041 INFO supervisord started with pid 2266
+2015-07-30 12:32:46,043 INFO spawned: 'streamup-teco-server' with pid 2269
+2015-07-30 12:32:46,045 INFO spawned: 'streamup_gui' with pid 2270
+2015-07-30 12:32:48,017 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 12:32:48,017 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 12:32:54,644 WARN received SIGINT indicating exit request
+2015-07-30 12:32:54,644 INFO waiting for streamup-teco-server, streamup_gui to die
+2015-07-30 12:32:54,652 INFO stopped: streamup_gui (exit status 0)
+2015-07-30 12:32:54,659 INFO stopped: streamup-teco-server (exit status 0)
+2015-07-30 12:33:43,262 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-30 12:33:43,267 INFO supervisord started with pid 4526
+2015-07-30 12:33:44,269 INFO spawned: 'streamup-teco-server' with pid 4529
+2015-07-30 12:33:44,271 INFO spawned: 'streamup_gui' with pid 4530
+2015-07-30 12:33:46,210 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 12:33:46,210 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 12:34:37,330 WARN received SIGINT indicating exit request
+2015-07-30 12:34:37,330 INFO waiting for streamup-teco-server, streamup_gui to die
+2015-07-30 12:34:37,336 INFO stopped: streamup_gui (exit status 0)
+2015-07-30 12:34:37,344 INFO stopped: streamup-teco-server (exit status 0)
+2015-07-30 12:35:58,025 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-30 12:35:58,029 INFO supervisord started with pid 2265
+2015-07-30 12:35:59,032 INFO spawned: 'streamup-teco-server' with pid 2268
+2015-07-30 12:35:59,033 INFO spawned: 'streamup_gui' with pid 2269
+2015-07-30 12:36:00,978 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 12:36:00,979 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 12:36:08,970 WARN received SIGINT indicating exit request
+2015-07-30 12:36:08,970 INFO waiting for streamup-teco-server, streamup_gui to die
+2015-07-30 12:36:08,977 INFO stopped: streamup_gui (exit status 0)
+2015-07-30 12:36:08,984 INFO stopped: streamup-teco-server (exit status 0)
