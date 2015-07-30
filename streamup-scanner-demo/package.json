@@ -1,14 +1,13 @@
 {
-  "name": "streamup-teco-gui",
+  "name": "streamup-scanner-demo",
   "version": "0.0.1",
-  "description": "GUI for StreamUp",
+  "description": "Demo combining StreamUp and scanner.js",
   "main": "index.js",
   "author": "Michael Jacoby",
   "license": "MIT",
   "dependencies": {
     "express": "^4.13.1",
-    "jade": "^1.11.0",
-    "jquery": "*",
+    "jquery": "^2.1.4",
     "morgan": "^1.6.1",
     "path": "^0.11.14",
     "request": "^2.60.0"

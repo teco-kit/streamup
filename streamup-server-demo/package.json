@@ -1,8 +1,8 @@
 {
-  "name": "streamup-demo",
+  "name": "streamup-server-demo",
   "version": "0.1.0",
   "description": "A StreamUp demo running the TECO REST interface and the TECO GUI",
-  "main": "src/streamup-demo.js",
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "https://jacoby@projects.teco.edu/streamup.git"
@@ -20,7 +20,7 @@
     "TECO"
   ],
   "dependencies": {
-    "streamup": "file:../streamup-server-teco"
+    "streamup-server-teco": "file:../streamup-server-teco"
   },
   "author": "Michael Jacoby <jacoby@teco.edu> (http://www.teco.edu)",
   "license": "MIT"

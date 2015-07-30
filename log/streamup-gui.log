@@ -65,3 +65,292 @@ Watching directory '/usr/src/app' for changes.
 Press rs for restarting the process.
 Express server listening on port 8081 in development mode.
 Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Press rs for restarting the process.
+Express server listening on port 8081 in development mode.
+Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+[0mGET / [32m200 [0m287.443 ms - 30193[0m
+[0mGET /css/bootstrap.css [32m200 [0m6.361 ms - 141622[0m
+[0mGET /css/docs.min.css [32m200 [0m4.986 ms - 31684[0m
+[0mGET /css/dashboard.css [32m200 [0m5.183 ms - 1557[0m
+[0mGET /css/streamup.css [32m200 [0m5.302 ms - 655[0m
+[0mGET /css/select2.css [32m200 [0m5.316 ms - 19457[0m
+[0mGET /css/select2-bootstrap.css [32m200 [0m5.339 ms - 16890[0m
+[0mGET /js/bootstrap.min.js [32m200 [0m1.835 ms - 35951[0m
+[0mGET /js/jquery-1.11.3.min.js [32m200 [0m1.915 ms - 95957[0m
+[0mGET /js/n3-browser.js [32m200 [0m1.880 ms - 67458[0m
+[0mGET /js/handlebars-v3.0.3.js [32m200 [0m1.849 ms - 144082[0m
+[0mGET /js/jquery.flot.js [32m200 [0m1.534 ms - 122971[0m
+[0mGET /js/select2.js [32m200 [0m1.815 ms - 147254[0m
+[0mGET /js/jquery.flot.time.js [32m200 [0m1.732 ms - 11768[0m
+[0mGET /js/streamup.js [32m200 [0m1.179 ms - 5651[0m
+[0mGET /img/upart.jpg [32m200 [0m0.375 ms - 116391[0m
+Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Press rs for restarting the process.
+Express server listening on port 8081 in development mode.
+Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Press rs for restarting the process.
+Express server listening on port 8081 in development mode.
+Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Press rs for restarting the process.
+Express server listening on port 8081 in development mode.
+Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Press rs for restarting the process.
+Express server listening on port 8081 in development mode.
+Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+[0mGET / [32m200 [0m279.189 ms - 30193[0m
+[0mGET /css/bootstrap.css [32m200 [0m4.949 ms - 141622[0m
+[0mGET /css/docs.min.css [32m200 [0m5.131 ms - 31684[0m
+[0mGET /css/dashboard.css [32m200 [0m5.620 ms - 1557[0m
+[0mGET /css/streamup.css [32m200 [0m5.911 ms - 655[0m
+[0mGET /css/select2.css [32m200 [0m6.050 ms - 19457[0m
+[0mGET /css/select2-bootstrap.css [32m200 [0m6.205 ms - 16890[0m
+[0mGET /js/bootstrap.min.js [32m200 [0m2.606 ms - 35951[0m
+[0mGET /js/jquery-1.11.3.min.js [32m200 [0m2.491 ms - 95957[0m
+[0mGET /js/n3-browser.js [32m200 [0m2.853 ms - 67458[0m
+[0mGET /js/handlebars-v3.0.3.js [32m200 [0m2.509 ms - 144082[0m
+[0mGET /js/jquery.flot.js [32m200 [0m2.886 ms - 122971[0m
+[0mGET /js/select2.js [32m200 [0m2.961 ms - 147254[0m
+[0mGET /js/jquery.flot.time.js [32m200 [0m2.012 ms - 11768[0m
+[0mGET /js/streamup.js [32m200 [0m1.353 ms - 5651[0m
+[0mGET /img/upart.jpg [32m200 [0m0.699 ms - 116391[0m
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Press rs for restarting the process.
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Press rs for restarting the process.
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+[0mGET / [32m200 [0m286.984 ms - 30193[0m
+[0mGET /css/bootstrap.css [32m200 [0m3.753 ms - 141622[0m
+[0mGET /css/docs.min.css [32m200 [0m3.759 ms - 31684[0m
+[0mGET /css/dashboard.css [32m200 [0m4.110 ms - 1557[0m
+[0mGET /css/streamup.css [32m200 [0m4.511 ms - 655[0m
+[0mGET /css/select2.css [32m200 [0m4.847 ms - 19457[0m
+[0mGET /css/select2-bootstrap.css [32m200 [0m4.955 ms - 16890[0m
+[0mGET /js/jquery-1.11.3.min.js [32m200 [0m2.397 ms - 95957[0m
+[0mGET /js/bootstrap.min.js [32m200 [0m2.216 ms - 35951[0m
+[0mGET /js/n3-browser.js [32m200 [0m1.775 ms - 67458[0m
+[0mGET /js/handlebars-v3.0.3.js [32m200 [0m2.276 ms - 144082[0m
+[0mGET /js/jquery.flot.js [32m200 [0m1.825 ms - 122971[0m
+[0mGET /js/select2.js [32m200 [0m1.746 ms - 147254[0m
+[0mGET /js/jquery.flot.time.js [32m200 [0m2.146 ms - 11768[0m
+[0mGET /js/streamup.js [32m200 [0m1.935 ms - 5651[0m
+[0mGET /img/upart.jpg [32m200 [0m0.468 ms - 116391[0m
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+[0mGET /test.html [33m404 [0m169.118 ms - 12499[0m
+[0mGET /css/bootstrap.css [32m200 [0m5.237 ms - 141622[0m
+[0mGET /css/docs.min.css [32m200 [0m2.061 ms - 31684[0m
+[0mGET /css/dashboard.css [32m200 [0m2.331 ms - 1557[0m
+[0mGET /css/streamup.css [32m200 [0m1.878 ms - 655[0m
+[0mGET /css/select2.css [32m200 [0m2.024 ms - 19457[0m
+[0mGET /css/select2-bootstrap.css [32m200 [0m2.095 ms - 16890[0m
+[0mGET /js/bootstrap.min.js [32m200 [0m1.809 ms - 35951[0m
+[0mGET /js/handlebars-v3.0.3.js [32m200 [0m1.800 ms - 144082[0m
+[0mGET /js/jquery.flot.time.js [32m200 [0m0.581 ms - 11768[0m
+[0mGET /js/n3-browser.js [32m200 [0m0.268 ms - 67458[0m
+[0mGET /js/select2.js [32m200 [0m0.227 ms - 147254[0m
+[0mGET /js/streamup.js [32m200 [0m0.817 ms - 5651[0m
+[0mGET /js/jquery.flot.js [32m200 [0m0.235 ms - 122971[0m
+[0mGET /js/jquery-1.11.3.min.js [32m200 [0m1.906 ms - 95957[0m
+Warning: missing space before text for line 6 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+Warning: missing space before text for line 9 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+Warning: missing space before text for line 11 of jade file "/usr/src/app/streamup-teco-gui/views/layout.jade"
+[0mGET /favicon.ico [33m404 [0m69.474 ms - 12499[0m
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+Sending SIGTERM to child...

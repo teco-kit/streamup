@@ -18,7 +18,7 @@ shell:
 	docker run --rm -it --name $(NAME)-$(INSTANCE) -i -t $(PORTS) $(VOLUMES) $(NS)/$(REPO):$(VERSION) /bin/bash
 
 browserify: 
-	docker run --rm -it --name $(NAME)-$(INSTANCE) -i -t $(PORTS) $(VOLUMES) $(NS)/$(REPO):$(VERSION) browserify streamup/src/index.js --standalone StreamUp > streamup/src/bin/StreamUp.standalone.js 
+	docker run --rm -it --name $(NAME)-$(INSTANCE) -i -t $(PORTS) $(VOLUMES) $(NS)/$(REPO):$(VERSION) browserify streamup/src/index.js --standalone StreamUp > streamup/bin/StreamUp.standalone.js 
 
 run:
 	docker run --rm -it --name $(NAME)-$(INSTANCE) $(PORTS) $(VOLUMES) $(NS)/$(REPO):$(VERSION)

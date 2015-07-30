@@ -15,11 +15,22 @@ fi
 # run rest of the script as dummy		
 sudo -u dummy bash << EOF
 
+# installing streamup-scanner demo
+cd streamup-scanner-demo
+npm install
+cd ..
+
+# installing streamup-server-demo
 # init npm like described here https://github.com/timoxley/linklocal/issues/14
 cd streamup-server-demo
 npm install
 linklocal -r
 linklocal list -r | xargs npm install
+cd ..
+
+# installing streamup-teco-gui
+cd streamup-teco-gui
+npm install
 cd ..
 
 # start server 

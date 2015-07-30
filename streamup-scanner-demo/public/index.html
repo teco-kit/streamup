@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<script src="js/jquery-2.1.1.js"></script>
+		<script src="js/scanners.js"></script>
+		<script src="js/StreamUp.standalone.js"></script>
+	</head>
+	<body>
+    Listing of devices:
+    <div id='device_list'></div>
+    <script>
+	      var devicesFound = [];
+	      var app = new scanner([{driver:"js/driver/browserDeviceMotion.js"}]);
+
+	      app.onDeviceAdded(function(device) {
+	        //Add the found devices to our global variable 'devicesFound'
+	        devicesFound.push(device);
+	        for(device in devicesFound) {
+	        	var text = device.name + " | ";
+	        	for (var property in device.services) {
+				        text += property + ",";
+				}
+	          $('#device_list').append(text + "</br>");
+	        }	        
+	      });
+
+	      app.onDeviceUpdated(function(device) {
+	      	var text = device.name + " | ";
+	        	for (var property in device.services) {
+				        text += property + ",";
+				}
+				alert(text);
+	      	device.services.onAccelerometer(function(data) {
+				alert('data: ' + JSON.stringify(data));
+	      	});
+	      })
+
+	      //Start scanning
+	      app.startScan();
+    </script>
+
+  </body>
+<html>

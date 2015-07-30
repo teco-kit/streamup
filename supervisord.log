@@ -38,3 +38,91 @@
 2015-07-30 12:36:08,970 INFO waiting for streamup-teco-server, streamup_gui to die
 2015-07-30 12:36:08,977 INFO stopped: streamup_gui (exit status 0)
 2015-07-30 12:36:08,984 INFO stopped: streamup-teco-server (exit status 0)
+2015-07-30 13:14:41,867 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-30 13:14:41,872 INFO supervisord started with pid 2265
+2015-07-30 13:14:42,874 INFO spawned: 'streamup-teco-server' with pid 2268
+2015-07-30 13:14:42,876 INFO spawned: 'streamup_gui' with pid 2269
+2015-07-30 13:14:44,734 INFO success: streamup-teco-server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:14:44,735 INFO success: streamup_gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:15:51,911 WARN received SIGINT indicating exit request
+2015-07-30 13:15:51,912 INFO waiting for streamup-teco-server, streamup_gui to die
+2015-07-30 13:15:51,919 INFO stopped: streamup_gui (exit status 0)
+2015-07-30 13:15:51,926 INFO stopped: streamup-teco-server (exit status 0)
+2015-07-30 13:17:53,321 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-30 13:17:53,323 INFO supervisord started with pid 2266
+2015-07-30 13:17:54,325 INFO spawned: 'streamup-server-demo' with pid 2269
+2015-07-30 13:17:54,329 INFO spawned: 'streamup-scanner-demo' with pid 2270
+2015-07-30 13:17:54,331 INFO spawned: 'streamup-gui' with pid 2271
+2015-07-30 13:17:55,338 INFO success: streamup-server-demo entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:17:55,338 INFO success: streamup-scanner-demo entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:17:55,338 INFO success: streamup-gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:18:41,886 WARN received SIGINT indicating exit request
+2015-07-30 13:18:41,886 INFO waiting for streamup-server-demo, streamup-scanner-demo, streamup-gui to die
+2015-07-30 13:18:41,891 INFO stopped: streamup-gui (exit status 0)
+2015-07-30 13:18:41,902 INFO stopped: streamup-scanner-demo (exit status 0)
+2015-07-30 13:18:41,909 INFO stopped: streamup-server-demo (exit status 0)
+2015-07-30 13:21:58,515 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-30 13:21:58,520 INFO supervisord started with pid 2277
+2015-07-30 13:21:59,523 INFO spawned: 'streamup-server-demo' with pid 2280
+2015-07-30 13:21:59,524 INFO spawned: 'streamup-scanner-demo' with pid 2281
+2015-07-30 13:21:59,526 INFO spawned: 'streamup-gui' with pid 2282
+2015-07-30 13:22:00,546 INFO success: streamup-server-demo entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:22:00,547 INFO success: streamup-scanner-demo entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:22:00,547 INFO success: streamup-gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:22:29,549 WARN received SIGINT indicating exit request
+2015-07-30 13:22:29,549 INFO waiting for streamup-server-demo, streamup-scanner-demo, streamup-gui to die
+2015-07-30 13:22:29,556 INFO stopped: streamup-gui (exit status 0)
+2015-07-30 13:22:29,561 INFO stopped: streamup-scanner-demo (exit status 0)
+2015-07-30 13:22:29,569 INFO stopped: streamup-server-demo (exit status 0)
+2015-07-30 13:24:56,293 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-30 13:24:56,298 INFO supervisord started with pid 2277
+2015-07-30 13:24:57,301 INFO spawned: 'streamup-server-demo' with pid 2280
+2015-07-30 13:24:57,302 INFO spawned: 'streamup-scanner-demo' with pid 2281
+2015-07-30 13:24:57,303 INFO spawned: 'streamup-gui' with pid 2282
+2015-07-30 13:24:58,303 INFO success: streamup-server-demo entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:24:58,303 INFO success: streamup-scanner-demo entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:24:58,304 INFO success: streamup-gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:25:21,147 WARN received SIGINT indicating exit request
+2015-07-30 13:25:21,147 INFO waiting for streamup-server-demo, streamup-scanner-demo, streamup-gui to die
+2015-07-30 13:25:21,153 INFO stopped: streamup-gui (exit status 0)
+2015-07-30 13:25:21,160 INFO stopped: streamup-scanner-demo (exit status 0)
+2015-07-30 13:25:21,167 INFO stopped: streamup-server-demo (exit status 0)
+2015-07-30 13:28:04,334 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-30 13:28:04,339 INFO supervisord started with pid 2277
+2015-07-30 13:28:05,342 INFO spawned: 'streamup-server-demo' with pid 2280
+2015-07-30 13:28:05,343 INFO spawned: 'streamup-scanner-demo' with pid 2281
+2015-07-30 13:28:05,345 INFO spawned: 'streamup-gui' with pid 2282
+2015-07-30 13:28:06,682 INFO success: streamup-server-demo entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:28:06,682 INFO success: streamup-scanner-demo entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:28:06,682 INFO success: streamup-gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:36:44,583 WARN received SIGINT indicating exit request
+2015-07-30 13:36:44,583 INFO waiting for streamup-server-demo, streamup-scanner-demo, streamup-gui to die
+2015-07-30 13:36:44,591 INFO stopped: streamup-gui (exit status 0)
+2015-07-30 13:36:44,596 INFO stopped: streamup-scanner-demo (exit status 0)
+2015-07-30 13:36:44,603 INFO stopped: streamup-server-demo (exit status 0)
+2015-07-30 13:38:06,674 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-30 13:38:06,679 INFO supervisord started with pid 2277
+2015-07-30 13:38:07,681 INFO spawned: 'streamup-server-demo' with pid 2280
+2015-07-30 13:38:07,682 INFO spawned: 'streamup-scanner-demo' with pid 2281
+2015-07-30 13:38:07,684 INFO spawned: 'streamup-gui' with pid 2282
+2015-07-30 13:38:09,637 INFO success: streamup-server-demo entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:38:09,637 INFO success: streamup-scanner-demo entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:38:09,637 INFO success: streamup-gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:44:00,771 WARN received SIGINT indicating exit request
+2015-07-30 13:44:00,771 INFO waiting for streamup-server-demo, streamup-scanner-demo, streamup-gui to die
+2015-07-30 13:44:00,778 INFO stopped: streamup-gui (exit status 0)
+2015-07-30 13:44:00,786 INFO stopped: streamup-scanner-demo (exit status 0)
+2015-07-30 13:44:00,792 INFO stopped: streamup-server-demo (exit status 0)
+2015-07-30 13:48:20,694 WARN Included extra file "/etc/supervisor/conf.d/streamup-servers.conf" during parsing
+2015-07-30 13:48:20,699 INFO supervisord started with pid 2277
+2015-07-30 13:48:21,702 INFO spawned: 'streamup-server-demo' with pid 2280
+2015-07-30 13:48:21,703 INFO spawned: 'streamup-scanner-demo' with pid 2281
+2015-07-30 13:48:21,705 INFO spawned: 'streamup-gui' with pid 2282
+2015-07-30 13:48:22,702 INFO success: streamup-server-demo entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:48:22,702 INFO success: streamup-scanner-demo entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 13:48:22,734 INFO success: streamup-gui entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2015-07-30 15:25:16,224 WARN received SIGINT indicating exit request
+2015-07-30 15:25:16,224 INFO waiting for streamup-server-demo, streamup-scanner-demo, streamup-gui to die
+2015-07-30 15:25:16,231 INFO stopped: streamup-gui (exit status 0)
+2015-07-30 15:25:16,238 INFO stopped: streamup-scanner-demo (exit status 0)
+2015-07-30 15:25:16,244 INFO stopped: streamup-server-demo (exit status 0)
