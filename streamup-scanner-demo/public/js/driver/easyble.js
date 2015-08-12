@@ -32,6 +32,12 @@ evothings.easyble = (function()
     /** Internal properties and functions. */
     var internal = {};
 
+    internal.filter = [];
+    internal.TTL;
+    internal.sensorFrequency;
+
+    internal.deviceTimeout = [];
+
     /** Internal variable used to track reading of service data. */
     var readCounter = 0;
 
@@ -41,9 +47,13 @@ evothings.easyble = (function()
     /** Table of connected devices. */
     internal.connectedDevices = {};
 
+    // Holds as the name stays for the methods of the driver like start and stop scan etc.
+    easyble.driverMethods = {};
 
     /** Mein eigener Speicher für die Devices **/
     internal.myOwnDevices = {};
+
+    internal.filteredDevices = [];
 
     /** Device Treiber Methoden **/
     internal.deviceDrivers = [
@@ -60,6 +70,11 @@ evothings.easyble = (function()
 
     // globale interne variable die den storing fucntion abspeichert
     internal.globalWin;
+
+    // globale function fon der scanner api fürs entfernen von devices, wenn keins sich meldet
+    internal.globalRemoveFunction;
+
+    easyble.driverMethods = {};
 
     /**
      * Set to true to report found devices only once.
@@ -82,10 +97,41 @@ evothings.easyble = (function()
         serviceFilter = services;
     };
 
+    easyble.onDeviceAdded = function(callback, options) {
+    	callback = typeof callback == "function" ? callback : function(data) { console.log("No callback passed to onDeviceAdded. Standard callback used. Data: " + data); };
+    	internal.globalWin = callback;
+
+    	internal.globalOptions = options;
+
+    	//Setting options for TTL
+    	if(options && options.TTL) {
+    	   internal.TTL = options.TTL;
+    	   console.log("TTL value set to: " + options.TTL);
+    	}
+
+    	//Setting filter
+    	if(options && options.filter) {
+    	   if(options.filter instanceof Array) {
+    	      internal.filter = options.filter;
+    	      console.log("Filter set to: " + JSON.stringify(options.filter));
+    	   } else {
+    	      internal.filter.push(options.filter);
+    	      console.log("Filter set to: " + options.filter);
+    	   }
+
+    	}
+
+    	//Setting frequency
+    	if(options && options.frequency) {
+    	   internal.sensorFrequency = options.frequency;
+    	   console.log("Frequency set to: " + options.frequency);
+    	}
+    }
+
     /** Start scanning for devices. */
-    easyble.startScan = function(win, fail)
+    easyble.driverMethods.startScan = function()
     {
-        easyble.stopScan();
+        easyble.driverMethods.stopScan();
         internal.knownDevices = {};
         evothings.ble.startScan(function(device)
             {
@@ -100,8 +146,9 @@ evothings.easyble = (function()
                 // Check if we already have got the device.
                 var existingDevice = internal.knownDevices[device.address]
                 //check if for the given device.name a driver exists
-
-				internal.globalWin = win;
+                if(!internal.globalWin) {
+		   internal.globalWin = win;
+                }
 
 
                 if (existingDevice)
@@ -114,67 +161,89 @@ evothings.easyble = (function()
                     existingDevice.name = device.name;
                     existingDevice.scanRecord = device.scanRecord;
                     existingDevice.advertisementData = device.advertisementData;
-                    win(existingDevice);
+                    internal.deviceTimeout[device.address] = device.address;
+
+
+                    //timeout function not working
+                    /*if(internal.TTL) {
+                      if(internal.filter.length > 0) {
+                        if(internal.filteredDevices[device.address]) {
+                          clearTimeout(internal.filteredDevices[device.address]);
+                          internal.filteredDevices[device.address] = setTimeout(function() {internal.globalRemoveFunction(device);}, internal.TTL);
+                        }
+                      } else {
+                        clearTimeout(internal.deviceTimeout[device.address]);
+                        internal.deviceTimeout[device.address] = setTimeout(function() {console.log("timing out");}, internal.TTL);
+
+                      }
+                    }*/
                     return;
                 }
-                //if(device && device.name && device.name.indexOf("Sensor Tag") > -1 && !device.services) {
-                	//if(!existingDevice.services) {
-                		//Hole den entsprechenden Treiber für den TI Sensor Tag
-						for(var driver in internal.deviceDrivers) {
-							if(!internal.deviceDrivers[driver].driverObject) {
-								$.ajax({
-									  url: internal.deviceDrivers[driver].driver,
-									  dataType: "script",
-									  async: false,
-									  error: function(jqxhr, status, error) {
-										console.log("Loading device driver error: " + error);
 
-									  },
-									  success: function(data) {
-										internal.deviceDrivers[driver].driverObject = {};
-										internal.deviceDrivers[driver].driverObject = eval(data);
+            //Hole den entsprechenden Treiber für den TI Sensor Tag
+		for(var driver in internal.deviceDrivers) {
+		if(!internal.deviceDrivers[driver].driverObject) {
+			$.ajax({
+				  url: internal.deviceDrivers[driver].driver,
+				  dataType: "script",
+				  async: false,
+				  error: function(jqxhr, status, error) {
+					console.log("Loading device driver error: " + error);
 
-									  }
+				  },
+				  success: function(data) {
+					internal.deviceDrivers[driver].driverObject = {};
+					internal.deviceDrivers[driver].driverObject = eval(data);
 
-
-									});
+				  }
 
 
-								}
+				});
+
+
+			}
 						}
-					//}
-                //}
-
-
-
-                //device = internal.addDeviceMethods(device);
-
                 // New device, add to known devices.
                 internal.knownDevices[device.address] = device;
 
                 // Add methods to the device info object.
                 internal.addMethodsToDeviceObject(device);
                 // Call callback function with device info.
-				//
+
                 internal.connectToDevice(
                 	device,
-                	win,
+                	//win,
+                  null,
                 	function(error){console.log("Could not connect. " + JSON.stringify(error));},
                 	true,
                 	true
                 );
-
-
                 //win(device);
             },
             function(errorCode)
             {
-                fail(errorCode);
+              console.log("Error scanning for Bluetooth-Low Energy devices.");
+                //fail(errorCode);
             });
     };
 
+    easyble.onDeviceRemoved = function(callback) {
+      if(typeof callback === "function") {
+        internal.globalRemoveFunction = callback;
+      } else {
+        internal.globalRemoveFunction = function(dev) {console.log("This is a standard callback. Device: " + dev.nam + " " + dev.address + " was removed.");};
+      }
+    }
+
     /** Stop scanning for devices. */
-    easyble.stopScan = function()
+    easyble.driverMethods.stopScan = function()
+    {
+        evothings.ble.stopScan();
+    };
+
+    /** Stop scanning for devices. */
+
+    easyble.driverMethods.stopScan = function()
     {
         evothings.ble.stopScan();
     };
@@ -371,6 +440,7 @@ evothings.easyble = (function()
             {
                 for (var i in advertisementData)
                 {
+                  console.log(advertisementData[i]);
                     for (var j in serviceFilter)
                     {
                         if (advertisementData[i].toLowerCase() ==
@@ -410,6 +480,7 @@ evothings.easyble = (function()
         {
             evothings.ble.rssi(device.deviceHandle, win, fail);
         };
+
 
         /**
          * Read all service info for the specified service UUIDs.
@@ -492,13 +563,12 @@ evothings.easyble = (function()
                     	device.__uuidMap = {};
                     	internal.connectedDevices[device.address] = device;
                     	//not my part
+                      console.log("connect without reading");
 
 					}
-					//my part ending
                     //win(device);
-                }
-                else if (connectInfo.state == 0) // disconnected
-                {
+                } else if (connectInfo.state == 0) // disconnected
+                  {
                     internal.connectedDevices[device.address] = null;
                     console.log("disconnecting and setting to null: " + device.name);
                     // TODO: How to signal disconnect?
@@ -530,7 +600,8 @@ evothings.easyble = (function()
             {
                 // Array that stores services.
                 device.__services = [];
-				device.services = {};
+				device.sensors = {};
+        device.description = [];
 				var driverMethods;
                 for (var i = 0; i < services.length; ++i)
                 {
@@ -540,9 +611,17 @@ evothings.easyble = (function()
                     device.__uuidMap[service.uuid] = service;
                     driverMethods = internal.addDriverMethods(device, service.uuid);
                     for(var method in driverMethods) {
-                    	device.services[method] = driverMethods[method];
+                    	device.sensors[method] = driverMethods[method];
+                      device.description.push(method);
                     }
                 }
+                device.sensors.readRSSI = function(win, fail)
+                {
+                    if(!win && typeof win != "function") {
+                      win = function(rssi) {console.log("RSSI is : " + rssi);}
+                    }
+                    evothings.ble.rssi(device.deviceHandle, win, fail);
+                };
 
 
                 internal.readCharacteristicsForServices(
@@ -593,7 +672,6 @@ evothings.easyble = (function()
         {
             // Array with descriptors for characteristic.
             characteristic.__descriptors = [];
-			//win(device);
             return function(descriptors)
             {
                 --readCounter; // Decrements the count added by characteristics.
@@ -608,13 +686,17 @@ evothings.easyble = (function()
                 {
                     // Everything is read.
                     console.log("everything is read...");
-                    //device = internal.addDeviceMethods(device);
-                    //device = internal.addDriverMethods(device);
                     internal.knownDevices[device.address] = device;
+                    if(win == null) {
+                      if(internal.deviceHasFilter(device)) {
+                        internal.globalWin(device);
+                      }
+                    } else {
+                      win(device);
+                    }
 
-                    win(device);
-					//internal.sensorOn();
-					if(closeDevice) {
+
+					          if(closeDevice) {
                     	device.close();
                     }
 
@@ -624,11 +706,8 @@ evothings.easyble = (function()
 
         // Initialize read counter.
         readCounter = 0;
-		//console.log("1 read characteristics for services....");
         if (null != serviceUUIDs)
         {
-         //console.log("2 internal: reading characterisitc for services..." +  JSON.stringify(device));
-		 //console.log("uuids.." +  JSON.stringify(serviceUUIDs.length));
             // Read info for service UUIDs.
             readCounter = serviceUUIDs.length;
             for (var i = 0; i < serviceUUIDs.length; ++i)
@@ -672,6 +751,29 @@ evothings.easyble = (function()
             }
         }
     };
+
+    internal.deviceHasFilter = function(device) {
+      var found = false;
+      if(internal.filter.length > 0) {
+        if(device.sensors) {
+          var services = JSON.stringify(device.sensors);
+          for(var filter in internal.filter) {
+            if(services.search(internal.filter[filter]) > -1) {
+              internal.filteredDevices[device.address] = device.address;
+              return true;
+            }
+          }
+          if(!found) {
+            return false;
+          }
+        }
+      } else {
+        console.log("no filter set");
+        return true;
+      }
+
+      return true;
+    }
 
     internal.readCharacteristic = function(device, characteristicUUID, win, fail)
     {
@@ -932,7 +1034,8 @@ evothings.easyble = (function()
     			driver.driver = deviceDriver[obj];
 
 
-				if(driver.driver.uuid.configValue) {
+
+				if(driver.driver.uuid.configValue && obj != "accelerometer") {
 
 					fun[obj] = (function(obj) {
 						return function(callback) {
@@ -943,16 +1046,25 @@ evothings.easyble = (function()
               }
 
               callback(deviceDriver[obj].decoder(data));
-							internal.globalWin(device);
+              // das habe ich vor kurzem ausgegraut.
+							//internal.globalWin(device);
 						}
 
+
+
 						var switchOn = function(device) {
+              var frequency = deviceDriver[obj].uuid.periodValue;
+
+              if(internal.sensorFrequency) {
+                frequency = internal.sensorFrequency;
+              }
+
 							internal.knownDevices[device.address] = device;
 							internal.sensorOn(device,
 								deviceDriver[obj].uuid.config,
 								deviceDriver[obj].uuid.configValue, //on
-								deviceDriver[obj].uuid.period,
-								deviceDriver[obj].uuid.periodValue,
+                deviceDriver[obj].uuid.period,
+								frequency,
 								deviceDriver[obj].uuid.data,
 								deviceDriver[obj].uuid.notification,
 								callbackFun
@@ -961,14 +1073,29 @@ evothings.easyble = (function()
 
 				if(!internal.connectedDevices[device.address]) {
     				//First connect to the device
-    				internal.connectToDevice(device, switchOn, function(e){console.log("error connection again");}, true, false);
+            console.log("connecting to device because it is not connected");
+    				//internal.connectToDevice(device, switchOn, function(e){console.log("error connection again");}, true, false);
+
+          var test = function(connectInfo) {
+            if (connectInfo.state == 2) // connected
+            {
+                device.deviceHandle = connectInfo.deviceHandle;
+                internal.connectedDevices[device.address] = device;
+                //switchOn(device);
+                device.readServices(null, switchOn, function(e){console.log("error connection again");}, false);
+            }
+          }
+
+
+            evothings.ble.connect(device.address, test, function(e) {console.log("failed to connect via evothings connect.");});
+
     			} else {
     				switchOn(device);
     			}
 
 					}
 					})(obj, deviceDriver[obj]);
-				} else {
+				} else if(obj != "accelerometer"){
 					fun[obj] = (function(obj) {
 						return function(callback) {
 
@@ -979,7 +1106,115 @@ evothings.easyble = (function()
 					})(obj, deviceDriver[obj]);
 
 				}
+
+
+
+
+
+
+
     		}
+
+
+
+        //TEST PARt Begin
+        if (deviceDriver[obj].uuid.length > 1 && deviceDriver[obj].uuid[0].service == uuid) {
+          console.log("accele");
+          var configIndex;
+          var configIndexFalse;
+          // Finde configValue mit 1 in obj.uuid
+          for(var i in deviceDriver[obj].uuid) {
+            if(deviceDriver[obj].uuid[i].configValue) {
+              configIndex = i;
+            }
+            if(!deviceDriver[obj].uuid[i].configValue) {
+              configIndexFalse = i;
+            }
+          }
+
+
+
+
+
+            fun[obj] = (function(obj, configIndex, configIndexFalse) {
+              return function(subscribe, callback) {
+                console.log("Subscribe: " + subscribe);
+                if(subscribe == "on") {
+         						var callbackFun = function(data) {
+                if(!callback) {
+                  console.log("no callback given. Default callback used.");
+                  callback = function(data) {console.log(data);}
+                }
+
+                callback(deviceDriver[obj].decoder(data));
+              }
+
+
+
+              var switchOn = function(device) {
+                console.log(JSON.stringify("configIndexFalse: " + configIndexFalse));
+                var frequency = 1500;
+                if(internal.sensorFrequency) {
+                  frequency = internal.sensorFrequency;
+                }
+
+                console.log("deviceDriver: " + JSON.stringify(deviceDriver[obj].uuid));
+                console.log("periodvalue: " + JSON.stringify(configIndex) + "  " + JSON.stringify(deviceDriver[obj].uuid[configIndex]));
+
+                internal.knownDevices[device.address] = device;
+                internal.sensorOn(device,
+                  deviceDriver[obj].uuid[configIndex].config,
+                  deviceDriver[obj].uuid[configIndex].configValue, //on
+                  deviceDriver[obj].uuid[configIndex].period,
+                  frequency,
+                  deviceDriver[obj].uuid[configIndex].data,
+                  deviceDriver[obj].uuid[configIndex].notification,
+                  callbackFun
+                );
+              }
+
+          if(!internal.connectedDevices[device.address]) {
+            //First connect to the device
+            console.log("connecting to device because it is not connected");
+            var test = function(connectInfo) {
+              if (connectInfo.state == 2) // connected
+              {
+                  device.deviceHandle = connectInfo.deviceHandle;
+                  internal.connectedDevices[device.address] = device;
+                  //switchOn(device);
+                  device.readServices(null, switchOn, function(e){console.log("error connection again");}, false);
+              }
+            }
+
+
+              evothings.ble.connect(device.address, test, function(e) {console.log("failed to connect via evothings connect.");});
+
+            } else {
+              switchOn(device);
+            }
+
+          } else if(subscribe == "off") {
+            internal.sensorOff(device, deviceDriver[obj].uuid[configIndexFalse].data, deviceDriver[obj].uuid[configIndexFalse].config);
+            device.close();
+            callback();
+          } else {
+            console.log("Subscription to " + obj + " failed, because of invalid subscription paramter. Must be [on, off]");
+          }
+
+
+            }
+
+
+          })(obj, configIndex,configIndexFalse);
+
+
+        }
+
+
+        // TEST PARt EndE
+
+
+
     	}
 
 
@@ -1102,11 +1337,11 @@ evothings.easyble = (function()
 	internal.addDeviceMethods = function(device) {
 		for(var driver in internal.deviceDrivers) {
 			if(device && device.name && device.name.indexOf(internal.deviceDrivers[driver].device) > -1 && internal.deviceDrivers[driver].driverObject) {
-				device.services = {};
+				device.sensors = {};
 				for(var i in internal.deviceDrivers[driver].driverObject) {
 					if(internal.deviceDrivers[driver].driverObject[i].uuid.configValue) {
 
-						device.services[i] = (function(i,driver) {
+						device.sensors[i] = (function(i,driver) {
 							return function(callback) {
 
 								var callbackFunction = internal.deviceDrivers[driver].driverObject[i].decoder(callback);
@@ -1130,13 +1365,14 @@ evothings.easyble = (function()
 								if(internal.connectedDevices[device.address]) {
 									sensorOn();
 								} else {
-									device = internal.connectToDevice(device, sensorOn, function(e) {console.log("failed connect :" + e);}, false);
+									//device = internal.connectToDevice(device, sensorOn, function(e) {console.log("failed connect :" + e);}, false);
+                  //evothings.ble.connect(device.address, sensorOn, function(e) {console.log("failed to connect via evothings connect.");});
 								}
 
 							}
 						})(i,driver);
 					} else {
-						device.services[i] = (function(i,device,driver) {
+						device.sensors[i] = (function(i,device,driver) {
 							return function(callback) {
 
 								var sensorOff = function() {
@@ -1163,7 +1399,7 @@ evothings.easyble = (function()
 				}
 			}
 		}
-		for(var d in device.services) {
+		for(var d in device.sensors) {
 			console.log(d);
 		}
 

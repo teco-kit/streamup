@@ -8,6 +8,13 @@
 * - also important address (uuid) and name
 */
 
+/*
+  device onopen onmessage als sensor
+  device methods, like sendMessage
+  driverMethods = createOffer
+
+*/
+
 webrtcDriver = (function()
 {
   // Main object which holds the
@@ -16,7 +23,7 @@ webrtcDriver = (function()
   // Internal variable
   var internal = {};
 
-  internal.localURL = "http://192.168.123.12/db";
+  internal.localURL = "http://192.168.1.45/db";
 
   var RTCMultiSession = function(options) {
       return {
@@ -73,83 +80,110 @@ webrtcDriver = (function()
     } catch (e) { console.warn("No data channel (pc1)", e); }
   }
 
-  webrtcDriver.startScan = function(win, fail) {
-    internal.init();
-    device.name = "webrtcDriver";
-    device.rssi = -999;
-    device.services = {};
-    device.address = "webrtcDriver";
+  webrtcDriver.name = "WebRTC Driver";
+  webrtcDriver.driverMethods = {};
+  // methoden für webrtcDriver müssen implementiert werden.
+  webrtcDriver.driverMethods.createOffer = function(successCallback) {
+      internal.initDataChannel();
 
-    // methoden für webrtcDriver müssen implementiert werden.
-    device.services.createOffer = function(successCallback) {
-        internal.initDataChannel();
+      var success = function() {
+        console.log("Offer successfully created.");
+      }
+      var fail = function() {
+        console.log("Offer failed to create.");
+      }
+      successCallback = typeof successCallback == "function" ? successCallback : success;
+      failCallback = typeof failCallback == "function" ? failCallback : fail;
 
-        var success = function() {
-          console.log("Offer successfully created.");
+      internal.pc.createOffer(function (desc) {
+          internal.localDesc = desc;
+          internal.pc.setLocalDescription(desc, function(des){console.log(desc);}, function(){console.log("Could not set local description.")});
+          internal.iceCandidateCallback = successCallback;
+      }, failCallback);
+    }
+
+    webrtcDriver.driverMethods.sendMessage = function(msg) {
+      if(msg) {
+        internal.dc.send(msg);
+      } else {
+        console.log("Sending message error: Cannot send undefined value.");
+      }
+    }
+
+    webrtcDriver.driverMethods.getLocalDesc = function() {
+      return internal.getLocalDesc();
+    }
+
+    webrtcDriver.driverMethods.getRemoteDesc = function() {
+      return internal.getLocalDesc();
+    }
+
+    webrtcDriver.driverMethods.getDescFromServer = function(callback) {
+      internal.getDescFromServer(callback);
+    }
+
+
+    webrtcDriver.driverMethods.setRemoteDescription = function(desc){
+      desc = new RTCSessionDescription(JSON.parse(desc));
+
+      internal.pc.setRemoteDescription(desc);
+    }
+
+  webrtcDriver.driverMethods.createAnswer = function(offerDesc) {
+    internal.createAnswer(offerDesc);
+  }
+
+
+
+  webrtcDriver.onDeviceAdded = function(callback) {
+
+    //internal.init();
+    var device = {};
+    device.ID = "WebRTC";
+    device.name = "WebRTC";
+    device.sensors =
+      [
+        {
+          ID: "channelOpen",
+          name: "channelOpen",
+          subscribe: function(callback) {
+            internal.onOpenCallback = callback;
+          },
+          unsubscribe: function(callback) {
+            internal.dc.onopen = null;
+          }
+        },
+        {
+          ID: "channelMessage",
+          name: "channelMessage",
+          subscribe: function(callback){
+            internal.onMessageCallback = function(e){callback(e.data);};
+            },
+          unsubscribe: function(callback){
+            internal.dc.onmessage = null;
+          }
         }
-        var fail = function() {
-          console.log("Offer failed to create.");
-        }
-        successCallback = typeof successCallback == "function" ? successCallback : success;
-        failCallback = typeof failCallback == "function" ? failCallback : fail;
+      ];
 
-        internal.pc.createOffer(function (desc) {
-            internal.localDesc = desc;
-            internal.pc.setLocalDescription(desc, function(des){console.log(desc);}, function(){console.log("Could not set local description.")});
-            successCallback();
-        }, failCallback);
-      }
 
-      device.services.sendMessage = function(msg) {
-        if(msg) {
-          internal.dc.send(msg);
-        } else {
-          console.log("Sending message error: Cannot send undefined value.");
-        }
-      }
 
-      device.services.getLocalDesc = function() {
-        return internal.getLocalDesc();
-      }
-
-      device.services.getRemoteDesc = function() {
-        return internal.getLocalDesc();
-      }
-
-      /*device.services.getDescURL = function() {
-        return internal.getDescURL();
-      }*/
-
-      device.services.onOpen = function(callback) {
+      /*device.sensors.onOpen = function(callback) {
         internal.onOpenCallback = callback;
       }
 
-      device.services.onMessage = function(callback) {
+      device.sensors.onMessage = function(callback) {
         internal.onMessageCallback = function(e){callback(e.data);};
-      }
+      }*/
 
-      device.services.getDescFromServer = function(callback) {
-        internal.getDescFromServer(callback);
-      }
-
-
-      device.services.setRemoteDescription = function(desc){
-        desc = new RTCSessionDescription(JSON.parse(desc));
-
-        internal.pc.setRemoteDescription(desc);
-      }
-
-    device.services.createAnswer = function(offerDesc) {
-      internal.createAnswer(offerDesc);
-    }
-
-    /*device.services.onConnection = function(callback) {
-      internal.pc.onconnection = callback;
-    }*/
+    internal.extWin = callback;
+    device.description = "The device let you access to the datachannel to hear if the channel has been established or if a message has been sent.";
 
 
-    internal.extWin = win;
-    win(device);
+    callback(device);
+  }
+
+  webrtcDriver.onDeviceRemoved = function(callback) {
+
   }
 
   internal.createAnswer = function(offerDesc, callback) {
@@ -352,6 +386,8 @@ webrtcDriver = (function()
   webrtcDriver.stopScan = function() {
 
   }
+
+  internal.init();
 
 
   return webrtcDriver;

@@ -3,7 +3,7 @@ var path = require('path');
 var logger = require('morgan');
 var routes = require('./routes/index');
 
-var PORT = 8082;
+var PORT = 8082; 
 
 var app = express();
 app.use(logger('dev'));

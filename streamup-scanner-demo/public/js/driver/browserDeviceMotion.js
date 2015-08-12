@@ -19,90 +19,102 @@ browserDeviceMotion = (function()
 
     var events = [];
 
-
-
       //Standard internal callback
       internal.stdCallback = function(data) {console.log("Standard-callback DeviceMotion executed: " + data.detail);}
 
       //Standard internal fail callback
       internal.failCallback = function(e) { console.log("Fail callback DeviceMotion executed: "  + e);}
 
+      // drivers name
+      browserDeviceMotion.name = "browserDeviceMotion";
+      //browserDeviceMotion.ID = "browserDeviceMotion";
       // Building all events needed
+      browserDeviceMotion.onDeviceRemoved = function(callback) {
 
-      browserDeviceMotion.startScan = function(win, fail) {
+      }
+
+
+      browserDeviceMotion.onDeviceAdded = function(win, options) {
 
 
         // Build Services
-        device.services = {};
-        device.rssi = -999;
+        device.sensors = {};
         // Name the device
-        device.name = "Local device";
+        // Hier für wird der UserAgent genommen.
+        if(navigator.userAgent && false) {
+          device.name = navigator.userAgent;
+        } else {
+          device.name = "browserDeviceMotion";
+        }
 
-        //Wir brauchen eine adresse zur identifizierung
-        // wenn keine vorhanden erstelle eine zufällige
-        // sonst model über useragent
-
-        device.address = device.name;
+        device.ID = "browserDeviceMotion";
 
         if (window.DeviceMotionEvent) {
           window.addEventListener('devicemotion', deviceMotionHandler, false);
         } else {
+
         }
 
-        device.services.onAccelerometer = function(callback) {
-          // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
-          if(!events['acceleration']) {
-            // Es exisitiert noch kein eventListener
-            if(callback && typeof(callback) == "function") {
-              events['acceleration'] = function(data) {
-                callback(data.detail);};
-            } else {
-              console.log("Ihr callback für Accelration ist nicht gültig.");
-              events['acceleration'] = internal.stdCallback;
+        device.sensors = [
+          {
+            ID : "accelerometer",
+            name : "accelerometer",
+            subscribe: function(callback) {
+              // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
+              if(!events['acceleration']) {
+                // Es exisitiert noch kein eventListener
+                if(callback && typeof(callback) == "function") {
+                  events['acceleration'] = function(data) {callback(data.detail);};
+                } else {
+                  console.log("Ihr callback für Accelration ist nicht gültig.");
+                  events['acceleration'] = internal.stdCallback;
+                }
+                window.addEventListener('acceleration', events['acceleration'], false);
+
+              }
+            },
+            unsubscribe : function(callback) {
+              // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
+              // Es exisitiert noch kein eventListener
+              callback = callback ? callback : internal.stdCallback;
+
+              window.removeEventListener('acceleration', events['acceleration'], false);
+              events['acceleration'] = false;
+              callback();
             }
-            window.addEventListener('acceleration', events['acceleration'], false);
+          },
+          {
+            ID : "accelerometerIncludingGravity",
+            name : "accelerometerIncludingGravity",
+            subscribe: function(callback) {
+              // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
+              if(!events['accelerationIncludingGravity']) {
+                // Es exisitiert noch kein eventListener
+                if(callback && typeof(callback) == "function") {
+                  events['accelerationIncludingGravity'] = function(data) {callback(data.detail);};
+                } else {
+                  console.log("Ihr callback für Accelration ist nicht gültig.");
+                  events['accelerationIncludingGravity'] = internal.stdCallback;
+                }
+                window.addEventListener('accelerationIncludingGravity', events['accelerationIncludingGravity'], false);
 
+              }
+            },
+            unsubscribe : function(callback) {
+              // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
+              // Es exisitiert noch kein eventListener
+              var callback = function(){console.log("accelerometerIncludingGravity listener off");};
+              callback = callback ? callback : callb;
+
+              window.removeEventListener('accelerationIncludingGravity', events['accelerationIncludingGravity'], false);
+              events['accelerationIncludingGravity'] = false;
+              callback();
           }
-        }
-
-        device.services.offAccelerometer = function(callback) {
-          // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
-          // Es exisitiert noch kein eventListener
-          callback = callback ? callback : internal.stdCallback;
-
-          window.removeEventListener('acceleration', events['acceleration'], false);
-          events['acceleration'] = false;
-          callback();
-        }
-
-        device.services.onAccelerometerIncludingGravity = function(callback) {
-          // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
-          if(!events['accelerationIncludingGravity']) {
-            // Es exisitiert noch kein eventListener
-            if(callback && typeof(callback) == "function") {
-              events['accelerationIncludingGravity'] = function(data) {callback(data.detail);};
-            } else {
-              console.log("Ihr callback für Accelration ist nicht gültig.");
-              events['accelerationIncludingGravity'] = internal.stdCallback;
-            }
-            window.addEventListener('accelerationIncludingGravity', events['accelerationIncludingGravity'], false);
-
-          }
-        }
-
-        device.services.offAccelerometerIncludingGravity = function(callback) {
-          // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
-          // Es exisitiert noch kein eventListener
-          var callb = function(){console.log("accelerometerIncludingGravity listener off");};
-          callback = callback ? callback : callb;
-
-          window.removeEventListener('accelerationIncludingGravity', events['accelerationIncludingGravity'], false);
-          events['accelerationIncludingGravity'] = false;
-          callback();
-        }
-
-
-        device.services.onRotationRate = function(callback) {
+        },
+        {
+        ID : "rotationRate",
+        name : "rotationRate",
+        subscribe: function(callback) {
           // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
           if(!events['rotationRate']) {
             // Es exisitiert noch kein eventListener
@@ -115,33 +127,122 @@ browserDeviceMotion = (function()
             window.addEventListener('rotationRate', events['rotationRate'], false);
 
           }
+        },
+        unsubscribe : function(callback) {
+            // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
+            // Es exisitiert noch kein eventListener
+            var callb = function(){console.log("rotationrate listener off");};
+            callback = callback ? callback : callb;
+
+            window.removeEventListener('rotationRate', events['rotationRate'], false);
+            events['rotationRate'] = false;
+            callback();
+          }
+        }
+        ];
+
+      /*  device.sensors.accelerometer = function(subscribe, callback) {
+
+            if(subscribe == "on") {
+              // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
+              if(!events['acceleration']) {
+                // Es exisitiert noch kein eventListener
+                if(callback && typeof(callback) == "function") {
+                  events['acceleration'] = function(data) {callback(data.detail);};
+                } else {
+                  console.log("Ihr callback für Accelration ist nicht gültig.");
+                  events['acceleration'] = internal.stdCallback;
+                }
+                window.addEventListener('acceleration', events['acceleration'], false);
+
+              }
+            } else if(subscribe == "off") {
+              // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
+              // Es exisitiert noch kein eventListener
+              callback = callback ? callback : internal.stdCallback;
+
+              window.removeEventListener('acceleration', events['acceleration'], false);
+              events['acceleration'] = false;
+              callback();
+            } else {
+                console.log("Invalid subscription value on accelerometer. Either 'on' or 'off'. Passed was: " + subscribe);
+            }
         }
 
-        device.services.offRotationRate = function(callback) {
-          // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
-          // Es exisitiert noch kein eventListener
-          var callb = function(){console.log("rotationrate listener off");};
-          callback = callback ? callback : callb;
+        device.sensors.accelerometerIncludingGravity = function(subscribe, callback) {
+            if(subscribe == "on") {
+              // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
+              if(!events['accelerationIncludingGravity']) {
+                // Es exisitiert noch kein eventListener
+                if(callback && typeof(callback) == "function") {
+                  events['accelerationIncludingGravity'] = function(data) {callback(data.detail);};
+                } else {
+                  console.log("Ihr callback für Accelration ist nicht gültig.");
+                  events['accelerationIncludingGravity'] = internal.stdCallback;
+                }
+                window.addEventListener('accelerationIncludingGravity', events['accelerationIncludingGravity'], false);
 
-          window.removeEventListener('rotationRate', events['rotationRate'], false);
-          events['rotationRate'] = false;
-          callback();
+              }
+            } else if (subscribe == "off") {
+              // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
+              // Es exisitiert noch kein eventListener
+              var callback = function(){console.log("accelerometerIncludingGravity listener off");};
+              callback = callback ? callback : callb;
+
+              window.removeEventListener('accelerationIncludingGravity', events['accelerationIncludingGravity'], false);
+              events['accelerationIncludingGravity'] = false;
+              callback();
+            } else {
+                console.log("Invalid subscription value. Either 'on' or 'off'. Value passed: " + subscribe);
+            }
         }
 
 
-        win(device);
+        device.sensors.rotationRate = function(subscribe, callback) {
+            if(subscribe == "on") {
+              // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
+              if(!events['rotationRate']) {
+                // Es exisitiert noch kein eventListener
+                if(callback && typeof(callback) == "function") {
+                  events['rotationRate'] = function(data) {callback(data.detail);};
+                } else {
+                  console.log("Ihr callback für Accelration ist nicht gültig.");
+                  events['rotationRate'] = internal.stdCallback;
+                }
+                window.addEventListener('rotationRate', events['rotationRate'], false);
+
+              }
+            } else if (subscribe == "off") {
+              // überprüfe ob für window bereits ein eventListener für acceleration vorhanden ist
+              // Es exisitiert noch kein eventListener
+              var callb = function(){console.log("rotationrate listener off");};
+              callback = callback ? callback : callb;
+
+              window.removeEventListener('rotationRate', events['rotationRate'], false);
+              events['rotationRate'] = false;
+              callback();
+        } else {
+            console.log("Invalid subscripton value. Either 'on' or 'off'.");
+        }
+
+        device.getDescription = function() {
+            var desc = [];
+            for(var sensor in device.sensosr) {
+                desc.push(sensor);
+            }
+            return desc = [];
+        }
+      }*/
+
+      device.description = "This device accesses the local sensors. Currently available sensors are acceleromter (also with gravity included) and rotation rate.";
+
+      win(device);
     }
 
-    browserDeviceMotion.stopScan = function() {
-      console.log("scanning stopped");
-    }
 
 
-
-
-
-
-      function deviceMotionHandler(eventData) {
+        function deviceMotionHandler(eventData) {
+          
         var info, xyz = "[X, Y, Z]";
         // Grab the acceleration from the results
         var acceleration = eventData.acceleration;
@@ -174,7 +275,9 @@ browserDeviceMotion = (function()
             window.dispatchEvent(event);
         }
 
-      }
+        }
+
+
 
     return browserDeviceMotion;
 })();

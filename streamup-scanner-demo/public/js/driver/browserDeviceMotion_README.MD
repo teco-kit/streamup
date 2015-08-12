@@ -2,72 +2,45 @@ README of Browser Device Motion Driver for Scanners.js-API
 ===========================================
 
 This README lists and explains its public APIs.
-In Scanners.js when the startScan() is invoked and this driver is included. A device will passed to the Scanners.js-API.
-The services which this driver provides are accessible within the Scanners.js-API over 'device.services'.
+In Scanners.js when the onDeviceAdded is invoked and this driver is included. A device will passed to the Scanners.js-API.
+The services which this driver provides are accessible within the Scanners.js-API over 'device.sensors'.
 
 The provided services are:
+Each sensor function accepts two paramters
+- sensors(subscribe, callback)
+- subscribe can be either "on" or "off"
 
-onAccelerometer([callback])
+accelerometer(subscribe, [callback])
 -----------------------
 Allows you to get the acceleration value without gravity.
 If a callback is passed, an object will be passed to and be accessed like this:
 ```javascript
-  onAccelerometer(function(accData) {
+  accelerometer("on",function(accData) {
     console.log("Value x: " + accData.x + " value y: " + accData.y + " value z: " + accData.z);
   });
 ```
 
-offAccelerometer([callback])
------------------------
-A callback can be passed to get notified when the acceleormeter is turned off.
-For example:
-```javascript
-  offAccelerometer(function() {
-    console.log("Acceleormeter off");
-  });
-```
-
-onAccelerometerIncludingGravity([callback])
+accelerometerIncludingGravity(subscribe, [callback])
 -----------------------
 Allows you to get the acceleration value including gravity.
 If a callback is passed, an object will be passed to and be accessed like this:
 ```javascript
-onAccelerometerIncludingGravity(function(accData) {
+accelerometerIncludingGravity("on", function(accData) {
   console.log("Value x: " + accData.x + " value y: " + accData.y + " value z: " + accData.z);
 });
 ```
 
-offAccelerometerIncludingGravity([callback])
------------------------
-A callback can be passed to get notified when the acceleormeter is turned off.
-For example:
-```javascript
-  offAccelerometerIncludingGravity(function() {
-    console.log("Acceleormeter off");
-  });
-```
-
-onRotationRate([callback])
+rotationRate(subscribe, [callback])
 -----------------------
 When the offer is generated the callback will be invoked and get passed one
 parameter which is the offer.
 For example:
 ```javascript
-onRotationRate(function(accData) {
+rotationRate("on", function(accData) {
   console.log("Value alpha: " + accData.alpha + " value beta: " + accData.beta + " value gamma: " + accData.gamma);
 });
 ```
 
-offRotationRate([callback])
------------------------
-When the offer is generated the callback will be invoked and get passed one
-parameter which is the offer.
-For example:
-```javascript
-  offRotationRate(function() {
-    console.log("rotation rate off");
-  });
-```
 
 Detail explanation:
 ------------------------------
