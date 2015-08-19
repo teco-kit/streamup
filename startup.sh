@@ -15,8 +15,8 @@ fi
 # run rest of the script as dummy		
 sudo -u dummy bash << EOF
 
-# installing streamup-scanner demo
-cd streamup-scanner-demo
+# installing streamup-sensorapi demo
+cd streamup-sensorapi-demo
 npm install
 cd ..
 
@@ -34,7 +34,7 @@ npm install
 cd ..
 
 # start server 
-supervisord -c /etc/supervisor.conf
+supervisord -c /etc/supervisor.conf -l log/supervisord.log
 
 # clean up - probably not needed???
 #

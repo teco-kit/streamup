@@ -47,9 +47,6 @@ evothings.easyble = (function()
     /** Table of connected devices. */
     internal.connectedDevices = {};
 
-    // Holds as the name stays for the methods of the driver like start and stop scan etc.
-    easyble.driverMethods = {};
-
     /** Mein eigener Speicher für die Devices **/
     internal.myOwnDevices = {};
 
@@ -73,8 +70,6 @@ evothings.easyble = (function()
 
     // globale function fon der scanner api fürs entfernen von devices, wenn keins sich meldet
     internal.globalRemoveFunction;
-
-    easyble.driverMethods = {};
 
     /**
      * Set to true to report found devices only once.
@@ -129,9 +124,9 @@ evothings.easyble = (function()
     }
 
     /** Start scanning for devices. */
-    easyble.driverMethods.startScan = function()
+    easyble.startScan = function()
     {
-        easyble.driverMethods.stopScan();
+        easyble.stopScan();
         internal.knownDevices = {};
         evothings.ble.startScan(function(device)
             {
@@ -235,15 +230,11 @@ evothings.easyble = (function()
       }
     }
 
-    /** Stop scanning for devices. */
-    easyble.driverMethods.stopScan = function()
-    {
-        evothings.ble.stopScan();
-    };
+
 
     /** Stop scanning for devices. */
 
-    easyble.driverMethods.stopScan = function()
+    easyble.stopScan = function()
     {
         evothings.ble.stopScan();
     };

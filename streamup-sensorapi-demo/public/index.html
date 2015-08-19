@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SensorAPI.js & STreamUp Demo</title>
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+	<link rel="stylesheet" href="css/ratchet.css">
+	<script src="js/jquery-2.1.1.js"></script>
+	<script src="js/ratchet.js"></script>
+	<script src="js/SensorAPI.js"></script>
+  </head>
+  <body>
+    <header class="bar bar-nav">
+      <h1 class="title">SensorAPI.js & Streamup Demo</h1>
+    </header>
+
+    <div class="content">      
+      <div class="card">
+        <ul class="table-view" id="device-list">          
+        </ul>
+      </div>
+    </div>
+
+  </body>
+  <script>		
+		
+		var api = new SensorAPI();
+		api.loadDriver("js/driver/browserDeviceMotion.js");		
+
+
+		api.onDeviceAdded(function(device) {					
+			var elementDevice = $('#device-' + device.ID);					
+			if (elementDevice.length <= 0) {
+				$('#device-list').append('<li class="table-view-cell"> <a class="push-right" onclick="$(this).children(\'div\').toggle()"> <strong>' + device.name + '</strong><div style="display:none"><ul class="table-view"  id="device-' + device.ID + '"></div> </a> </li>');
+				elementDevice = $('#device-' + device.ID);			
+			}
+			device.sensors.forEach(function(sensor) {
+				elementDevice.append('<li class="table-view-cell"> <a href="/sensor.html?deviceId=' + device.ID + '&sensorId=' + sensor.ID + '" onclick="window.location.assign(\'sensor.html?deviceId=' + device.ID + '&sensorId=' + sensor.ID + '\');return true;"> ' + sensor.name + ' </a> </li>');
+			})
+		});
+				
+
+		
+
+		
+    </script>
+</html>

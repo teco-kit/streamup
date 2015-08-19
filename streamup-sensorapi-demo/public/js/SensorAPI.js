@@ -24,16 +24,18 @@ var SensorAPI = (function(driver,options){
     internal.filter = [];
 
     // Storing the driver objects
-    //SensorAPI.drivers = [];
+    SensorAPI.drivers = [];
 
     // Stores drivers internally
     internal.drivers = [];
 
+
+
     //Storage for the devices
-    internal.devices = [];
+    SensorAPI.devices = {};
 
     //Storage for all ever detected devices
-    internal.detectedDevices = [];
+    SensorAPI.everFoundDevices = {};
 
     //Internal timeout watcher for each device
     internal.timeouts = [];
@@ -87,37 +89,44 @@ var SensorAPI = (function(driver,options){
      given flter. internal.filter
      */
      internal.storeDevice = function(device, driver) {
-     	var stringSensor = "";
-      //chekc if the device has a Name
-      if(!device.name) {
-        device.name = "Unknown device";
-      }
+       // Check if the device meets the device interface requirements
+       internal.checkMandatoryInterface(device, [
+         {name: "ID", type: "string"},
+         {name: "description", type: "string", replace:"No description"},
+         {name: "sensors", type:"object", replace:null}
+       ]);
 
-     	//for(var dev in device) {
+       // Add the driver information
+       device.driver = driver;
      		//Check if the sensors is already in internal.devices
      		if(device.ID != undefined) {
 
           if(internal.filterBySensorType(device.sensors)) {
-  	          // Überprüfe ob der Sensor bereits bekannt ist und im internal.devices vorhanden ist.
-              if(!internal.devices[device.ID]) {
+  	          // Überprüfe ob der Sensor bereits bekannt ist und im SensorAPI.devices vorhanden ist.
+              console.log(device.ID);
+              if(!SensorAPI.devices[device.ID]) {
                   //Speicher welcher treiber verwendet wird
-                  internal.devices[device.ID] = device;
+                  SensorAPI.devices[device.ID] = device
                   //Speicher in jemals gefundenen array
-                  internal.detectedDevices[device.ID] = device;
+                  SensorAPI.everFoundDevices[device.ID] = device;
               }
+            }
 
-  				}
       } else {
         console.log("Device is not supported and will be therefore not stored/tracked. Result of getDevices wont contain this device." + device.name);
       }
-        var event = new CustomEvent(SensorAPI.events.deviceAdded, {detail:{driver:driver, device:device}},false,false);
+        var event = new CustomEvent(SensorAPI.events.deviceAdded, {detail:device},false,false);
         SensorAPI.dispatchEvent(event);
-     	//}
+     	}
 
-     }
+
+
 
      // Callback Function when the interface of the driver is offering an onDeviceRemoved
      internal.removeDevice = function(device) {
+       if(SensorAPI.devices[device.ID]) {
+         delete SensorAPI.devices[device.ID];
+       }
        var event = new CustomEvent(SensorAPI.events.deviceRemoved, {detail:device},false,false);
        SensorAPI.dispatchEvent(event);
      }
@@ -138,11 +147,10 @@ var SensorAPI = (function(driver,options){
      }
 
 
-     SensorAPI.onDeviceRemoved= function(callback) {
+     SensorAPI.onDeviceRemoved = function(callback) {
        var stdCallback = function(device) {
          console.log("Device : " + device.name + " (address: " + device.address  +") removed.");
        }
-
        // Schaue ob ein callback übergeben wurde
        // sonst nutze den oben deklarierten Standardcallback
        callback = callback ? callback : stdCallback;
@@ -150,14 +158,6 @@ var SensorAPI = (function(driver,options){
        SensorAPI.addEventListener(SensorAPI.events.deviceRemoved, function(obj) {
          callback(obj.detail);
        });
-     }
-
-
-     // Remove device
-     internal.removeDevice = function(device) {
-       var event = new CustomEvent(SensorAPI.events.deviceRemoved, {detail:device},false,false);
-       SensorAPI.dispatchEvent(event);
-       //$(scanner).trigger(scanner.events.deviceRemoved,device);
      }
 
 
@@ -178,7 +178,7 @@ var SensorAPI = (function(driver,options){
     }
 
 
-    SensorAPI.getAllDevices = function() {
+    /*SensorAPI.getAllDevices = function() {
         //Hole alle Devices aus dem Storage raus
         //var devices = simpleStorage.index();
 
@@ -200,15 +200,21 @@ var SensorAPI = (function(driver,options){
             }
         }
         return deviceList;
-    }
-
+    }*/
 
     /*
-    Function to get all detected devices
+      Get function to retrieve all devices which has not been yet removed.
+    */
+    /*SensorAPI.getAllDevices = function() {
+      return SensorAPI.devices;
+    }*/
+
+    /*
+    Function to get all ever detected devices
      */
-    SensorAPI.getAllDetectedDevices = function() {
-        return internal.detectedDevices;
-    }
+    /*SensorAPI.getAllDetectedDevices = function() {
+        return SensorAPI.everFoundDevices;
+    }*/
 
 	/*
 		Set filter
@@ -241,7 +247,7 @@ var SensorAPI = (function(driver,options){
     interfaceArray.forEach(function(element) {
       if(!(loadedDriver[element.name] && typeof loadedDriver[element.name] == element.type)) {
         if(element.replace) {
-          loadedDriver.ID = element.replace;
+          loadedDriver[element.name] = element.replace;
         } else {
           throw new driverException("MandantoryInterfaceNotAvailable"+element.name);
         }
@@ -261,7 +267,7 @@ var SensorAPI = (function(driver,options){
   SensorAPI.loadDriver = function(driver, options) {
 
 
-    if(!internal.drivers[driver]) {
+    if(!SensorAPI.drivers[driver]) {
       //Hole die scripte anhand der registrierten scanner-treiber in internal.scanners
       $.getScript(driver, function (data, textStatus, jqxhr) {
         if(jqxhr.status == 200 || jqxhr.status == "200"){
@@ -283,12 +289,9 @@ var SensorAPI = (function(driver,options){
             //Check for optional properties, functions
             // initialize, finalize
             internal.checkOptionalInterface(loadedDriver, ["finalize", "initialize"] );
-
-            internal.drivers[driver] = loadedDriver;
-            internal.drivers[driver].onDeviceAdded(function(dev) {internal.storeDevice(dev,driver);}, options);
-
-            internal.drivers[driver].onDeviceRemoved(internal.removeDevice);
-
+            SensorAPI.drivers[driver] = loadedDriver;
+            SensorAPI.drivers[driver].onDeviceAdded(function(dev) {internal.storeDevice(dev,driver);}, options);
+            SensorAPI.drivers[driver].onDeviceRemoved(function(dev) {internal.removeDevice(dev);});
 
         }
       });
@@ -296,9 +299,9 @@ var SensorAPI = (function(driver,options){
   }
 
   SensorAPI.unloadDriver = function(driver) {
-    if(internal.drivers[driver]) {
-      internal.drivers[driver] = null;
-      console.log("Driver: " + driver + " removed.")
+    if(SensorAPI.drivers[driver]) {
+      SensorAPI.drivers[driver].finalize();
+      SensorAPI.drivers[driver] = null;
       return true;
     } else {
       console.log("No such driver available to be removed: " + driver);
@@ -306,18 +309,18 @@ var SensorAPI = (function(driver,options){
     }
   }
 
-  SensorAPI.getAllDrivers = function() {
-    return internal.drivers;
-  }
+  /*SensorAPI.getDrivers = function() {
+    return SensorAPI.drivers;
+  }*/
 
-  SensorAPI.getDriver = function(driver) {
+  /*SensorAPI.getDriver = function(driver) {
 	   if(driver) {
-	    	return internal.drivers[driver];
+	    	return SensorAPI.drivers[driver];
 	   } else {
 	   	console.log("No driver path was passed in SensorAPI.getDriver. Usage: getDriver(pathToDriver)");
-	   	return null;
+	   	return false;
 	   }
-   }
+   }*/
 
 
     return SensorAPI;

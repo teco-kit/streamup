@@ -27,6 +27,5 @@ ADD conf/streamup-servers.conf /etc/supervisor/conf.d/streamup-servers.conf
 WORKDIR /usr/src/app
 
 EXPOSE 8080 8081
-#CMD ["supervisord", "-c", "/etc/supervisor.conf"]
 CMD ["/bin/bash", "startup.sh"]
 

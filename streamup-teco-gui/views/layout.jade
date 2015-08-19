@@ -46,7 +46,7 @@ html
 					{{#triples}}
 					<tr>
 						{{#each this}}
-						<td>{{this}}</td>
+						<td>{{json this}}</td>
 						{{/each}}
 					</tr>   
 					{{/triples}}         
@@ -80,25 +80,43 @@ html
 			<div class="none" id="placeholder-chart" style="width:600px;height:300px"></div>  
 			<scr{{!}}ipt>$(function() {    
 			var response = JSON.parse(window.data.response);
-			var data = response.map(function(entry) {
+			// map data to correct format
+			// timestampe * 1000 ???
+			// if data is JSON object then plot series for each property
+
+			/*var data = response.map(function(entry) {
 			  return [entry.timestamp * 1000, entry.value];
-			});
-			plot = $.plot("#placeholder-chart", [data], 
+			});*/
+			var data = [];
+			if (response && response.length > 0) {
+				for (var i = 0; i < response.length; i++) {			
+					if(typeof response[i].value === 'object') {
+						Object.keys(response[i].value).forEach(function(key) {
+							var seriesData = data.find(function(series) { return series.label == key; });
+							if (!seriesData) {
+								seriesData = { label: key, data: []};	
+								data.push(seriesData);
+							}			
+							seriesData.data.push([response[i].timestamp*1000, response[i].value[key]]);
+						})
+					} else {
+						data[0].data.push([response[i].timestamp*1000, response[i].value]);
+					}
+				}
+			}
+			plot = $.plot("#placeholder-chart", data, 
 				{
-						xaxis: 
-							{ 
-								mode: "time" 
-							},
-						series: 
-							{
-								lines: { show: false },
-								points: { show: true }
-							},
-						grid: 
-							{
-								hoverable: true,
-								autoHighlight: true
-							}
+					series: {
+						shadowSize: 0,
+						lines: { show: true },
+						points: { show: true }
+					},
+					xaxis: { mode: "time", timeformat: "%H:%M:%S" },
+					grid: 
+						{
+							hoverable: true,
+							autoHighlight: true
+						}
 				}
 			);
 			$("#placeholder-chart").bind("plothover", function (event, pos, item) {       

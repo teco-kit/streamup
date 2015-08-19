@@ -1,0 +1,19 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install' ]
+2 info using npm@2.9.0
+3 info using node@v0.10.38
+4 verbose readDependencies loading dependencies from /usr/src/app/package.json
+5 error install Couldn't read dependencies
+6 verbose stack Error: ENOENT, open '/usr/src/app/package.json'
+7 verbose cwd /usr/src/app
+8 error Linux 3.13.0-61-generic
+9 error argv "node" "/usr/local/bin/npm" "install"
+10 error node v0.10.38
+11 error npm  v2.9.0
+12 error path /usr/src/app/package.json
+13 error code ENOPACKAGEJSON
+14 error errno 34
+15 error package.json ENOENT, open '/usr/src/app/package.json'
+15 error package.json This is most likely not a problem with npm itself.
+15 error package.json npm can't find a package.json file in your current directory.
+16 verbose exit [ 34, true ]

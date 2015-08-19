@@ -1,5 +1,5 @@
 {
-  "name": "streamup-scanner-demo",
+  "name": "streamup-sensorapi-demo",
   "version": "0.0.1",
   "description": "Demo combining StreamUp and scanner.js",
   "main": "index.js",

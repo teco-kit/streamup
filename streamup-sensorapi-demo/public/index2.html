@@ -1,0 +1,195 @@
+<html>
+	<head>
+		<script src="js/jquery-2.1.1.js"></script>
+		<script src="js/SensorAPI.js"></script>
+		<script src="js/StreamUp.standalone.js"></script>				
+		<script src="js/lodash.min.js"></script>
+		<script src="js/postal.js"></script>
+		<script src="js/streamup-adapter-rest.js"></script>
+		<script src="js/jquery.flot.js"></script>		
+		<script src="js/jquery.flot.time.js"></script>		
+	</head>
+	<body>
+    Listing of devices:
+    <div id='device_list'></div>
+    <script>		
+		// polyfill for missing functions
+		// Array.find (missing in Chrome)
+		if (!Array.prototype.find) {
+			Array.prototype.find = function(predicate) {
+				if (this == null) {
+				throw new TypeError('Array.prototype.find called on null or undefined');
+				}
+				if (typeof predicate !== 'function') {
+					throw new TypeError('predicate must be a function');
+				}
+				var list = Object(this);
+				var length = list.length >>> 0;
+				var thisArg = arguments[1];
+				var value;
+
+				for (var i = 0; i < length; i++) {
+					value = list[i];
+					if (predicate.call(thisArg, value, i, list)) {
+						return value;
+					}
+				}
+				return undefined;
+			};
+		}
+
+
+    	var currentDevices = [];
+		var api = new SensorAPI();
+		api.loadDriver("js/driver/browserDeviceMotion.js");		
+
+		//--- methods for publishing on the message bus
+		var announceDevice = function(deviceInfo) {
+			postal.publish({
+				channel: "meta",
+				topic: "device.add",
+				data: deviceInfo
+			});
+		}
+
+		var announceSensor = function(deviceId, sensor) {
+			postal.publish({
+				channel: "meta",
+				topic: deviceId + ".sensor.add",
+				deviceId: deviceId,
+				data: sensor
+			});
+		}
+
+		var announceValue = function(deviceId, sensorId, value) {
+			postal.publish({
+				channel: "meta",
+				topic: deviceId + "." + sensorId + ".value.add",
+				deviceId: deviceId,
+				sensorId: sensorId,
+				data: value
+			});
+		}	
+
+		// refresh list of all devices
+		var refreshDisplay = function() {
+			var text = "";
+			currentDevices.forEach(function(device) {
+					text += "	device '" + device.name + "' " + "(driver: '" + device.driver + "'</br>";
+					device.sensors.forEach(function(sensor) {						
+						text += "		sensor '" + sensor.name + "' </br>";
+						text += '<div id="flot-placeholder-' + sensor.ID + '" style="width:600px;height:150px"></div>';												
+					})
+				})
+			$('#device_list').html("<pre>" + text + "</pre></br>");						
+		}
+
+		api.onDeviceAdded(function(device) {						
+			currentDevices.push(device);
+			announceDevice(device);
+			refreshDisplay();
+			device.sensors.forEach(function(sensor) {
+				sensor.data = [{label: '', data: []}];
+				announceSensor(device.ID, sensor);
+				sensor.subscribe(function(value) {
+					announceValue(device.ID, sensor.ID, value);
+				})
+			})			
+			refreshDisplay();				
+		});
+		
+		var getDataForSensor = function(deviceId, sensorId) {
+			return currentDevices.find(function(deviceInfo) {
+							return deviceInfo.ID == deviceId;
+						}).sensors.find(function(sensor) {
+							return sensor.ID == sensorId;
+						}).data;
+		}
+
+		var startScheduledChartUpdate = function(deviceId, sensorId) {					
+			var data = getDataForSensor(deviceId, sensorId);
+			//alert(JSON.stringify(data))
+			if (data.length > 0) {
+				var plot = $.plot("#flot-placeholder-" + sensorId, data, 
+							{
+								series: {
+									shadowSize: 0,
+									lines: { show: true },
+									points: { show: true }
+								},
+								xaxis: { mode: "time", timeformat: "%H:%M:%S" }
+							});
+			    plot.draw();
+			}
+		    setTimeout(startScheduledChartUpdate.bind(this, deviceId, sensorId), 1000);
+		}
+		
+
+		//--- methods for listening on the message bus to update the charts
+		// sensor added
+		postal.subscribe({
+			channel: "meta",
+			topic: "#.sensor.add",
+			callback: function(sensor, envelope) {				
+				startScheduledChartUpdate(envelope.deviceId, sensor.ID);
+			}})
+
+		// value added
+		postal.subscribe({
+			channel: "meta",
+			topic: "#.value.add",
+			callback: function(newData, envelope) {
+				var timestamp = Math.round(+new Date());
+				var data = 	getDataForSensor(envelope.deviceId, envelope.sensorId);		
+				// check newData is object, then use multiple series in graph
+				if (typeof newData === 'object') {
+					Object.keys(newData).forEach(function(key) {		
+						var seriesData = data.find(function(series) { return series.label == key; });
+						if (!seriesData) {
+							seriesData = { label: key, data: []};	
+							data.push(seriesData);
+						}					
+						seriesData.data.push([timestamp, newData[key]]);
+					})
+				} else {
+					data[0].data.push([timestamp, newData]);
+				}				
+			}
+		});
+
+		//--- methods for listening on the message bus to update insert values into StreamUp using REST calls
+
+		// device added
+		postal.subscribe({
+			channel: "meta",
+			topic: "device.add",
+			callback: function(device, envelope) {				
+				// check device exists, if not create it
+				if (!checkDeviceExists(device.ID)) {
+					createDevice(device.ID);
+				}
+			}})
+
+		// sensor added
+		postal.subscribe({
+			channel: "meta",
+			topic: "#.sensor.add",
+			callback: function(sensor, envelope) {				
+				// check sensor 
+				if (!checkSensorExists(envelope.deviceId, sensor.ID)) {
+					createSensor(envelope.deviceId, sensor.ID);
+				}
+			}})
+
+		// value added
+		postal.subscribe({
+			channel: "meta",
+			topic: "#.value.add",
+			callback: function(newData, envelope) {
+				insertValue(envelope.deviceId, envelope.sensorId, newData);
+			}
+		});
+    </script>
+
+  </body>
+<html>   

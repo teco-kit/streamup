@@ -60,9 +60,35 @@ webrtcDriver = (function()
   internal.tn;
 
   internal.extWin;
+  internal.onDeviceRemovedCallback;
 
   internal.activedc;
-    var device = {};
+  var device = {};
+  device.ID = "WebRTC";
+  device.name = "WebRTC";
+  device.sensors =
+    [
+      {
+        ID: "channelOpen",
+        name: "channelOpen",
+        subscribe: function(callback) {
+          internal.onOpenCallback = callback;
+        },
+        unsubscribe: function(callback) {
+          internal.dc.onopen = null;
+        }
+      },
+      {
+        ID: "channelMessage",
+        name: "channelMessage",
+        subscribe: function(callback){
+          internal.onMessageCallback = function(e){callback(e.data);};
+          },
+        unsubscribe: function(callback){
+          internal.dc.onmessage = null;
+        }
+      }
+    ];
 
   //Standard internal callback
   internal.stdCallback = function() {console.log("Standard-callback webrtcDriver executed");};
@@ -81,9 +107,13 @@ webrtcDriver = (function()
   }
 
   webrtcDriver.name = "WebRTC Driver";
+  webrtcDriver.ID = "webRTC";
   webrtcDriver.driverMethods = {};
   // methoden für webrtcDriver müssen implementiert werden.
-  webrtcDriver.driverMethods.createOffer = function(successCallback) {
+
+
+
+  webrtcDriver.createOffer = function(successCallback) {
       internal.initDataChannel();
 
       var success = function() {
@@ -102,7 +132,7 @@ webrtcDriver = (function()
       }, failCallback);
     }
 
-    webrtcDriver.driverMethods.sendMessage = function(msg) {
+    webrtcDriver.sendMessage = function(msg) {
       if(msg) {
         internal.dc.send(msg);
       } else {
@@ -110,71 +140,37 @@ webrtcDriver = (function()
       }
     }
 
-    webrtcDriver.driverMethods.getLocalDesc = function() {
+    webrtcDriver.getLocalDesc = function() {
       return internal.getLocalDesc();
     }
 
-    webrtcDriver.driverMethods.getRemoteDesc = function() {
+    webrtcDriver.getRemoteDesc = function() {
       return internal.getLocalDesc();
     }
 
-    webrtcDriver.driverMethods.getDescFromServer = function(callback) {
+    webrtcDriver.getDescFromServer = function(callback) {
       internal.getDescFromServer(callback);
     }
 
 
-    webrtcDriver.driverMethods.setRemoteDescription = function(desc){
+    webrtcDriver.setRemoteDescription = function(desc){
       desc = new RTCSessionDescription(JSON.parse(desc));
 
       internal.pc.setRemoteDescription(desc);
     }
 
-  webrtcDriver.driverMethods.createAnswer = function(offerDesc) {
+  webrtcDriver.createAnswer = function(offerDesc) {
     internal.createAnswer(offerDesc);
   }
+
+
+
 
 
 
   webrtcDriver.onDeviceAdded = function(callback) {
 
     //internal.init();
-    var device = {};
-    device.ID = "WebRTC";
-    device.name = "WebRTC";
-    device.sensors =
-      [
-        {
-          ID: "channelOpen",
-          name: "channelOpen",
-          subscribe: function(callback) {
-            internal.onOpenCallback = callback;
-          },
-          unsubscribe: function(callback) {
-            internal.dc.onopen = null;
-          }
-        },
-        {
-          ID: "channelMessage",
-          name: "channelMessage",
-          subscribe: function(callback){
-            internal.onMessageCallback = function(e){callback(e.data);};
-            },
-          unsubscribe: function(callback){
-            internal.dc.onmessage = null;
-          }
-        }
-      ];
-
-
-
-      /*device.sensors.onOpen = function(callback) {
-        internal.onOpenCallback = callback;
-      }
-
-      device.sensors.onMessage = function(callback) {
-        internal.onMessageCallback = function(e){callback(e.data);};
-      }*/
-
     internal.extWin = callback;
     device.description = "The device let you access to the datachannel to hear if the channel has been established or if a message has been sent.";
 
@@ -183,8 +179,13 @@ webrtcDriver = (function()
   }
 
   webrtcDriver.onDeviceRemoved = function(callback) {
-
+    internal.onDeviceRemovedCallback = callback;
   }
+
+  webrtcDriver.finalize = function() {
+    internal.onDeviceRemovedCallback(device);
+  }
+
 
   internal.createAnswer = function(offerDesc, callback) {
     offerDesc = JSON.parse(offerDesc);
@@ -383,9 +384,7 @@ webrtcDriver = (function()
   }
 
 
-  webrtcDriver.stopScan = function() {
 
-  }
 
   internal.init();
 

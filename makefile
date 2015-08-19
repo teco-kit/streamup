@@ -19,6 +19,7 @@ shell:
 
 browserify: 
 	docker run --rm -it --name $(NAME)-$(INSTANCE) -i -t $(PORTS) $(VOLUMES) $(NS)/$(REPO):$(VERSION) browserify streamup/src/index.js --standalone StreamUp > streamup/bin/StreamUp.standalone.js 
+	docker run --rm -it --name $(NAME)-$(INSTANCE) -i -t $(PORTS) $(VOLUMES) $(NS)/$(REPO):$(VERSION) browserify streamup-server-teco/src/SmartTecoOntology.js --standalone SmartTecoOntology > streamup-server-teco/bin/SmartTecoOntology.standalone.js 
 
 run:
 	docker run --rm -it --name $(NAME)-$(INSTANCE) $(PORTS) $(VOLUMES) $(NS)/$(REPO):$(VERSION)

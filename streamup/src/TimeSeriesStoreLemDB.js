@@ -133,7 +133,13 @@ Store.prototype.getValues = function(options, callback) {
 	    start : parseTimestamp(options.start),
 	    end : parseTimestamp(options.end)
 	}).pipe(through(function(data){
-	    result.push({ value: data.value,
+		var value;
+		try {
+			value = JSON.parse(data.value);
+		} catch(e) {
+			value = data.value;
+		}
+	    result.push({ value: value,
 	    			  timestamp: formatTimestamp(data.key)});
 	}, function(){
 	    deferred.resolve(result);
@@ -160,6 +166,9 @@ Store.prototype.insertValue = function(options, callback) {
 				} else {
 					if (!options.data.timestamp) {
 						options.data.timestamp = Math.floor(new Date().getTime() / 1000);
+					}
+					if (utils.isObject(options.data.value)) {
+						options.data.value = JSON.stringify(options.data.value);
 					}
 					this._lemdb.recorder(options.index)(options.data.value, parseTimestamp(options.data.timestamp), function(err) {
 							if (err) {

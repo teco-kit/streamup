@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SensorAPI & Streamup Demo</title>
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+	<link rel="stylesheet" href="css/ratchet.css">
+	<!--<link rel="stylesheet" href="css/ratchet-theme-android.css">-->
+	<script src="js/jquery-2.1.1.js"></script>
+	<script src="js/ratchet.js"></script>
+	<script src="js/SensorAPI.js"></script>
+	<script src="js/streamup-adapter-rest.js"></script>
+	<script src="js/jquery.flot.js"></script>		
+	<script src="js/jquery.flot.time.js"></script>		
+	<script src="js/cookies.js"></script>			
+  </head>
+  <body>
+    <header class="bar bar-nav">
+      <h1 class="title">SensorAPI & Streamup Demo</h1>
+    </header>
+
+    <div class="content">         
+      <div class="card">
+        <div id="flot-placeholder" style="width:100%;height:500px;"></div>
+      </div>
+    </div>
+
+  </body>
+  <script>		
+		// polyfill for missing functions
+		// Array.find (missing in Chrome)
+		if (!Array.prototype.find) {
+			Array.prototype.find = function(predicate) {
+				if (this == null) {
+				throw new TypeError('Array.prototype.find called on null or undefined');
+				}
+				if (typeof predicate !== 'function') {
+					throw new TypeError('predicate must be a function');
+				}
+				var list = Object(this);
+				var length = list.length >>> 0;
+				var thisArg = arguments[1];
+				var value;
+
+				for (var i = 0; i < length; i++) {
+					value = list[i];
+					if (predicate.call(thisArg, value, i, list)) {
+						return value;
+					}
+				}
+				return undefined;
+			};
+		}
+
+		function creatUUID() {
+			function s4() {
+				return Math.floor((1 + Math.random()) * 0x10000)
+				.toString(16)
+				.substring(1);
+			}
+			return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+		}
+		
+		$.urlParam = function(name){
+			var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+			return results[1] || 0;
+		}
+		var deviceId = $.urlParam('deviceId');
+		var sensorId = $.urlParam('sensorId');
+
+		var cookieName = 'device_prefix';
+		if (!docCookies.hasItem(cookieName)) {
+			docCookies.setItem(cookieName, creatUUID() + '_', new Date(9999, 12, 31));
+		}
+		var streamUpDeviceId = docCookies.getItem(cookieName) + deviceId;
+		var streamUpAdapter = new StreamUpAdapterRest('129.13.169.164', 8080);
+
+		var data = [];
+		var temp = [];
+
+    	var currentDevices = [];
+		var api = new SensorAPI();
+		api.loadDriver("js/driver/browserDeviceMotion.js");		
+		
+		api.onDeviceAdded(function(device) {				
+			if (device.ID == deviceId) {
+				device.sensors.forEach(function(sensor) {
+					if (sensor.ID == sensorId) {
+						sensor.subscribe(function(value) {							
+							temp.push(value);
+							streamUpAdapter.insertValue(streamUpDeviceId, sensorId, value);
+						})
+					}					
+				})			
+			}			
+		});
+
+		var calcAverage = function(data) {
+			var result = undefined;
+			if (data && data.length > 0) {
+				if (typeof data[0] === 'object') {
+					// calc average for every property
+					result = {};
+					Object.keys(data[0]).forEach(function(property) {
+						var sum = 0;
+						for (var i = 0; i < data.length; i++) {
+							sum += data[i][property];
+						}
+						result[property] = sum / data.length;
+					})
+				} else {
+					// calc single average
+					var sum = 0;
+					for (var i = 0; i < data.length; i++) {
+						sum += data[i];
+					}
+					result = sum / data.length;
+				}
+			}
+			return result;
+		}
+
+		var addToData = function(newData, timestamp) {
+			if (!timestamp) {
+				timestamp = Math.round(+new Date());
+			}			
+			if (typeof newData === 'object') {
+				Object.keys(newData).forEach(function(key) {
+					var seriesData = data.find(function(series) { return series.label == key; });
+					if (!seriesData) {
+						seriesData = { label: key, data: []};	
+						data.push(seriesData);
+					}					
+					seriesData.data.push([timestamp, newData[key]]);
+				})
+			} else {
+				if (!data[0]) {
+					data.push({ label: key, data: []});	
+				}
+				data[0].data.push([timestamp, newData]);
+			}
+		}
+
+		var plot;
+
+		var refreshData = function(interval) {
+			var avg = calcAverage(temp);
+			temp = [];
+			if (avg) {
+				addToData(avg);				
+			}	
+			if (!plot) {				
+				plot = $.plot("#flot-placeholder", data, 
+				{
+					series: {
+						shadowSize: 0,
+						lines: { show: true },
+						points: { show: true }
+					},
+					xaxis: { mode: "time", timeformat: "%H:%M:%S" }
+				});
+				isInit = true;
+			} 			
+			plot.setData(data);
+			plot.setupGrid();
+	    	plot.draw();
+	    	setTimeout(refreshData.bind(this, interval), interval);
+		}
+
+		// connect to StreamUp via REST
+
+		if (!streamUpAdapter.checkDeviceExists(streamUpDeviceId)) {
+			streamUpAdapter.createDevice(streamUpDeviceId);
+		}
+		if (!streamUpAdapter.checkSensorExists(streamUpDeviceId, sensorId)) {
+			streamUpAdapter.createSensor(streamUpDeviceId, sensorId);
+		} else {
+			var minutesBeforeNow = 1;
+			var start = Math.round((+new Date()/1000) - (60 * minutesBeforeNow));
+			var end = Math.round(+new Date()/1000);
+			var oldData = streamUpAdapter.getValues(streamUpDeviceId, sensorId, start, end);			
+			if (oldData) {
+				oldData.forEach(function(element) {
+					addToData(element.value, element.timestamp*1000);
+				})
+			}
+		}
+
+		refreshData(1000);
+
+    </script>
+</html>
