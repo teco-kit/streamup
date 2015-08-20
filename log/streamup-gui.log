@@ -1092,3 +1092,4 @@ Express server listening on port 8081 in development mode.
 crashing child
 Starting child process with 'node streamup-teco-gui/index.js'
 Express server listening on port 8081 in development mode.
+Sending SIGTERM to child...

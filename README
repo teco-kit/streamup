@@ -1,0 +1,18 @@
+make build:		Builds docker container
+
+make run:		Runs docker and builds all node dependecies int that way, that the local dependencies only exist one time in their original folder. This enables that all changes to projects are just-in-time reflected in all dependant projects. This behaviour can be seen in 'startup.sh'. Following projects are started using supervisord which restarts the projects as soon as a *.js file is edited:
+	- streamup-server-demo on localhost:8080
+	- streamup-teco-gui on localhost:8081
+	- streamup-sensorapi-demo on localhost:8082
+
+make start:		same as make run but starts docker as deamon
+
+make stop:		stops the currently running docker
+
+make rm:		removes the docker image
+
+make shell:		starts docker with a shell open. No services are started within
+
+make browserify:	generates APIs for the browser for 'StreamUp' and for the SmartTeco Ontology 'streamup-server-teco/src/SmartTecoOntology.js'
+
+
