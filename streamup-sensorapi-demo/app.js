@@ -6,6 +6,7 @@ var routes = require('./routes/index');
 var PORT = 8082; 
 
 var app = express();
+
 app.use(logger('dev'));
 app.use(function(req, res, next) {
   req.headers['if-none-match'] = 'no-match-for-this';
@@ -22,7 +23,13 @@ app.use(function(req, res, next) {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/local', express.static(path.join(__dirname, '/public/index-local.html')))
+app.use('/local/sensor', express.static(path.join(__dirname, '/public/sensor-local.html')))
+app.use('/sensor', express.static(path.join(__dirname, '/public/sensor.html')))
+
 app.use('/', routes);
+
+
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

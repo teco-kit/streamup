@@ -976,3 +976,119 @@ Warning: missing space before text for line 11 of jade file "/usr/src/app/stream
 [0mGET /js/jquery.flot.time.js [32m200 [0m2.489 ms - 11768[0m
 [0mGET /js/streamup.js [32m200 [0m1.677 ms - 5651[0m
 Sending SIGTERM to child...
+
+Running node-supervisor with
+  program 'streamup-teco-gui/index.js'
+  --watch '.'
+  --extensions 'node,js'
+  --exec 'node'
+
+Starting child process with 'node streamup-teco-gui/index.js'
+Watching directory '/usr/src/app' for changes.
+Press rs for restarting the process.
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
+crashing child
+Starting child process with 'node streamup-teco-gui/index.js'
+Express server listening on port 8081 in development mode.
